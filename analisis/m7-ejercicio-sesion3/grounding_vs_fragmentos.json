@@ -1,0 +1,111 @@
+[
+  {
+    "sesion": "sesion-pool",
+    "fragmentos_recuperados": 45,
+    "en_fragmentos": [
+      "1",
+      "2",
+      "3",
+      "4",
+      "7",
+      "80",
+      "100",
+      "150"
+    ],
+    "en_pregunta": [
+      "87"
+    ],
+    "sin_respaldo_directo": [
+      "13"
+    ]
+  },
+  {
+    "sesion": "sesion-pool",
+    "fragmentos_recuperados": 25,
+    "en_fragmentos": [
+      "80",
+      "100",
+      "150"
+    ],
+    "en_pregunta": [],
+    "sin_respaldo_directo": [
+      "0.80",
+      "22",
+      "33",
+      "58",
+      "63",
+      "87",
+      "120"
+    ]
+  },
+  {
+    "sesion": "sesion-canario",
+    "fragmentos_recuperados": 10,
+    "en_fragmentos": [
+      "1",
+      "2",
+      "5",
+      "6"
+    ],
+    "en_pregunta": [
+      "1.6"
+    ],
+    "sin_respaldo_directo": [
+      "0.4",
+      "0.6"
+    ]
+  },
+  {
+    "sesion": "sesion-fuera",
+    "fragmentos_recuperados": 25,
+    "en_fragmentos": [],
+    "en_pregunta": [],
+    "sin_respaldo_directo": []
+  },
+  {
+    "sesion": "sesion-redis",
+    "fragmentos_recuperados": 25,
+    "en_fragmentos": [
+      "2",
+      "30",
+      "85",
+      "100"
+    ],
+    "en_pregunta": [
+      "1.75"
+    ],
+    "sin_respaldo_directo": [
+      "1.7",
+      "2.5",
+      "87.5"
+    ]
+  },
+  {
+    "sesion": "sesion-celery",
+    "fragmentos_recuperados": 20,
+    "en_fragmentos": [
+      "2",
+      "3",
+      "100",
+      "1000"
+    ],
+    "en_pregunta": [
+      "1340"
+    ],
+    "sin_respaldo_directo": [
+      "34",
+      "340"
+    ]
+  },
+  {
+    "sesion": "sesion-falla",
+    "fragmentos_recuperados": 0,
+    "en_fragmentos": [],
+    "en_pregunta": [
+      "14"
+    ],
+    "sin_respaldo_directo": [
+      "3"
+    ]
+  }
+]

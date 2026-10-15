@@ -1,0 +1,28 @@
+# Versiones con las que se probó el orquestador (tests + traza en traces/).
+# Instalación: pip install -r requirements.txt
+langgraph==1.2.12
+langgraph-checkpoint-sqlite==3.1.1
+langchain-core==1.6.7
+langchain-anthropic==1.7.5
+langchain-openai==1.6.6
+aiosqlite==0.22.1
+pydantic==2.14.1   # 2.14+: lo exige arize-phoenix
+python-dotenv==1.2.3
+
+# Base vectorial de la pre-entrega 3 (ChromaDB local + embeddings locales, sin API key)
+chromadb==1.5.9
+langchain-chroma==1.1.0
+langchain-huggingface==1.2.3
+langchain-text-splitters==1.1.3
+sentence-transformers==6.1.0
+
+# Desarrollo: tests y chequeo de tipos
+pytest==9.1.1
+mypy==2.4.0
+ipykernel==7.4.0   # para abrir y ejecutar demo.ipynb
+
+# Observabilidad (Módulo 7): Arize Phoenix local + instrumentación OpenInference.
+arize-phoenix==20.22.0
+arize-phoenix-otel==0.17.2
+openinference-instrumentation-langchain==0.1.79
+openinference-semantic-conventions==0.1.41

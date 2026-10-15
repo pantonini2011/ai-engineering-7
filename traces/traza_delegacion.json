@@ -1,0 +1,1775 @@
+{
+  "generado": "2026-10-15T12:48:28",
+  "proveedor": "anthropic",
+  "modelos": {
+    "supervisor": "claude-haiku-5-5",
+    "investigador": "claude-haiku-5-5",
+    "analista": "claude-haiku-5-5",
+    "sintetizador": "claude-haiku-5-5"
+  },
+  "limites": {
+    "max_delegaciones": 6,
+    "max_por_especialista": 3,
+    "max_rechazos_validacion": 2,
+    "recursion_limit": 40
+  },
+  "turnos": [
+    {
+      "thread_id": "sesion-pool",
+      "turno": 1,
+      "usuario": "Hoy PgBouncer tiene 87 conexiones activas sostenidas hace 3 minutos. ¿Ya debería haber saltado la alerta del pool de PostgreSQL? ¿A qué porcentaje del límite estamos, cuánto margen queda y qué indica el runbook que hagamos?",
+      "delegaciones": {
+        "investigador": 2,
+        "analista": 3
+      },
+      "rechazos_validacion": 1,
+      "pasos": [
+        {
+          "nodo": "inicio",
+          "turno": 1,
+          "paso": 1,
+          "agente": "inicio",
+          "accion": "recibió la pregunta",
+          "detalle": "Hoy PgBouncer tiene 87 conexiones activas sostenidas hace 3 minutos. ¿Ya debería haber saltado la alerta del pool de PostgreSQL? ¿A qué porcentaje del límite estamos, cuánto margen queda y qué indica el runbook que hagamos?",
+          "fuentes": [],
+          "duracion_s": 0.0,
+          "timestamp": "2026-10-15T12:42:12"
+        },
+        {
+          "nodo": "supervisor",
+          "turno": 1,
+          "paso": 2,
+          "agente": "supervisor",
+          "accion": "delegó a investigador",
+          "detalle": "Todavía nadie intervino. La pregunta depende de la documentación (umbral de la alerta del pool, límite de conexiones, runbook), así que primero hay que delegar al investigador con los datos concretos del usuario. → instrucción: Buscá en la documentación interna: (1) la regla de alerta del pool de conexiones de PostgreSQL / PgBouncer en monitoreo y alertas, incluyendo umbral, ventana de duración y condición de disparo; (2) el límite máximo de conexiones configurado para el pool (max_connections de PostgreSQL y/o pool_size de PgBouncer) y su fuente; (3) las secciones del runbook de incidentes que indiquen qué hacer cuando el pool se acerca o supera el umbral. Contexto del usuario: PgBouncer tiene 87 conexiones activas sostenidas desde hace 3 minutos. Devolvé cada dato con su fuente (documento y sección). No calcules porcentajes ni márgenes.",
+          "fuentes": [],
+          "duracion_s": 3.02,
+          "timestamp": "2026-10-15T12:42:15"
+        },
+        {
+          "nodo": "investigador",
+          "turno": 1,
+          "paso": 3,
+          "agente": "investigador",
+          "accion": "investigó (8 hallazgos)",
+          "detalle": "La documentación define una alerta al superar el 80% de uso sostenido de conexiones activas frente al límite de 100 durante más de 2 minutos, documenta el límite de 100 conexiones de PgBouncer y describe los pasos del runbook del Incidente 1. No se encontró max_connections de PostgreSQL ni un parámetro pool_size explícito. · tools: buscar_documentacion, buscar_documentacion, buscar_documentacion",
+          "fuentes": [
+            "runbook_incidentes.md",
+            "monitoreo_alertas.md",
+            "arquitectura_sistema.md"
+          ],
+          "duracion_s": 22.2,
+          "timestamp": "2026-10-15T12:42:37"
+        },
+        {
+          "nodo": "supervisor",
+          "turno": 1,
+          "paso": 4,
+          "agente": "supervisor",
+          "accion": "delegó a analista",
+          "detalle": "El investigador ya encontró la regla de alerta (80% sostenido durante más de 2 minutos sobre un límite de 100) y los pasos del runbook. Falta que el analista calcule el porcentaje de uso (87 de 100), el margen restante y compare contra el umbral del 80% con los 3 minutos sostenidos. → instrucción: Con los datos del usuario: PgBouncer tiene 87 conexiones activas sostenidas desde hace 3 minutos. Según la documentación (monitoreo_alertas.md), la alerta de pool de PostgreSQL salta al superar el 80% de uso sostenido de conexiones activas frente al límite de 100 durante más de 2 minutos. Calculá: (1) el porcentaje de uso actual sobre el límite de 100; (2) el margen de conexiones que queda hasta el límite; (3) si el uso supera el umbral del 80% y si la duración de 3 minutos supera la ventana de 2 minutos, indicando si la alerta debería haber disparado. Informá cada cálculo con su resultado y verificá la coherencia de las cifras. No supongas valores de max_connections de PostgreSQL ni de pool_size, que no están documentados.",
+          "fuentes": [],
+          "duracion_s": 3.31,
+          "timestamp": "2026-10-15T12:42:41"
+        },
+        {
+          "nodo": "analista",
+          "turno": 1,
+          "paso": 5,
+          "agente": "analista",
+          "accion": "analizó (2 cálculos, 0 con error)",
+          "detalle": "Con 87 de 100 conexiones (87%) sostenidas durante 3 minutos, ambas condiciones de la regla (más del 80% durante más de 2 minutos) se cumplen, por lo que la alerta debería haber disparado. Quedan 13 conexiones libres hasta el límite. · tools: calcular, calcular, porcentaje, comparar_con_umbral, comparar_con_umbral",
+          "fuentes": [],
+          "duracion_s": 20.42,
+          "timestamp": "2026-10-15T12:43:01"
+        },
+        {
+          "nodo": "supervisor",
+          "turno": 1,
+          "paso": 6,
+          "agente": "supervisor",
+          "accion": "delegó a investigador",
+          "detalle": "El análisis está casi completo, pero quedan dos puntos: la alerta se describe como de pool de PostgreSQL mientras el límite de 100 documentado es de PgBouncer, y el texto del runbook está truncado desde el paso 2 y no muestra los pasos posteriores al 3. Pido una única aclaración al investigador sobre ambos. → instrucción: Con 87 conexiones activas sostenidas durante 3 minutos en PgBouncer (límite 100), necesitamos aclarar en la documentación: (1) si la regla de alerta del 80% durante más de 2 minutos se aplica a la métrica de conexiones de PgBouncer o a las de PostgreSQL (pool de PostgreSQL), indicando la fuente exacta del nombre de la métrica y del límite; (2) el texto completo del paso 2 del runbook de incidentes (identificar y cancelar queries colgadas) y todos los pasos posteriores al paso 3 del Incidente 1 (agotamiento del pool de conexiones), citando el archivo runbook_incidentes.md. Si algún dato no está en la documentación, indicá explícitamente que no se encontró.",
+          "fuentes": [],
+          "duracion_s": 4.69,
+          "timestamp": "2026-10-15T12:43:06"
+        },
+        {
+          "nodo": "investigador",
+          "turno": 1,
+          "paso": 7,
+          "agente": "investigador",
+          "accion": "investigó (6 hallazgos)",
+          "detalle": "La documentación establece una alerta al superar el 80% de uso sostenido durante más de 2 minutos sobre conexiones activas vs. límite configurado (100), pero no indica a qué componente se aplica (PgBouncer o PostgreSQL) ni el nombre exacto de la métrica. El paso 2 del runbook se recuperó solo parcialmente (falta el tramo intermedio). El paso 3 del Incidente 1 se recuperó completo. No se encontró un paso 4 de resolución ni pasos posteriores; el único fragmento con '4.' corresponde a un campo de criticidad de la ficha del incidente. · tools: buscar_documentacion, buscar_documentacion, buscar_documentacion, buscar_documentacion, buscar_documentacion, buscar_documentacion",
+          "fuentes": [
+            "monitoreo_alertas.md",
+            "runbook_incidentes.md",
+            "arquitectura_sistema.md"
+          ],
+          "duracion_s": 26.73,
+          "timestamp": "2026-10-15T12:43:32"
+        },
+        {
+          "nodo": "supervisor",
+          "turno": 1,
+          "paso": 8,
+          "agente": "supervisor",
+          "accion": "envió a validación",
+          "detalle": "decidió finalizar: La rúbrica está cubierta: cada parte de la pregunta tiene hallazgos con fuente, el analista calculó 87% y 13 conexiones libres sin errores, y la inconsistencia PgBouncer/PostgreSQL ya fue consultada al investigador una vez sin resolución en la documentación, así que se informa como limitación.",
+          "fuentes": [],
+          "duracion_s": 3.43,
+          "timestamp": "2026-10-15T12:43:36"
+        },
+        {
+          "nodo": "validacion",
+          "turno": 1,
+          "paso": 9,
+          "agente": "validacion",
+          "accion": "rechazó (1/2)",
+          "detalle": "El análisis es anterior a la última investigación: pedile al analista que lo actualice.",
+          "fuentes": [],
+          "duracion_s": 0.0,
+          "timestamp": "2026-10-15T12:43:36"
+        },
+        {
+          "nodo": "supervisor",
+          "turno": 1,
+          "paso": 10,
+          "agente": "supervisor",
+          "accion": "delegó a analista",
+          "detalle": "La validación indica que el análisis del analista es anterior a la última investigación, así que hay que actualizarlo antes de finalizar. El analista debe recalcular con los hallazgos vigentes y dejar explícito que el alcance de la alerta (PgBouncer o PostgreSQL) no está documentado. → instrucción: Actualizá el análisis con la última investigación. Datos del usuario: 87 conexiones activas sostenidas durante 3 minutos. Límite documentado: 100 conexiones (PgBouncer, modo transaction, por instancia). Regla de alerta documentada: uso sostenido superior al 80% durante más de 2 minutos. Calculá el porcentaje de uso, el margen absoluto hasta el límite, la diferencia con el umbral del 80% y con la ventana de 2 minutos, y si la condición de alerta se cumple. Aclarà que la documentación no indica si la regla aplica a PgBouncer o a PostgreSQL, y que el paso 2 del runbook está truncado y no hay paso 4 documentado. Indicá los supuestos y las limitaciones, sin suponer datos faltantes (por ejemplo, max_connections de PostgreSQL). Incluí también, a partir del runbook, qué pasos corresponden al caso de volumen (paso 3: escalar réplicas de PgBouncer o subir el límite a 150) y al de queries colgadas (paso 2).}",
+          "fuentes": [],
+          "duracion_s": 3.9,
+          "timestamp": "2026-10-15T12:43:40"
+        },
+        {
+          "nodo": "analista",
+          "turno": 1,
+          "paso": 11,
+          "agente": "analista",
+          "accion": "analizó (4 cálculos, 2 con error)",
+          "detalle": "La condición de alerta se cumple: el uso sostenido de 87 de 100 conexiones (87%) supera el umbral del 80% durante 3 minutos, más de los 2 minutos de la ventana. Según la documentación, es el precursor directo del Incidente 1 (agotamiento del pool de conexiones). · tools: porcentaje, calcular, calcular, comparar_con_umbral, comparar_con_umbral",
+          "fuentes": [],
+          "duracion_s": 26.51,
+          "timestamp": "2026-10-15T12:44:06"
+        },
+        {
+          "nodo": "supervisor",
+          "turno": 1,
+          "paso": 12,
+          "agente": "supervisor",
+          "accion": "delegó a analista",
+          "detalle": "El analista reportó errores de verificación en los dos cálculos de porcentaje y margen (la herramienta porcentaje no fue aceptada), por lo que la rúbrica punto 2 no se cumple. Hay que pedir al analista que recalcule con operaciones aritméticas simples (87/100*100 y 100-87) para obtener valores verificados. → instrucción: Recalculá sin usar la función porcentaje, con expresiones aritméticas simples. Datos: uso sostenido de 87 conexiones activas sobre un límite de 100 (PgBouncer), sostenido durante 3 minutos; la regla de alerta exige más del 80% durante más de 2 minutos. Calculá: (a) porcentaje de uso = 87 / 100 * 100; (b) margen absoluto = 100 - 87; (c) diferencia con el umbral del 80% en puntos porcentuales = 87 - 80; (d) minutos por encima de la ventana de 2 minutos = 3 - 2. Devolvé cada resultado con su expresión y confirmá si pasa la verificación.",
+          "fuentes": [],
+          "duracion_s": 3.07,
+          "timestamp": "2026-10-15T12:44:09"
+        },
+        {
+          "nodo": "analista",
+          "turno": 1,
+          "paso": 13,
+          "agente": "analista",
+          "accion": "analizó (4 cálculos, 0 con error)",
+          "detalle": "Con 87 de 100 conexiones activas sostenidas durante 3 minutos, el uso (87 %) supera el umbral de alerta del 80 % y la duración supera la ventana de más de 2 minutos, por lo que la regla de alerta se cumple en ambas partes. · tools: calcular, calcular, calcular, calcular, comparar_con_umbral, comparar_con_umbral",
+          "fuentes": [],
+          "duracion_s": 15.05,
+          "timestamp": "2026-10-15T12:44:24"
+        },
+        {
+          "nodo": "supervisor",
+          "turno": 1,
+          "paso": 14,
+          "agente": "supervisor",
+          "accion": "bloqueó la delegación (tope) y envió a validación",
+          "detalle": "el LLM pidió al analista otra vez; el código no lo permite: el analista ya intervino 3 veces en este turno.",
+          "fuentes": [],
+          "duracion_s": 2.8,
+          "timestamp": "2026-10-15T12:44:27"
+        },
+        {
+          "nodo": "validacion",
+          "turno": 1,
+          "paso": 15,
+          "agente": "validacion",
+          "accion": "aprobó",
+          "detalle": "la rúbrica de suficiencia se cumple",
+          "fuentes": [],
+          "duracion_s": 0.0,
+          "timestamp": "2026-10-15T12:44:27"
+        },
+        {
+          "nodo": "sintetizador",
+          "turno": 1,
+          "paso": 16,
+          "agente": "sintetizador",
+          "accion": "redactó la respuesta final",
+          "detalle": "**Sí, la alerta debería haber disparado**, siempre que las mediciones sean correctas.\n\n- **Uso:** 87 / 100 × 100 = **87 %** del límite [arquitectura_sistema.md]",
+          "fuentes": [],
+          "duracion_s": 7.29,
+          "timestamp": "2026-10-15T12:44:35"
+        }
+      ],
+      "investigaciones": [
+        {
+          "turno": 1,
+          "paso": 3,
+          "instruccion": "Buscá en la documentación interna: (1) la regla de alerta del pool de conexiones de PostgreSQL / PgBouncer en monitoreo y alertas, incluyendo umbral, ventana de duración y condición de disparo; (2) el límite máximo de conexiones configurado para el pool (max_connections de PostgreSQL y/o pool_size de PgBouncer) y su fuente; (3) las secciones del runbook de incidentes que indiquen qué hacer cuando el pool se acerca o supera el umbral. Contexto del usuario: PgBouncer tiene 87 conexiones activas sostenidas desde hace 3 minutos. Devolvé cada dato con su fuente (documento y sección). No calcules porcentajes ni márgenes.",
+          "resultado": {
+            "resumen": "La documentación define una alerta al superar el 80% de uso sostenido de conexiones activas frente al límite de 100 durante más de 2 minutos, documenta el límite de 100 conexiones de PgBouncer y describe los pasos del runbook del Incidente 1. No se encontró max_connections de PostgreSQL ni un parámetro pool_size explícito.",
+            "hallazgos": [
+              {
+                "dato": "Alerta al superar el 80% de uso sostenido de conexiones activas vs. el límite configurado (100) durante más de 2 minutos; se indica que es el precursor directo del Incidente 1 del runbook (agotamiento del pool de conexiones).",
+                "fuente": "monitoreo_alertas.md"
+              },
+              {
+                "dato": "Límite de 100 conexiones de PgBouncer (modo transaction), con un límite de 100 conexiones por instancia.",
+                "fuente": "arquitectura_sistema.md"
+              },
+              {
+                "dato": "Bajo carga alta (más de 500 pedidos concurrentes) el límite de 100 conexiones de PgBouncer se satura y las requests nuevas quedan esperando una conexión libre.",
+                "fuente": "arquitectura_sistema.md"
+              },
+              {
+                "dato": "Resolución, paso 1: verificar en el dashboard de PgBouncer cuántas conexiones están activas vs. el límite (100).",
+                "fuente": "runbook_incidentes.md"
+              },
+              {
+                "dato": "Resolución, paso 2 (fragmento truncado): si hay una query colgada reteniendo conexiones, identificarla con SELECT * FROM pg_stat_activity WHERE state = 'active' ORDER BY query_start; y, si corresponde, cancelarla con pg_cancel_backend(pid).",
+                "fuente": "runbook_incidentes.md"
+              },
+              {
+                "dato": "Resolución, paso 3: si el problema es puramente de volumen (no hay queries colgadas), escalar horizontalmente el número de réplicas de PgBouncer o subir temporalmente el límite de conexiones a 150.",
+                "fuente": "runbook_incidentes.md"
+              },
+              {
+                "dato": "Síntoma: POST /v1/pedidos devuelve errores 504 o tarda más de 10 segundos; en los logs de FastAPI aparece 'TimeoutError: connection pool exhausted' proveniente de PgBouncer.",
+                "fuente": "runbook_incidentes.md"
+              },
+              {
+                "dato": "Alerta si alguna query individual supera los 5 segundos de ejecución.",
+                "fuente": "monitoreo_alertas.md"
+              }
+            ],
+            "sin_informacion": false,
+            "no_documentado": [
+              "Valor de max_connections de PostgreSQL: no aparece en los fragmentos recuperados.",
+              "Parámetro pool_size de PgBouncer como valor de configuración explícito: no figura; solo se menciona el límite de 100 conexiones por instancia.",
+              "Archivo o despliegue donde se fija el límite de 100 conexiones: no documentado.",
+              "Detalle de cómo se evalúa la ventana de 2 minutos de la regla de alerta: solo figura 'más de 2 minutos'.",
+              "Severidad, destinatario o canal de la alerta: no documentados en los fragmentos.",
+              "Pasos del runbook posteriores al paso 3 y texto completo del paso 2: los fragmentos están truncados.",
+              "Umbral de acción específico para el estado 'cerca del umbral' distinto del 80% de la regla de alerta: no documentado."
+            ]
+          },
+          "fuentes_consultadas": [
+            "runbook_incidentes.md",
+            "monitoreo_alertas.md",
+            "arquitectura_sistema.md"
+          ],
+          "fuentes_no_verificadas": [],
+          "error": null
+        },
+        {
+          "turno": 1,
+          "paso": 7,
+          "instruccion": "Con 87 conexiones activas sostenidas durante 3 minutos en PgBouncer (límite 100), necesitamos aclarar en la documentación: (1) si la regla de alerta del 80% durante más de 2 minutos se aplica a la métrica de conexiones de PgBouncer o a las de PostgreSQL (pool de PostgreSQL), indicando la fuente exacta del nombre de la métrica y del límite; (2) el texto completo del paso 2 del runbook de incidentes (identificar y cancelar queries colgadas) y todos los pasos posteriores al paso 3 del Incidente 1 (agotamiento del pool de conexiones), citando el archivo runbook_incidentes.md. Si algún dato no está en la documentación, indicá explícitamente que no se encontró.",
+          "resultado": {
+            "resumen": "La documentación establece una alerta al superar el 80% de uso sostenido durante más de 2 minutos sobre conexiones activas vs. límite configurado (100), pero no indica a qué componente se aplica (PgBouncer o PostgreSQL) ni el nombre exacto de la métrica. El paso 2 del runbook se recuperó solo parcialmente (falta el tramo intermedio). El paso 3 del Incidente 1 se recuperó completo. No se encontró un paso 4 de resolución ni pasos posteriores; el único fragmento con '4.' corresponde a un campo de criticidad de la ficha del incidente.",
+            "hallazgos": [
+              {
+                "dato": "Alerta al superar el 80% de uso sostenido durante más de 2 minutos, sobre conexiones activas vs. límite configurado (100). Bajo el encabezado combinado PostgreSQL / PgBouncer.",
+                "fuente": "monitoreo_alertas.md"
+              },
+              {
+                "dato": "Pool de conexiones gestionado con PgBouncer (modo transaction), con un límite de 100 conexiones por instancia.",
+                "fuente": "arquitectura_sistema.md"
+              },
+              {
+                "dato": "Paso 1 de resolución: verificar en el dashboard de PgBouncer cuántas conexiones están activas vs. el límite (100).",
+                "fuente": "runbook_incidentes.md"
+              },
+              {
+                "dato": "Paso 2 de resolución (parcial, tramo intermedio no recuperado): 'Si hay una query colgada reteniendo conexiones, identificarla con' ... 'SELECT * FROM pg_stat_activity WHERE state = 'active' ORDER BY query_start;' y, si corresponde, cancelarla con pg_cancel_backend(pid).",
+                "fuente": "runbook_incidentes.md"
+              },
+              {
+                "dato": "Paso 3 de resolución: si el problema es puramente de volumen (no hay queries colgadas), escalar horizontalmente el número de réplicas de PgBouncer o subir temporalmente el límite de conexiones a 150.",
+                "fuente": "runbook_incidentes.md"
+              },
+              {
+                "dato": "Nivel de criticidad: alta (impacto directo en la capacidad de compra de los usuarios).",
+                "fuente": "runbook_incidentes.md"
+              }
+            ],
+            "sin_informacion": false,
+            "no_documentado": [
+              "Nombre exacto de la métrica de conexiones de PgBouncer o PostgreSQL en Prometheus",
+              "Aclaración explícita de si la regla del 80% aplica a PgBouncer o a PostgreSQL",
+              "Texto completo del paso 2 del runbook (el tramo intermedio no fue recuperado)",
+              "Paso 4 de resolución del Incidente 1 (no encontrado; el fragmento '4.' corresponde a la criticidad)",
+              "Pasos 5 en adelante de resolución del Incidente 1 (no encontrados)"
+            ]
+          },
+          "fuentes_consultadas": [
+            "monitoreo_alertas.md",
+            "runbook_incidentes.md",
+            "arquitectura_sistema.md"
+          ],
+          "fuentes_no_verificadas": [],
+          "error": null
+        }
+      ],
+      "analisis": [
+        {
+          "turno": 1,
+          "paso": 5,
+          "instruccion": "Con los datos del usuario: PgBouncer tiene 87 conexiones activas sostenidas desde hace 3 minutos. Según la documentación (monitoreo_alertas.md), la alerta de pool de PostgreSQL salta al superar el 80% de uso sostenido de conexiones activas frente al límite de 100 durante más de 2 minutos. Calculá: (1) el porcentaje de uso actual sobre el límite de 100; (2) el margen de conexiones que queda hasta el límite; (3) si el uso supera el umbral del 80% y si la duración de 3 minutos supera la ventana de 2 minutos, indicando si la alerta debería haber disparado. Informá cada cálculo con su resultado y verificá la coherencia de las cifras. No supongas valores de max_connections de PostgreSQL ni de pool_size, que no están documentados.",
+          "resultado": {
+            "resumen": "Con 87 de 100 conexiones (87%) sostenidas durante 3 minutos, ambas condiciones de la regla (más del 80% durante más de 2 minutos) se cumplen, por lo que la alerta debería haber disparado. Quedan 13 conexiones libres hasta el límite.",
+            "calculos": [
+              {
+                "descripcion": "Porcentaje de uso actual sobre el límite de 100 conexiones",
+                "expresion": "87 / 100 * 100",
+                "resultado": 87.0
+              },
+              {
+                "descripcion": "Margen absoluto de conexiones hasta el límite de 100",
+                "expresion": "100 - 87",
+                "resultado": 13.0
+              }
+            ],
+            "conclusiones": [
+              "El uso actual es 87% del límite de 100 conexiones (87 de 100).",
+              "87% supera el umbral de alerta del 80% en 7 puntos porcentuales.",
+              "Quedan 13 conexiones libres hasta el límite (13%).",
+              "3 minutos superan la ventana de más de 2 minutos en 1 minuto.",
+              "Ambas condiciones se cumplen: según los valores recibidos, la alerta de pool debería haber disparado.",
+              "Coherencia: 87 + 13 = 100 y 87% + 13% = 100%; el cálculo con calcular y la herramienta porcentaje coinciden."
+            ],
+            "datos_faltantes": [],
+            "supuestos": [
+              "Valor de max_connections de PostgreSQL: no documentado; no se usó en ningún cálculo.",
+              "pool_size de PgBouncer: no documentado como parámetro explícito; no se usó en ningún cálculo.",
+              "Archivo o despliegue donde se fija el límite de 100 conexiones: no documentado.",
+              "Forma exacta en que se evalúa la ventana de 'más de 2 minutos': se asume que los 3 minutos sostenidos informados por el usuario cumplen la condición.",
+              "Se asume que las 87 conexiones medidas corresponden al mismo límite de 100 que usa la regla de alerta.",
+              "Severidad, destinatario y canal de la alerta: no documentados.",
+              "Umbral de acción para el estado 'cerca del umbral' distinto del 80%: no documentado.",
+              "Pasos del runbook posteriores al paso 3 y texto completo del paso 2: no documentados por truncamiento.",
+              "Si la alerta efectivamente disparó en el sistema no se pudo verificar; el análisis se basa en los valores informados."
+            ],
+            "inconsistencias": [
+              "La alerta se describe como de pool de PostgreSQL, mientras que el límite de 100 documentado corresponde a PgBouncer (modo transaction). Los números coinciden, pero conviene confirmar que la métrica medida es la de PgBouncer."
+            ]
+          },
+          "verificaciones": [
+            {
+              "expresion": "87 / 100 * 100",
+              "declarado": 87.0,
+              "recalculado": 87.0,
+              "ok": true,
+              "detalle": ""
+            },
+            {
+              "expresion": "100 - 87",
+              "declarado": 13.0,
+              "recalculado": 13.0,
+              "ok": true,
+              "detalle": ""
+            }
+          ],
+          "error": null
+        },
+        {
+          "turno": 1,
+          "paso": 11,
+          "instruccion": "Actualizá el análisis con la última investigación. Datos del usuario: 87 conexiones activas sostenidas durante 3 minutos. Límite documentado: 100 conexiones (PgBouncer, modo transaction, por instancia). Regla de alerta documentada: uso sostenido superior al 80% durante más de 2 minutos. Calculá el porcentaje de uso, el margen absoluto hasta el límite, la diferencia con el umbral del 80% y con la ventana de 2 minutos, y si la condición de alerta se cumple. Aclarà que la documentación no indica si la regla aplica a PgBouncer o a PostgreSQL, y que el paso 2 del runbook está truncado y no hay paso 4 documentado. Indicá los supuestos y las limitaciones, sin suponer datos faltantes (por ejemplo, max_connections de PostgreSQL). Incluí también, a partir del runbook, qué pasos corresponden al caso de volumen (paso 3: escalar réplicas de PgBouncer o subir el límite a 150) y al de queries colgadas (paso 2).}",
+          "resultado": {
+            "resumen": "La condición de alerta se cumple: el uso sostenido de 87 de 100 conexiones (87%) supera el umbral del 80% durante 3 minutos, más de los 2 minutos de la ventana. Según la documentación, es el precursor directo del Incidente 1 (agotamiento del pool de conexiones).",
+            "calculos": [
+              {
+                "descripcion": "Porcentaje de uso sobre el límite de 100 conexiones",
+                "expresion": "porcentaje(valor=87, total=100)",
+                "resultado": 87.0
+              },
+              {
+                "descripcion": "Margen absoluto hasta el límite de 100 conexiones",
+                "expresion": "porcentaje(valor=87, total=100), margen_absoluto",
+                "resultado": 13.0
+              },
+              {
+                "descripcion": "Diferencia del uso con el umbral del 80% (puntos porcentuales)",
+                "expresion": "87 - 80",
+                "resultado": 7.0
+              },
+              {
+                "descripcion": "Minutos sostenidos por encima de la ventana de 2 minutos",
+                "expresion": "3 - 2",
+                "resultado": 1.0
+              }
+            ],
+            "conclusiones": [
+              "El uso es del 87% (87 de 100 conexiones).",
+              "El margen hasta el límite es de 13 conexiones.",
+              "El uso supera el umbral del 80% en 7 puntos porcentuales.",
+              "La duración sostenida de 3 minutos supera la ventana de 2 minutos en 1 minuto.",
+              "La regla de alerta se cumple: uso sostenido superior al 80% durante más de 2 minutos.",
+              "Caso de queries colgadas: paso 2 del runbook, identificar con SELECT * FROM pg_stat_activity WHERE state = 'active' ORDER BY query_start; y, si corresponde, cancelar con pg_cancel_backend(pid). El texto completo del paso 2 está truncado.",
+              "Caso de volumen puro: paso 3, solo si no hay queries colgadas. Opciones: escalar horizontalmente las réplicas de PgBouncer o subir temporalmente el límite de conexiones a 150. La documentación no indica criterios para elegir entre ambas.",
+              "Orden implícito: el paso 1 (verificar en el dashboard de PgBouncer las conexiones activas contra el límite de 100) es previo a ambos casos. Descartar queries colgadas requiere ejecutar el paso 2."
+            ],
+            "datos_faltantes": [],
+            "supuestos": [
+              "La documentación no indica si la regla del 80% aplica a PgBouncer o a PostgreSQL. El encabezado dice 'PostgreSQL / PgBouncer', pero no lo aclara. El análisis asume que el 87% corresponde al límite de 100 conexiones de PgBouncer, como indica el enunciado del usuario.",
+              "Solo figura 'más de 2 minutos' para la ventana de la alerta. No se sabe si se evalúa como promedio, muestras consecutivas u otro método. Se toman los 3 minutos sostenidos del usuario como válidos.",
+              "El límite de 100 se asume como el límite configurado al que se refiere la alerta. No se conoce el archivo ni el despliegue donde se fija.",
+              "Si hay queries colgadas en este momento, y por lo tanto qué paso corresponde, solo puede confirmarlo el usuario ejecutando el paso 2.",
+              "No se conocen max_connections de PostgreSQL, el parámetro pool_size de PgBouncer ni el nombre de la métrica en Prometheus.",
+              "No están documentados la severidad, el destinatario ni el canal de la alerta.",
+              "Si se sube el límite a 150, el porcentaje de uso y la regla del 80% cambiarían al recalcularse sobre el nuevo límite. Esto no está documentado y no se calculó.",
+              "No hay medición de los errores 504 ni de la latencia mayor a 10 segundos en POST /v1/pedidos. Solo se conoce el uso de conexiones.",
+              "El paso 2 del runbook está truncado y no se encontró el paso 4 ni los siguientes del Incidente 1.",
+              "La alerta de 5 segundos por query individual es un criterio separado y no se evaluó porque no hay datos de duración de queries.",
+              "El contexto de carga alta (más de 500 pedidos concurrentes) describe cuándo se satura el límite, pero no se sabe si la carga actual supera ese valor."
+            ],
+            "inconsistencias": []
+          },
+          "verificaciones": [
+            {
+              "expresion": "porcentaje(valor=87, total=100)",
+              "declarado": 87.0,
+              "recalculado": null,
+              "ok": false,
+              "detalle": "elemento no permitido: Call(func=Name(id='porcentaje', ctx=Load()), args=[], keywor"
+            },
+            {
+              "expresion": "porcentaje(valor=87, total=100), margen_absoluto",
+              "declarado": 13.0,
+              "recalculado": null,
+              "ok": false,
+              "detalle": "elemento no permitido: Tuple(elts=[Call(func=Name(id='porcentaje', ctx=Load()), arg"
+            },
+            {
+              "expresion": "87 - 80",
+              "declarado": 7.0,
+              "recalculado": 7.0,
+              "ok": true,
+              "detalle": ""
+            },
+            {
+              "expresion": "3 - 2",
+              "declarado": 1.0,
+              "recalculado": 1.0,
+              "ok": true,
+              "detalle": ""
+            }
+          ],
+          "error": null
+        },
+        {
+          "turno": 1,
+          "paso": 13,
+          "instruccion": "Recalculá sin usar la función porcentaje, con expresiones aritméticas simples. Datos: uso sostenido de 87 conexiones activas sobre un límite de 100 (PgBouncer), sostenido durante 3 minutos; la regla de alerta exige más del 80% durante más de 2 minutos. Calculá: (a) porcentaje de uso = 87 / 100 * 100; (b) margen absoluto = 100 - 87; (c) diferencia con el umbral del 80% en puntos porcentuales = 87 - 80; (d) minutos por encima de la ventana de 2 minutos = 3 - 2. Devolvé cada resultado con su expresión y confirmá si pasa la verificación.",
+          "resultado": {
+            "resumen": "Con 87 de 100 conexiones activas sostenidas durante 3 minutos, el uso (87 %) supera el umbral de alerta del 80 % y la duración supera la ventana de más de 2 minutos, por lo que la regla de alerta se cumple en ambas partes.",
+            "calculos": [
+              {
+                "descripcion": "Porcentaje de uso de conexiones sobre el límite de 100",
+                "expresion": "87 / 100 * 100",
+                "resultado": 87.0
+              },
+              {
+                "descripcion": "Margen absoluto de conexiones libres sobre el límite",
+                "expresion": "100 - 87",
+                "resultado": 13.0
+              },
+              {
+                "descripcion": "Diferencia con el umbral del 80 % en puntos porcentuales",
+                "expresion": "87 - 80",
+                "resultado": 7.0
+              },
+              {
+                "descripcion": "Minutos por encima de la ventana de 2 minutos",
+                "expresion": "3 - 2",
+                "resultado": 1.0
+              }
+            ],
+            "conclusiones": [
+              "El uso de 87 % supera el umbral de alerta del 80 % (comparación 87 > 80, dispara con diferencia de 7.0 puntos porcentuales).",
+              "La duración de 3 minutos supera la ventana de más de 2 minutos (comparación 3 > 2, dispara con diferencia de 1.0 minuto).",
+              "La condición de alerta (más del 80 % durante más de 2 minutos) se cumple."
+            ],
+            "datos_faltantes": [],
+            "supuestos": [
+              "Cómo se evalúa la ventana de 2 minutos de la regla de alerta (solo figura 'más de 2 minutos').",
+              "Si la regla del 80 % aplica a PgBouncer o a PostgreSQL (la documentación la menciona bajo el encabezado combinado).",
+              "Que las 87 conexiones sean la medición real del estado en vivo y que los 3 minutos correspondan a esa misma medición sostenida.",
+              "Valor de max_connections de PostgreSQL: no aparece en los fragmentos recuperados.",
+              "Parámetro pool_size de PgBouncer como valor explícito: no figura; solo el límite de 100 conexiones por instancia.",
+              "Archivo o despliegue donde se fija el límite de 100 conexiones: no documentado.",
+              "Severidad, destinatario y canal de la alerta: no documentados en los fragmentos.",
+              "Texto completo del paso 2 del runbook (fragmento truncado) y pasos posteriores al paso 3.",
+              "Umbral de acción específico para el estado 'cerca del umbral' distinto del 80 %: no documentado.",
+              "Nombre exacto de la métrica de conexiones de PgBouncer o PostgreSQL en Prometheus: no documentado.",
+              "Paso 4 y siguientes de resolución del Incidente 1: no encontrados."
+            ],
+            "inconsistencias": []
+          },
+          "verificaciones": [
+            {
+              "expresion": "87 / 100 * 100",
+              "declarado": 87.0,
+              "recalculado": 87.0,
+              "ok": true,
+              "detalle": ""
+            },
+            {
+              "expresion": "100 - 87",
+              "declarado": 13.0,
+              "recalculado": 13.0,
+              "ok": true,
+              "detalle": ""
+            },
+            {
+              "expresion": "87 - 80",
+              "declarado": 7.0,
+              "recalculado": 7.0,
+              "ok": true,
+              "detalle": ""
+            },
+            {
+              "expresion": "3 - 2",
+              "declarado": 1.0,
+              "recalculado": 1.0,
+              "ok": true,
+              "detalle": ""
+            }
+          ],
+          "error": null
+        }
+      ],
+      "respuesta_final": "**Sí, la alerta debería haber disparado**, siempre que las mediciones sean correctas.\n\n- **Uso:** 87 / 100 × 100 = **87 %** del límite [arquitectura_sistema.md]\n- **Umbral:** 87 > 80, supera el 80 % por 7 puntos [monitoreo_alertas.md]\n- **Duración:** 3 min > 2 min, cumple la ventana sostenida [monitoreo_alertas.md]\n- **Margen:** 100 − 87 = **13 conexiones libres**\n\nEsta situación es el precursor directo del Incidente 1, agotamiento del pool de conexiones [monitoreo_alertas.md]. La criticidad es alta porque afecta la capacidad de compra de los usuarios [runbook_incidentes.md].\n\n**Qué indica el runbook:**\n1. Verificar en el dashboard de PgBouncer las conexiones activas contra el límite de 100 [runbook_incidentes.md].\n2. Si hay queries colgadas, identificarlas con `SELECT * FROM pg_stat_activity WHERE state = 'active' ORDER BY query_start;` y, si corresponde, cancelarlas con `pg_cancel_backend(pid)` [runbook_incidentes.md]. El texto de este paso está truncado.\n3. Si el problema es solo de volumen, escalar horizontalmente las réplicas de PgBouncer o subir temporalmente el límite a 150 [runbook_incidentes.md].\n\n**Limitaciones:** no se confirmó si la regla del 80 % aplica a PgBouncer o a PostgreSQL, ni cómo se evalúa la ventana de 2 minutos. Tampoco se verificó que las 87 conexiones sean la medición en vivo. No hay datos de destinatario, severidad ni canal de la alerta. No se recuperó el paso 2 completo ni los pasos desde el 4 en adelante, y el valor de max_connections de PostgreSQL no está documentado."
+    },
+    {
+      "thread_id": "sesion-pool",
+      "turno": 2,
+      "usuario": "Si aplicamos la resolución del runbook y subimos temporalmente el límite, ¿a qué porcentaje quedarían esas mismas conexiones y cuántas más podríamos sumar antes de volver a disparar la alerta?",
+      "delegaciones": {
+        "investigador": 1,
+        "analista": 1
+      },
+      "rechazos_validacion": 0,
+      "pasos": [
+        {
+          "nodo": "inicio",
+          "turno": 2,
+          "paso": 1,
+          "agente": "inicio",
+          "accion": "recibió la pregunta",
+          "detalle": "Si aplicamos la resolución del runbook y subimos temporalmente el límite, ¿a qué porcentaje quedarían esas mismas conexiones y cuántas más podríamos sumar antes de volver a disparar la alerta?",
+          "fuentes": [],
+          "duracion_s": 0.0,
+          "timestamp": "2026-10-15T12:44:35"
+        },
+        {
+          "nodo": "supervisor",
+          "turno": 2,
+          "paso": 2,
+          "agente": "supervisor",
+          "accion": "delegó a investigador",
+          "detalle": "La pregunta depende de la documentación: el valor del límite temporal (150) y la regla de alerta del 80 % deben verificarse con fuente antes de calcular. Por eso primero delego al investigador. → instrucción: Buscá en la documentación interna: (1) el valor exacto del límite de conexiones de PgBouncer que el runbook indica subir temporalmente (se mencionó 150) y las condiciones para hacerlo, con fuente; (2) la regla de alerta del pool de PostgreSQL: umbral porcentual (se mencionó 80 %), a qué límite se aplica (PgBouncer o PostgreSQL), y la ventana de duración (2 minutos), con fuente; (3) el límite actual de 100 conexiones y si está documentado como límite de PgBouncer o de PostgreSQL. Contexto: el usuario tiene 87 conexiones activas sostenidas por 3 minutos. Si el paso 2 o los pasos 4 en adelante del runbook están truncados, indicá cuáles recuperaste y cuáles no.",
+          "fuentes": [],
+          "duracion_s": 2.57,
+          "timestamp": "2026-10-15T12:44:37"
+        },
+        {
+          "nodo": "investigador",
+          "turno": 2,
+          "paso": 3,
+          "agente": "investigador",
+          "accion": "investigó (4 hallazgos)",
+          "detalle": "El runbook indica subir temporalmente el límite de conexiones a 150 solo si el problema es puramente de volumen (sin queries colgadas). La alerta del pool se dispara al superar el 80 % de uso sostenido durante más de 2 minutos, sobre un límite de 100 cuyo componente no se especifica en la alerta, aunque la arquitectura lo documenta como límite de PgBouncer. El paso 2 del Incidente 1 está truncado y los pasos 4 en adelante no se recuperaron. · tools: buscar_documentacion, buscar_documentacion, buscar_documentacion, listar_documentos, buscar_documentacion, buscar_documentacion",
+          "fuentes": [
+            "monitoreo_alertas.md",
+            "arquitectura_sistema.md",
+            "runbook_incidentes.md"
+          ],
+          "duracion_s": 18.99,
+          "timestamp": "2026-10-15T12:44:56"
+        },
+        {
+          "nodo": "supervisor",
+          "turno": 2,
+          "paso": 4,
+          "agente": "supervisor",
+          "accion": "delegó a analista",
+          "detalle": "El investigador encontró el límite de 100, el umbral del 80 % y la opción de subir a 150 solo si el problema es de volumen, con fuentes. Falta calcular el porcentaje de 87 conexiones sobre 150 y el margen restante antes de la alerta, lo que requiere al analista. → instrucción: Con un límite temporal de 150 conexiones y 87 conexiones activas sostenidas (3 min), calculá: (a) el porcentaje de uso 87/150 × 100; (b) el número de conexiones adicionales que se pueden sumar antes de superar el 80 % del nuevo límite (umbral = 0,80 × 150 = 120, así que 120 − 87 = 33 más; verificá el cálculo); (c) el margen libre total 150 − 87. Indicá si cada cálculo es correcto y señalá que el umbral del 80 % y el límite de 150 aplican solo si el componente y la regla están confirmados en la documentación.",
+          "fuentes": [],
+          "duracion_s": 2.41,
+          "timestamp": "2026-10-15T12:44:59"
+        },
+        {
+          "nodo": "analista",
+          "turno": 2,
+          "paso": 5,
+          "agente": "analista",
+          "accion": "analizó (4 cálculos, 0 con error)",
+          "detalle": "Con límite 150 y 87 conexiones activas, el uso es 58 %, por debajo del umbral de alerta del 80 %. Los cálculos son aritméticamente correctos, pero su validez operativa depende de confirmar el componente al que aplican el límite de 150 y la regla del 80 %. · tools: calcular, calcular, calcular, calcular, comparar_con_umbral",
+          "fuentes": [],
+          "duracion_s": 17.1,
+          "timestamp": "2026-10-15T12:45:16"
+        },
+        {
+          "nodo": "supervisor",
+          "turno": 2,
+          "paso": 6,
+          "agente": "supervisor",
+          "accion": "envió a validación",
+          "detalle": "decidió finalizar: El investigador y el analista ya cubrieron la pregunta: se calcularon el porcentaje (58 %), el margen (33 conexiones hasta el 80 %) y el libre total (63), sin errores. Los datos que faltan (componente de la regla del 80 %, procedimiento para subir el límite) no están en la documentación y el investigador ya los buscó, así que se informan como supuestos.",
+          "fuentes": [],
+          "duracion_s": 3.36,
+          "timestamp": "2026-10-15T12:45:19"
+        },
+        {
+          "nodo": "validacion",
+          "turno": 2,
+          "paso": 7,
+          "agente": "validacion",
+          "accion": "aprobó",
+          "detalle": "la rúbrica de suficiencia se cumple",
+          "fuentes": [],
+          "duracion_s": 0.0,
+          "timestamp": "2026-10-15T12:45:19"
+        },
+        {
+          "nodo": "sintetizador",
+          "turno": 2,
+          "paso": 8,
+          "agente": "sintetizador",
+          "accion": "redactó la respuesta final",
+          "detalle": "**Con el límite subido a 150, las 87 conexiones quedarían en 58 % y podrías sumar 33 más antes de disparar la alerta.**\n\n- **Porcentaje de uso:** 87 / 150 × 100",
+          "fuentes": [],
+          "duracion_s": 4.17,
+          "timestamp": "2026-10-15T12:45:23"
+        }
+      ],
+      "investigaciones": [
+        {
+          "turno": 2,
+          "paso": 3,
+          "instruccion": "Buscá en la documentación interna: (1) el valor exacto del límite de conexiones de PgBouncer que el runbook indica subir temporalmente (se mencionó 150) y las condiciones para hacerlo, con fuente; (2) la regla de alerta del pool de PostgreSQL: umbral porcentual (se mencionó 80 %), a qué límite se aplica (PgBouncer o PostgreSQL), y la ventana de duración (2 minutos), con fuente; (3) el límite actual de 100 conexiones y si está documentado como límite de PgBouncer o de PostgreSQL. Contexto: el usuario tiene 87 conexiones activas sostenidas por 3 minutos. Si el paso 2 o los pasos 4 en adelante del runbook están truncados, indicá cuáles recuperaste y cuáles no.",
+          "resultado": {
+            "resumen": "El runbook indica subir temporalmente el límite de conexiones a 150 solo si el problema es puramente de volumen (sin queries colgadas). La alerta del pool se dispara al superar el 80 % de uso sostenido durante más de 2 minutos, sobre un límite de 100 cuyo componente no se especifica en la alerta, aunque la arquitectura lo documenta como límite de PgBouncer. El paso 2 del Incidente 1 está truncado y los pasos 4 en adelante no se recuperaron.",
+            "hallazgos": [
+              {
+                "dato": "Si el problema es puramente de volumen (no hay queries colgadas), escalar horizontalmente el número de réplicas de PgBouncer o subir temporalmente el límite de conexiones a 150.",
+                "fuente": "runbook_incidentes.md"
+              },
+              {
+                "dato": "Alerta al superar el 80% de uso sostenido durante más de 2 minutos, sobre las conexiones activas vs. el límite configurado (100).",
+                "fuente": "monitoreo_alertas.md"
+              },
+              {
+                "dato": "El pool de conexiones está gestionado con PgBouncer (modo transaction), con un límite de 100 conexiones por instancia.",
+                "fuente": "arquitectura_sistema.md"
+              },
+              {
+                "dato": "El límite de 100 conexiones de PgBouncer se satura bajo carga alta (más de 500 pedidos concurrentes).",
+                "fuente": "arquitectura_sistema.md"
+              }
+            ],
+            "sin_informacion": false,
+            "no_documentado": [
+              "Procedimiento completo del paso 2 del Incidente 1 (cómo identificar la query colgada), parte del cual está truncado",
+              "Pasos de Resolución 4 en adelante del Incidente 1, no recuperados",
+              "Componente (PgBouncer o PostgreSQL) al que se aplica la regla de alerta del 80 %",
+              "Procedimiento, responsables o pasos para subir temporalmente el límite a 150",
+              "Documentación de que el límite de 100 conexiones sea de PostgreSQL (max_connections)"
+            ]
+          },
+          "fuentes_consultadas": [
+            "monitoreo_alertas.md",
+            "arquitectura_sistema.md",
+            "runbook_incidentes.md"
+          ],
+          "fuentes_no_verificadas": [],
+          "error": null
+        }
+      ],
+      "analisis": [
+        {
+          "turno": 2,
+          "paso": 5,
+          "instruccion": "Con un límite temporal de 150 conexiones y 87 conexiones activas sostenidas (3 min), calculá: (a) el porcentaje de uso 87/150 × 100; (b) el número de conexiones adicionales que se pueden sumar antes de superar el 80 % del nuevo límite (umbral = 0,80 × 150 = 120, así que 120 − 87 = 33 más; verificá el cálculo); (c) el margen libre total 150 − 87. Indicá si cada cálculo es correcto y señalá que el umbral del 80 % y el límite de 150 aplican solo si el componente y la regla están confirmados en la documentación.",
+          "resultado": {
+            "resumen": "Con límite 150 y 87 conexiones activas, el uso es 58 %, por debajo del umbral de alerta del 80 %. Los cálculos son aritméticamente correctos, pero su validez operativa depende de confirmar el componente al que aplican el límite de 150 y la regla del 80 %.",
+            "calculos": [
+              {
+                "descripcion": "(a) Porcentaje de uso: 87 de 150",
+                "expresion": "87 / 150 * 100",
+                "resultado": 58.0
+              },
+              {
+                "descripcion": "Umbral del 80 % sobre el límite de 150",
+                "expresion": "0.80 * 150",
+                "resultado": 120.0
+              },
+              {
+                "descripcion": "(b) Conexiones adicionales antes de superar el 80 % de 150",
+                "expresion": "0.80 * 150 - 87",
+                "resultado": 33.0
+              },
+              {
+                "descripcion": "(c) Margen libre total: 150 - 87",
+                "expresion": "150 - 87",
+                "resultado": 63.0
+              }
+            ],
+            "conclusiones": [
+              "Con límite 150 y 87 conexiones activas, el uso es 58 %, por debajo del umbral de alerta del 80 % (no dispara, diferencia de -22 puntos).",
+              "Se pueden sumar 33 conexiones más antes de llegar a 120 (80 % de 150).",
+              "El margen libre total es de 63 conexiones.",
+              "Los cálculos son aritméticamente correctos; su validez operativa depende de que el límite de 150 y la regla del 80 % correspondan al componente correcto, lo que no está confirmado en la documentación."
+            ],
+            "datos_faltantes": [],
+            "supuestos": [
+              "Que el límite de 150 conexiones sea el que aplica al componente en cuestión: el procedimiento para subirlo temporalmente a 150 no está documentado (procedimiento, responsables y pasos).",
+              "Que la regla de alerta del 80 % aplique al componente en cuestión (PgBouncer o PostgreSQL): no está documentado a cuál se aplica.",
+              "Que el límite de 100 conexiones sea de PostgreSQL (max_connections): no hay documentación que lo confirme.",
+              "Que las 87 conexiones activas sostenidas durante 3 minutos correspondan a una medición en vivo del sistema, que solo el usuario puede confirmar.",
+              "Procedimiento completo del paso 2 del Incidente 1 (identificación de la query colgada) truncado y pasos de Resolución 4 en adelante no recuperados.",
+              "Que el umbral de 80 % sostenido durante más de 2 minutos sea el vigente para este escenario; los 3 minutos declarados lo cumplirían si la regla se aplica."
+            ],
+            "inconsistencias": [
+              "La alerta de monitoreo usa un límite configurado de 100 conexiones (monitoreo_alertas.md), mientras que el runbook propone subir el límite a 150 (runbook_incidentes.md). No queda claro sobre qué límite y de qué componente se mide la alerta tras el cambio.",
+              "Con el límite actual de 100, las 87 conexiones equivalen al 87 %, por encima del umbral de alerta del 80 %; con 150 quedan en 58 %. El resultado de la alerta depende del límite de referencia, por lo que conviene confirmar cuál se usa.",
+              "La documentación ubica el límite de 100 en PgBouncer (arquitectura_sistema.md), pero el runbook habla de subir 'el límite de conexiones' sin indicar componente, y monitoreo_alertas.md no especifica el componente."
+            ]
+          },
+          "verificaciones": [
+            {
+              "expresion": "87 / 150 * 100",
+              "declarado": 58.0,
+              "recalculado": 58.0,
+              "ok": true,
+              "detalle": ""
+            },
+            {
+              "expresion": "0.80 * 150",
+              "declarado": 120.0,
+              "recalculado": 120.0,
+              "ok": true,
+              "detalle": ""
+            },
+            {
+              "expresion": "0.80 * 150 - 87",
+              "declarado": 33.0,
+              "recalculado": 33.0,
+              "ok": true,
+              "detalle": ""
+            },
+            {
+              "expresion": "150 - 87",
+              "declarado": 63.0,
+              "recalculado": 63.0,
+              "ok": true,
+              "detalle": ""
+            }
+          ],
+          "error": null
+        }
+      ],
+      "respuesta_final": "**Con el límite subido a 150, las 87 conexiones quedarían en 58 % y podrías sumar 33 más antes de disparar la alerta.**\n\n- **Porcentaje de uso:** 87 / 150 × 100 = **58 %** [arquitectura_sistema.md] [runbook_incidentes.md]\n- **Umbral de alerta:** 0.80 × 150 = **120 conexiones** [monitoreo_alertas.md]\n- **Conexiones adicionales antes de disparar:** 120 − 87 = **33** [monitoreo_alertas.md]\n- **Margen libre total:** 150 − 87 = **63 conexiones** [runbook_incidentes.md]\n\nCon 150, el uso queda 22 puntos por debajo del 80 %, así que la alerta no dispararía con las 87 actuales.\n\n**Limitaciones:** la alerta está documentada sobre un límite de 100 [monitoreo_alertas.md], así que si sigue usando 100, las 87 conexiones ya equivalen al 87 % y superan el umbral. El cálculo solo vale si el límite de 150 y la regla del 80 % aplican al mismo componente, lo que no está confirmado. Tampoco hay procedimiento documentado para subir el límite temporalmente ni se sabe si es PgBouncer o PostgreSQL. Además, las 87 conexiones son un dato declarado por el usuario y no verificado en vivo."
+    },
+    {
+      "thread_id": "sesion-canario",
+      "turno": 1,
+      "usuario": "Durante un canario medimos 1.6% de errores 5xx durante 6 minutos seguidos. ¿Se revierte automáticamente el despliegue? ¿Dispara la alerta de 5xx de monitoreo? Compará los dos umbrales.",
+      "delegaciones": {
+        "investigador": 1,
+        "analista": 2
+      },
+      "rechazos_validacion": 0,
+      "pasos": [
+        {
+          "nodo": "inicio",
+          "turno": 1,
+          "paso": 1,
+          "agente": "inicio",
+          "accion": "recibió la pregunta",
+          "detalle": "Durante un canario medimos 1.6% de errores 5xx durante 6 minutos seguidos. ¿Se revierte automáticamente el despliegue? ¿Dispara la alerta de 5xx de monitoreo? Compará los dos umbrales.",
+          "fuentes": [],
+          "duracion_s": 0.0,
+          "timestamp": "2026-10-15T12:45:23"
+        },
+        {
+          "nodo": "supervisor",
+          "turno": 1,
+          "paso": 2,
+          "agente": "supervisor",
+          "accion": "delegó a investigador",
+          "detalle": "Nadie intervino todavía. Para responder hace falta buscar en la documentación los umbrales de reversión automática del canario y de la alerta de 5xx, por lo que corresponde delegar primero en el investigador. → instrucción: Buscá en la documentación interna (normativa de despliegue y monitoreo y alertas) dos datos con su fuente: (1) el umbral de porcentaje de errores 5xx y la duración sostenida requerida para que el despliegue canario se revierta automáticamente; (2) el umbral de porcentaje de errores 5xx y la duración requerida para que dispare la alerta de 5xx de monitoreo. Indicá para cada uno la fuente exacta del documento y si la documentación no tiene información sobre alguno de los dos.",
+          "fuentes": [],
+          "duracion_s": 2.0,
+          "timestamp": "2026-10-15T12:45:25"
+        },
+        {
+          "nodo": "investigador",
+          "turno": 1,
+          "paso": 3,
+          "agente": "investigador",
+          "accion": "investigó (2 hallazgos)",
+          "detalle": "Se encontraron el umbral de reversión del canario (2% de errores 5xx durante el canario, sin duración explícita) y el umbral de la alerta de 5xx (>1% durante 5 minutos consecutivos). La duración de la reversión automática no figura en la documentación. · tools: buscar_documentacion, buscar_documentacion",
+          "fuentes": [
+            "normativa_despliegue.md",
+            "monitoreo_alertas.md"
+          ],
+          "duracion_s": 7.5,
+          "timestamp": "2026-10-15T12:45:33"
+        },
+        {
+          "nodo": "supervisor",
+          "turno": 1,
+          "paso": 4,
+          "agente": "supervisor",
+          "accion": "delegó a analista",
+          "detalle": "El investigador ya encontró ambos umbrales con fuente: reversión canario con 2% y alerta 5xx con >1% sostenido 5 minutos. Falta que el analista compare 1.6% durante 6 minutos contra cada umbral, porque la comparación aún no fue calculada. → instrucción: Compará la situación medida durante un canario (1.6% de errores 5xx sostenido durante 6 minutos seguidos) contra dos umbrales documentados. (1) Umbral de reversión automática del canario: 2% de errores 5xx durante el canario, sin duración explícita en la documentación [normativa_despliegue.md]. Indicá si 1.6% supera ese umbral y cuánto le falta o sobra en puntos porcentuales. (2) Umbral de alerta de 5xx de monitoreo: >1% durante 5 minutos consecutivos [monitoreo_alertas.md]. Indicá si 1.6% supera 1% y si los 6 minutos cumplen la duración de 5 minutos. Aclará que la duración de la reversión automática no está documentada, así que no se puede verificar esa condición temporal. Presentá el resultado de cada comparación de forma explícita.",
+          "fuentes": [],
+          "duracion_s": 3.76,
+          "timestamp": "2026-10-15T12:45:36"
+        },
+        {
+          "nodo": "analista",
+          "turno": 1,
+          "paso": 5,
+          "agente": "analista",
+          "accion": "analizó (3 cálculos, 3 con error)",
+          "detalle": "El canario (1.6% de 5xx sostenido 6 min) NO supera el umbral de reversión automática del 2% (faltan 0.4 pp), pero SÍ dispara la alerta de monitoreo (supera el 1% en 0.6 pp y cumple los 5 min requeridos). La duración de la reversión no está documentada, así que solo se verificó la tasa. · tools: comparar_con_umbral, comparar_con_umbral, comparar_con_umbral",
+          "fuentes": [],
+          "duracion_s": 15.14,
+          "timestamp": "2026-10-15T12:45:52"
+        },
+        {
+          "nodo": "supervisor",
+          "turno": 1,
+          "paso": 6,
+          "agente": "supervisor",
+          "accion": "delegó a analista",
+          "detalle": "El analista marcó error de verificación en los tres cálculos, así que la rúbrica (punto 2) no se cumple. Hay que repetir las comparaciones con los mismos datos antes de finalizar. → instrucción: Repetí las tres comparaciones, que fallaron en la verificación. Datos: el usuario midió 1.6% de errores 5xx sostenidos durante 6 minutos en un canario. Umbral de reversión automática del canario: 2% de errores 5xx durante el canario, sin duración documentada. Umbral de alerta de monitoreo de 5xx: >1% durante 5 minutos consecutivos. Calculá con aritmética simple, sin llamadas a funciones: (a) 1.6 − 2 = diferencia respecto de la reversión; (b) 1.6 − 1 = diferencia respecto de la alerta; (c) 6 − 5 = minutos sobre la duración requerida por la alerta. Indicá si cada umbral se cumple y cuál es el resultado de cada cálculo. No supongas la duración de la reversión: marcala como no documentada.",
+          "fuentes": [],
+          "duracion_s": 4.01,
+          "timestamp": "2026-10-15T12:45:56"
+        },
+        {
+          "nodo": "analista",
+          "turno": 1,
+          "paso": 7,
+          "agente": "analista",
+          "accion": "analizó (3 cálculos, 0 con error)",
+          "detalle": "El canario (1.6% de errores 5xx) no alcanza la reversión automática del 2% y el umbral de alerta de monitoreo (>1% durante 5 minutos) sí se cumple. La duración requerida para la reversión no está documentada. · tools: calcular, calcular, calcular, comparar_con_umbral, comparar_con_umbral, comparar_con_umbral",
+          "fuentes": [],
+          "duracion_s": 14.77,
+          "timestamp": "2026-10-15T12:46:10"
+        },
+        {
+          "nodo": "supervisor",
+          "turno": 1,
+          "paso": 8,
+          "agente": "supervisor",
+          "accion": "envió a validación",
+          "detalle": "decidió finalizar: Las dos partes de la pregunta tienen hallazgos con fuente y el analista recalculó las comparaciones sin errores de verificación (1.6% no supera el 2% de reversión, sí supera el 1% de alerta con 6 min ≥ 5 min). La duración de la reversión automática no está documentada y el investigador ya confirmó que no aparece, así que es una limitación a informar, no un dato que pueda conseguir otra búsqueda.",
+          "fuentes": [],
+          "duracion_s": 3.86,
+          "timestamp": "2026-10-15T12:46:14"
+        },
+        {
+          "nodo": "validacion",
+          "turno": 1,
+          "paso": 9,
+          "agente": "validacion",
+          "accion": "aprobó",
+          "detalle": "la rúbrica de suficiencia se cumple",
+          "fuentes": [],
+          "duracion_s": 0.0,
+          "timestamp": "2026-10-15T12:46:14"
+        },
+        {
+          "nodo": "sintetizador",
+          "turno": 1,
+          "paso": 10,
+          "agente": "sintetizador",
+          "accion": "redactó la respuesta final",
+          "detalle": "**Respuesta corta:** el despliegue **no** se revierte automáticamente, pero **sí** dispara la alerta de 5xx.\n\n**Reversión automática:** si la tasa de errores 5x",
+          "fuentes": [],
+          "duracion_s": 5.0,
+          "timestamp": "2026-10-15T12:46:19"
+        }
+      ],
+      "investigaciones": [
+        {
+          "turno": 1,
+          "paso": 3,
+          "instruccion": "Buscá en la documentación interna (normativa de despliegue y monitoreo y alertas) dos datos con su fuente: (1) el umbral de porcentaje de errores 5xx y la duración sostenida requerida para que el despliegue canario se revierta automáticamente; (2) el umbral de porcentaje de errores 5xx y la duración requerida para que dispare la alerta de 5xx de monitoreo. Indicá para cada uno la fuente exacta del documento y si la documentación no tiene información sobre alguno de los dos.",
+          "resultado": {
+            "resumen": "Se encontraron el umbral de reversión del canario (2% de errores 5xx durante el canario, sin duración explícita) y el umbral de la alerta de 5xx (>1% durante 5 minutos consecutivos). La duración de la reversión automática no figura en la documentación.",
+            "hallazgos": [
+              {
+                "dato": "Si la tasa de errores 5xx supera el 2% durante el canario, el despliegue se revierte automáticamente sin intervención manual.",
+                "fuente": "normativa_despliegue.md"
+              },
+              {
+                "dato": "Umbral de alerta de tasa de errores 5xx: > 1% durante 5 minutos consecutivos.",
+                "fuente": "monitoreo_alertas.md"
+              }
+            ],
+            "sin_informacion": false,
+            "no_documentado": [
+              "Duración sostenida requerida para la reversión automática del despliegue canario (el documento solo dice 'durante el canario'; los 15 minutos aparecen como ventana de observación del rollout, no como condición de rollback)."
+            ]
+          },
+          "fuentes_consultadas": [
+            "normativa_despliegue.md",
+            "monitoreo_alertas.md"
+          ],
+          "fuentes_no_verificadas": [],
+          "error": null
+        }
+      ],
+      "analisis": [
+        {
+          "turno": 1,
+          "paso": 5,
+          "instruccion": "Compará la situación medida durante un canario (1.6% de errores 5xx sostenido durante 6 minutos seguidos) contra dos umbrales documentados. (1) Umbral de reversión automática del canario: 2% de errores 5xx durante el canario, sin duración explícita en la documentación [normativa_despliegue.md]. Indicá si 1.6% supera ese umbral y cuánto le falta o sobra en puntos porcentuales. (2) Umbral de alerta de 5xx de monitoreo: >1% durante 5 minutos consecutivos [monitoreo_alertas.md]. Indicá si 1.6% supera 1% y si los 6 minutos cumplen la duración de 5 minutos. Aclará que la duración de la reversión automática no está documentada, así que no se puede verificar esa condición temporal. Presentá el resultado de cada comparación de forma explícita.",
+          "resultado": {
+            "resumen": "El canario (1.6% de 5xx sostenido 6 min) NO supera el umbral de reversión automática del 2% (faltan 0.4 pp), pero SÍ dispara la alerta de monitoreo (supera el 1% en 0.6 pp y cumple los 5 min requeridos). La duración de la reversión no está documentada, así que solo se verificó la tasa.",
+            "calculos": [
+              {
+                "descripcion": "Diferencia entre la tasa medida (1.6%) y el umbral de reversión automática (2%); negativo indica que no lo supera",
+                "expresion": "comparar_con_umbral(valor=1.6, umbral=2, condicion=mayor)",
+                "resultado": -0.4
+              },
+              {
+                "descripcion": "Diferencia entre la tasa medida (1.6%) y el umbral de alerta de monitoreo (1%)",
+                "expresion": "comparar_con_umbral(valor=1.6, umbral=1, condicion=mayor)",
+                "resultado": 0.6
+              },
+              {
+                "descripcion": "Diferencia entre la duración medida (6 min) y la duración requerida por la alerta de monitoreo (5 min)",
+                "expresion": "comparar_con_umbral(valor=6, umbral=5, condicion=mayor_o_igual)",
+                "resultado": 1.0
+              }
+            ],
+            "conclusiones": [
+              "1.6% no supera el umbral de reversión automática del 2%; le faltan 0.4 pp.",
+              "1.6% supera el umbral de alerta del 1% en 0.6 pp.",
+              "Los 6 minutos sostenidos cumplen la duración de 5 minutos consecutivos del umbral de alerta (exceden en 1 minuto).",
+              "La alerta de monitoreo se dispara; la reversión automática no se dispara."
+            ],
+            "datos_faltantes": [],
+            "supuestos": [
+              "La duración sostenida requerida para la reversión automática no está documentada: el documento solo dice 'durante el canario' y los 15 minutos son una ventana de observación del rollout, no una condición de rollback. Por eso no se pudo verificar la condición temporal de la reversión.",
+              "Los valores medidos (1.6% de 5xx sostenido durante 6 minutos) son los informados en la instrucción y no se verificaron contra el sistema en vivo.",
+              "Si la medición real de la tasa de 5xx del canario difiere de 1.6%, las conclusiones cambian."
+            ],
+            "inconsistencias": []
+          },
+          "verificaciones": [
+            {
+              "expresion": "comparar_con_umbral(valor=1.6, umbral=2, condicion=mayor)",
+              "declarado": -0.4,
+              "recalculado": null,
+              "ok": false,
+              "detalle": "elemento no permitido: Call(func=Name(id='comparar_con_umbral', ctx=Load()), args=["
+            },
+            {
+              "expresion": "comparar_con_umbral(valor=1.6, umbral=1, condicion=mayor)",
+              "declarado": 0.6,
+              "recalculado": null,
+              "ok": false,
+              "detalle": "elemento no permitido: Call(func=Name(id='comparar_con_umbral', ctx=Load()), args=["
+            },
+            {
+              "expresion": "comparar_con_umbral(valor=6, umbral=5, condicion=mayor_o_igual)",
+              "declarado": 1.0,
+              "recalculado": null,
+              "ok": false,
+              "detalle": "elemento no permitido: Call(func=Name(id='comparar_con_umbral', ctx=Load()), args=["
+            }
+          ],
+          "error": null
+        },
+        {
+          "turno": 1,
+          "paso": 7,
+          "instruccion": "Repetí las tres comparaciones, que fallaron en la verificación. Datos: el usuario midió 1.6% de errores 5xx sostenidos durante 6 minutos en un canario. Umbral de reversión automática del canario: 2% de errores 5xx durante el canario, sin duración documentada. Umbral de alerta de monitoreo de 5xx: >1% durante 5 minutos consecutivos. Calculá con aritmética simple, sin llamadas a funciones: (a) 1.6 − 2 = diferencia respecto de la reversión; (b) 1.6 − 1 = diferencia respecto de la alerta; (c) 6 − 5 = minutos sobre la duración requerida por la alerta. Indicá si cada umbral se cumple y cuál es el resultado de cada cálculo. No supongas la duración de la reversión: marcala como no documentada.",
+          "resultado": {
+            "resumen": "El canario (1.6% de errores 5xx) no alcanza la reversión automática del 2% y el umbral de alerta de monitoreo (>1% durante 5 minutos) sí se cumple. La duración requerida para la reversión no está documentada.",
+            "calculos": [
+              {
+                "descripcion": "Diferencia del 1.6% de errores 5xx respecto del umbral de reversión automática del 2%",
+                "expresion": "1.6 - 2",
+                "resultado": -0.4
+              },
+              {
+                "descripcion": "Diferencia del 1.6% de errores 5xx respecto del umbral de alerta del 1%",
+                "expresion": "1.6 - 1",
+                "resultado": 0.6
+              },
+              {
+                "descripcion": "Minutos sostenidos (6) por encima de los 5 minutos consecutivos requeridos por la alerta",
+                "expresion": "6 - 5",
+                "resultado": 1.0
+              }
+            ],
+            "conclusiones": [
+              "El canario no alcanza el umbral de reversión automática del 2%, por lo que no revierte por ese criterio (diferencia -0.4 puntos).",
+              "La alerta de monitoreo se dispara: 1.6% supera el 1% y se sostiene 6 minutos, más que los 5 consecutivos requeridos (diferencia 0.6 puntos en tasa y 1 minuto en duración).",
+              "La duración de la reversión automática no está documentada: el documento solo dice 'durante el canario', por lo que no puede confirmarse la condición temporal aunque el 1.6% superara el 2%."
+            ],
+            "datos_faltantes": [],
+            "supuestos": [
+              "La duración sostenida requerida para la reversión automática del despliegue canario no está documentada; el documento solo dice 'durante el canario'. Los 15 minutos aparecen como ventana de observación del rollout, no como condición de rollback, y no se usan en esta comparación.",
+              "Los 1.6% de errores 5xx y los 6 minutos de duración son valores medidos informados por el usuario; no se verificaron contra un sistema en vivo."
+            ],
+            "inconsistencias": []
+          },
+          "verificaciones": [
+            {
+              "expresion": "1.6 - 2",
+              "declarado": -0.4,
+              "recalculado": -0.4,
+              "ok": true,
+              "detalle": ""
+            },
+            {
+              "expresion": "1.6 - 1",
+              "declarado": 0.6,
+              "recalculado": 0.6,
+              "ok": true,
+              "detalle": ""
+            },
+            {
+              "expresion": "6 - 5",
+              "declarado": 1.0,
+              "recalculado": 1.0,
+              "ok": true,
+              "detalle": ""
+            }
+          ],
+          "error": null
+        }
+      ],
+      "respuesta_final": "**Respuesta corta:** el despliegue **no** se revierte automáticamente, pero **sí** dispara la alerta de 5xx.\n\n**Reversión automática:** si la tasa de errores 5xx supera el 2% durante el canario, el despliegue se revierte sin intervención manual [normativa_despliegue.md]. Tu medición fue 1.6%:\n1.6 − 2 = **−0.4 puntos**, por debajo del umbral. No se cumple este criterio.\n\n**Alerta de monitoreo:** el umbral es más de 1% durante 5 minutos consecutivos [monitoreo_alertas.md]. Tu medición cumple ambas condiciones:\n- Tasa: 1.6 − 1 = **+0.6 puntos** por encima del umbral.\n- Duración: 6 − 5 = **+1 minuto** por encima del mínimo.\n\n**Comparación:** la alerta se dispara con un margen de 0.6 puntos, mientras que la reversión queda 0.4 puntos por debajo de su umbral. La alerta es el criterio que se activa en este caso.\n\nLimitaciones: la documentación no especifica la duración sostenida requerida para la reversión automática (solo dice \"durante el canario\"), así que no puede confirmarse esa condición temporal. Los valores de 1.6% y 6 minutos son los que informaste; no los verifiqué contra un sistema en vivo."
+    },
+    {
+      "thread_id": "sesion-fuera",
+      "turno": 1,
+      "usuario": "¿Cuál es la cotización del dólar hoy y cuánto costarían 3 servidores nuevos?",
+      "delegaciones": {
+        "investigador": 1,
+        "analista": 0
+      },
+      "rechazos_validacion": 0,
+      "pasos": [
+        {
+          "nodo": "inicio",
+          "turno": 1,
+          "paso": 1,
+          "agente": "inicio",
+          "accion": "recibió la pregunta",
+          "detalle": "¿Cuál es la cotización del dólar hoy y cuánto costarían 3 servidores nuevos?",
+          "fuentes": [],
+          "duracion_s": 0.0,
+          "timestamp": "2026-10-15T12:46:19"
+        },
+        {
+          "nodo": "supervisor",
+          "turno": 1,
+          "paso": 2,
+          "agente": "supervisor",
+          "accion": "delegó a investigador",
+          "detalle": "La pregunta pide la cotización del dólar y el costo de 3 servidores, datos que no están en la documentación interna de la Plataforma de Pedidos. Corresponde primero que el investigador busque en la documentación si hay información de costos o precios de servidores, antes de cualquier cálculo. → instrucción: Buscá en la documentación interna cualquier dato sobre la cotización del dólar o el costo de servidores nuevos (precio unitario, presupuesto de infraestructura, compras o aprovisionamiento) para la Plataforma de Pedidos. Indicá la fuente de cada hallazgo. Si no existe información sobre estos temas, indicalo explícitamente como 'sin información'. No estimes ni supongas valores.",
+          "fuentes": [],
+          "duracion_s": 2.58,
+          "timestamp": "2026-10-15T12:46:22"
+        },
+        {
+          "nodo": "investigador",
+          "turno": 1,
+          "paso": 3,
+          "agente": "investigador",
+          "accion": "investigó (0 hallazgos)",
+          "detalle": "sin información en la documentación · tools: buscar_documentacion, buscar_documentacion, buscar_documentacion, buscar_documentacion, buscar_documentacion",
+          "fuentes": [
+            "runbook_incidentes.md",
+            "monitoreo_alertas.md",
+            "arquitectura_sistema.md",
+            "normativa_despliegue.md"
+          ],
+          "duracion_s": 10.65,
+          "timestamp": "2026-10-15T12:46:33"
+        },
+        {
+          "nodo": "supervisor",
+          "turno": 1,
+          "paso": 4,
+          "agente": "supervisor",
+          "accion": "envió a validación",
+          "detalle": "decidió finalizar: El investigador marcó SIN INFORMACIÓN para el tema central (cotización del dólar y costo de servidores), y la rúbrica indica finalizar en ese caso para que la respuesta diga que no se sabe, sin pedir al analista que suponga datos.",
+          "fuentes": [],
+          "duracion_s": 1.29,
+          "timestamp": "2026-10-15T12:46:34"
+        },
+        {
+          "nodo": "validacion",
+          "turno": 1,
+          "paso": 5,
+          "agente": "validacion",
+          "accion": "aprobó",
+          "detalle": "la rúbrica de suficiencia se cumple",
+          "fuentes": [],
+          "duracion_s": 0.0,
+          "timestamp": "2026-10-15T12:46:34"
+        },
+        {
+          "nodo": "sintetizador",
+          "turno": 1,
+          "paso": 6,
+          "agente": "sintetizador",
+          "accion": "redactó la respuesta final",
+          "detalle": "No tengo información para responder tu pregunta. La documentación interna no cubre la cotización del dólar ni los costos, precios o presupuesto para adquirir se",
+          "fuentes": [],
+          "duracion_s": 1.95,
+          "timestamp": "2026-10-15T12:46:36"
+        }
+      ],
+      "investigaciones": [
+        {
+          "turno": 1,
+          "paso": 3,
+          "instruccion": "Buscá en la documentación interna cualquier dato sobre la cotización del dólar o el costo de servidores nuevos (precio unitario, presupuesto de infraestructura, compras o aprovisionamiento) para la Plataforma de Pedidos. Indicá la fuente de cada hallazgo. Si no existe información sobre estos temas, indicalo explícitamente como 'sin información'. No estimes ni supongas valores.",
+          "resultado": {
+            "resumen": "No se encontró en la documentación interna ninguna información sobre la cotización del dólar ni sobre costos, precios, presupuesto o aprovisionamiento de servidores nuevos para la Plataforma de Pedidos. Las búsquedas devolvieron únicamente temas técnicos no relacionados.",
+            "hallazgos": [],
+            "sin_informacion": true,
+            "no_documentado": [
+              "Cotización del dólar: sin información",
+              "Precio unitario de servidores o hardware: sin información",
+              "Presupuesto de infraestructura: sin información",
+              "Compras o aprovisionamiento de servidores nuevos: sin información"
+            ]
+          },
+          "fuentes_consultadas": [
+            "runbook_incidentes.md",
+            "monitoreo_alertas.md",
+            "arquitectura_sistema.md",
+            "normativa_despliegue.md"
+          ],
+          "fuentes_no_verificadas": [],
+          "error": null
+        }
+      ],
+      "analisis": [],
+      "respuesta_final": "No tengo información para responder tu pregunta. La documentación interna no cubre la cotización del dólar ni los costos, precios o presupuesto para adquirir servidores nuevos para la Plataforma de Pedidos. Las búsquedas sólo devolvieron temas técnicos no relacionados, así que no puedo estimar un valor sin inventar datos.\n\nPara responder esto, conviene consultar una fuente externa de cotización (por ejemplo, el BCRA o tu banco) y el área de compras o proveedores de infraestructura para los precios de los servidores.\n\nLimitaciones: la búsqueda se hizo solo sobre la documentación interna; no hubo falla técnica, pero la cotización del dólar es un dato de mercado que no está en esa base."
+    },
+    {
+      "thread_id": "sesion-redis",
+      "turno": 1,
+      "usuario": "La instancia de Redis de sesión está usando 1.75 GB y varios usuarios se quejan de que tienen que volver a loguearse antes de los 30 minutos. ¿Ya salta la alerta de memoria? ¿A qué porcentaje del límite estamos, cuál es la causa probable y qué criticidad tiene según el runbook?",
+      "delegaciones": {
+        "investigador": 1,
+        "analista": 1
+      },
+      "rechazos_validacion": 0,
+      "pasos": [
+        {
+          "nodo": "inicio",
+          "turno": 1,
+          "paso": 1,
+          "agente": "inicio",
+          "accion": "recibió la pregunta",
+          "detalle": "La instancia de Redis de sesión está usando 1.75 GB y varios usuarios se quejan de que tienen que volver a loguearse antes de los 30 minutos. ¿Ya salta la alerta de memoria? ¿A qué porcentaje del límite estamos, cuál es la causa probable y qué criticidad tiene según el runbook?",
+          "fuentes": [],
+          "duracion_s": 0.0,
+          "timestamp": "2026-10-15T12:46:36"
+        },
+        {
+          "nodo": "supervisor",
+          "turno": 1,
+          "paso": 2,
+          "agente": "supervisor",
+          "accion": "delegó a investigador",
+          "detalle": "Nadie intervino todavía. La pregunta depende de la documentación (umbral de alerta de memoria de Redis, límite de la instancia, causa probable y criticidad en el runbook), así que corresponde delegar primero al investigador. → instrucción: Buscá en la documentación interna de la Plataforma de Pedidos: (1) el umbral de alerta de memoria configurado para la instancia de Redis de sesión y si ya se dispara; (2) el límite de memoria (maxmemory) de esa instancia, para poder calcular el porcentaje de uso; (3) las causas probables documentadas para el consumo de memoria alto en Redis de sesión y su relación con sesiones que expiran antes de los 30 minutos (TTL, política de eviction); (4) la criticidad que asigna el runbook de incidentes a este caso. Indicá la fuente de cada dato. El uso actual que reporta el usuario es 1.75 GB. Si algún dato no figura en la documentación, indicá explícitamente 'sin información'.",
+          "fuentes": [],
+          "duracion_s": 2.57,
+          "timestamp": "2026-10-15T12:46:38"
+        },
+        {
+          "nodo": "investigador",
+          "turno": 1,
+          "paso": 3,
+          "agente": "investigador",
+          "accion": "investigó (8 hallazgos)",
+          "detalle": "La documentación fija el límite de memoria de la instancia de Redis de sesión en 2 GB con política allkeys-lru, y una alerta al 85% de ese límite. El TTL de sesión es de 30 minutos. El runbook (Incidente 3) documenta como causa raíz habitual que, al alcanzar el límite, allkeys-lru desaloja claves de sesión activas, y como otra causa más usuarios concurrentes de los previstos. La criticidad asignada es 'baja a media' según cuántos usuarios resulten afectados. No consta el estado actual de la alerta ni el listado completo de causas. El uso de 1.75 GB es un dato informado por el usuario, no documentado, y no se calcula el porcentaje. · tools: buscar_documentacion, buscar_documentacion, buscar_documentacion, buscar_documentacion, buscar_documentacion",
+          "fuentes": [
+            "runbook_incidentes.md",
+            "monitoreo_alertas.md",
+            "arquitectura_sistema.md"
+          ],
+          "duracion_s": 19.98,
+          "timestamp": "2026-10-15T12:46:58"
+        },
+        {
+          "nodo": "supervisor",
+          "turno": 1,
+          "paso": 4,
+          "agente": "supervisor",
+          "accion": "delegó a analista",
+          "detalle": "El investigador documentó el límite (2 GB), el umbral de alerta (85%) y las causas y criticidad del runbook, pero el porcentaje de uso (1.75 GB sobre 2 GB) y la comparación contra el umbral todavía no fueron calculados por el analista. → instrucción: Con los datos documentados, calculá el porcentaje de uso de la instancia de Redis de sesión: 1.75 GB usados sobre un límite de 2 GB. Indicá el porcentaje exacto y compará ese valor contra el umbral de alerta documentado de 85% del límite, para determinar si la alerta de memoria ya se dispara. Aclará que el uso de 1.75 GB es un dato informado por el usuario y no documentado, y que el estado actual en vivo de la alerta no consta en la documentación. No busques datos nuevos.",
+          "fuentes": [],
+          "duracion_s": 2.59,
+          "timestamp": "2026-10-15T12:47:01"
+        },
+        {
+          "nodo": "analista",
+          "turno": 1,
+          "paso": 5,
+          "agente": "analista",
+          "accion": "analizó (1 cálculos, 0 con error)",
+          "detalle": "El uso de memoria de la instancia de Redis de sesión es 87.5% de su límite de 2 GB, por encima del umbral de alerta documentado de 85%, por lo que la alerta de memoria se dispara con los datos informados. · tools: calcular, comparar_con_umbral",
+          "fuentes": [],
+          "duracion_s": 13.33,
+          "timestamp": "2026-10-15T12:47:14"
+        },
+        {
+          "nodo": "supervisor",
+          "turno": 1,
+          "paso": 6,
+          "agente": "supervisor",
+          "accion": "envió a validación",
+          "detalle": "decidió finalizar: El investigador documentó el límite de 2 GB, la alerta al 85%, la causa probable (desalojo por allkeys-lru y más usuarios concurrentes) y la criticidad baja a media. El analista calculó 87.5%, por encima del umbral. Los datos que faltan son supuestos en vivo o datos que solo el usuario conoce, así que no bloquean la respuesta.",
+          "fuentes": [],
+          "duracion_s": 2.92,
+          "timestamp": "2026-10-15T12:47:17"
+        },
+        {
+          "nodo": "validacion",
+          "turno": 1,
+          "paso": 7,
+          "agente": "validacion",
+          "accion": "aprobó",
+          "detalle": "la rúbrica de suficiencia se cumple",
+          "fuentes": [],
+          "duracion_s": 0.0,
+          "timestamp": "2026-10-15T12:47:17"
+        },
+        {
+          "nodo": "sintetizador",
+          "turno": 1,
+          "paso": 8,
+          "agente": "sintetizador",
+          "accion": "redactó la respuesta final",
+          "detalle": "**Alerta de memoria:** Sí, debería estar disparada. El umbral es el 85% del límite de 2 GB, es decir, 1.7 GB [monitoreo_alertas.md]. Con 1.75 GB:\n\n1.75 / 2 × 10",
+          "fuentes": [],
+          "duracion_s": 4.59,
+          "timestamp": "2026-10-15T12:47:22"
+        }
+      ],
+      "investigaciones": [
+        {
+          "turno": 1,
+          "paso": 3,
+          "instruccion": "Buscá en la documentación interna de la Plataforma de Pedidos: (1) el umbral de alerta de memoria configurado para la instancia de Redis de sesión y si ya se dispara; (2) el límite de memoria (maxmemory) de esa instancia, para poder calcular el porcentaje de uso; (3) las causas probables documentadas para el consumo de memoria alto en Redis de sesión y su relación con sesiones que expiran antes de los 30 minutos (TTL, política de eviction); (4) la criticidad que asigna el runbook de incidentes a este caso. Indicá la fuente de cada dato. El uso actual que reporta el usuario es 1.75 GB. Si algún dato no figura en la documentación, indicá explícitamente 'sin información'.",
+          "resultado": {
+            "resumen": "La documentación fija el límite de memoria de la instancia de Redis de sesión en 2 GB con política allkeys-lru, y una alerta al 85% de ese límite. El TTL de sesión es de 30 minutos. El runbook (Incidente 3) documenta como causa raíz habitual que, al alcanzar el límite, allkeys-lru desaloja claves de sesión activas, y como otra causa más usuarios concurrentes de los previstos. La criticidad asignada es 'baja a media' según cuántos usuarios resulten afectados. No consta el estado actual de la alerta ni el listado completo de causas. El uso de 1.75 GB es un dato informado por el usuario, no documentado, y no se calcula el porcentaje.",
+            "hallazgos": [
+              {
+                "dato": "Alerta de uso de memoria de cada instancia (sesión y cola) al 85% del límite configurado (2 GB)",
+                "fuente": "monitoreo_alertas.md"
+              },
+              {
+                "dato": "Memoria máxima de 2 GB y política allkeys-lru para la instancia de Redis de sesión",
+                "fuente": "arquitectura_sistema.md"
+              },
+              {
+                "dato": "Límite de memoria de la instancia de Redis usada como caché de sesión: 2 GB",
+                "fuente": "runbook_incidentes.md"
+              },
+              {
+                "dato": "Caché de sesión: guarda el token de sesión del usuario autenticado, con TTL de 30 minutos",
+                "fuente": "arquitectura_sistema.md"
+              },
+              {
+                "dato": "Síntoma: usuarios deben volver a loguearse antes de los 30 minutos configurados de TTL",
+                "fuente": "runbook_incidentes.md"
+              },
+              {
+                "dato": "Causa raíz habitual: al alcanzar el límite de memoria (2 GB), la política allkeys-lru empieza a desalojar claves de sesión activas para hacer lugar a las nuevas, en vez de solo expirar por TTL",
+                "fuente": "runbook_incidentes.md"
+              },
+              {
+                "dato": "Otra causa: más usuarios concurrentes de los previstos en el dimensionamiento original; si está cerca del límite, evaluar subir el límite de memoria",
+                "fuente": "runbook_incidentes.md"
+              },
+              {
+                "dato": "Nivel de criticidad: baja a media, según cuántos usuarios estén siendo afectados",
+                "fuente": "runbook_incidentes.md"
+              }
+            ],
+            "sin_informacion": false,
+            "no_documentado": [
+              "Estado actual de la alerta de 85% (si ya se dispara)",
+              "Lista completa de causas probables del consumo alto de memoria en Redis de sesión (solo constan dos)",
+              "Cifra absoluta del umbral de alerta en MB o GB (solo consta el porcentaje de 85%)"
+            ]
+          },
+          "fuentes_consultadas": [
+            "runbook_incidentes.md",
+            "monitoreo_alertas.md",
+            "arquitectura_sistema.md"
+          ],
+          "fuentes_no_verificadas": [],
+          "error": null
+        }
+      ],
+      "analisis": [
+        {
+          "turno": 1,
+          "paso": 5,
+          "instruccion": "Con los datos documentados, calculá el porcentaje de uso de la instancia de Redis de sesión: 1.75 GB usados sobre un límite de 2 GB. Indicá el porcentaje exacto y compará ese valor contra el umbral de alerta documentado de 85% del límite, para determinar si la alerta de memoria ya se dispara. Aclará que el uso de 1.75 GB es un dato informado por el usuario y no documentado, y que el estado actual en vivo de la alerta no consta en la documentación. No busques datos nuevos.",
+          "resultado": {
+            "resumen": "El uso de memoria de la instancia de Redis de sesión es 87.5% de su límite de 2 GB, por encima del umbral de alerta documentado de 85%, por lo que la alerta de memoria se dispara con los datos informados.",
+            "calculos": [
+              {
+                "descripcion": "Porcentaje de uso de la instancia de Redis de sesión sobre el límite de 2 GB",
+                "expresion": "1.75 / 2 * 100",
+                "resultado": 87.5
+              }
+            ],
+            "conclusiones": [
+              "Con 1.75 GB usados sobre 2 GB, el uso es 87.5%, que supera el umbral de alerta del 85% (diferencia de 2.5 puntos según comparar_con_umbral).",
+              "La documentación es consistente en el límite de 2 GB para la instancia de Redis de sesión (monitoreo_alertas.md, arquitectura_sistema.md y runbook_incidentes.md).",
+              "Con el límite de 2 GB y la política allkeys-lru, si el uso sigue creciendo se pueden desalojar claves de sesión activas antes de que expire su TTL de 30 minutos, lo que provoca que los usuarios deban volver a loguearse (síntoma documentado).",
+              "Según el runbook, la criticidad es baja a media y depende de cuántos usuarios estén afectados; si el uso está cerca del límite y hay más usuarios concurrentes que los previstos, se sugiere evaluar subir el límite de memoria."
+            ],
+            "datos_faltantes": [],
+            "supuestos": [
+              "El uso de 1.75 GB es un dato informado por el usuario y no está documentado.",
+              "El estado actual en vivo de la alerta de 85% no consta en la documentación; la conclusión de que la alerta se dispara vale para la medición informada, no para el estado real del sistema.",
+              "Estado actual de la alerta de 85% (si ya se dispara): no documentado, requiere confirmación del usuario.",
+              "Lista completa de causas probables del consumo alto de memoria en Redis de sesión: no documentada; solo constan dos causas (desalojo por allkeys-lru al alcanzar el límite y más usuarios concurrentes que el dimensionamiento previsto).",
+              "Cifra absoluta del umbral de alerta en MB o GB: no documentada; solo consta el 85% del límite de 2 GB."
+            ],
+            "inconsistencias": []
+          },
+          "verificaciones": [
+            {
+              "expresion": "1.75 / 2 * 100",
+              "declarado": 87.5,
+              "recalculado": 87.5,
+              "ok": true,
+              "detalle": ""
+            }
+          ],
+          "error": null
+        }
+      ],
+      "respuesta_final": "**Alerta de memoria:** Sí, debería estar disparada. El umbral es el 85% del límite de 2 GB, es decir, 1.7 GB [monitoreo_alertas.md]. Con 1.75 GB:\n\n1.75 / 2 × 100 = **87.5%**, que supera el 85% en 2.5 puntos [monitoreo_alertas.md, arquitectura_sistema.md].\n\n**Causa probable:** Al acercarse al límite, la política allkeys-lru empieza a desalojar claves de sesión activas para hacer lugar a nuevas, en vez de dejarlas expirar por TTL. Por eso los usuarios tienen que volver a loguearse antes de los 30 minutos [runbook_incidentes.md, arquitectura_sistema.md]. Otra causa documentada es que haya más usuarios concurrentes que los previstos en el dimensionamiento original [runbook_incidentes.md].\n\n**Criticidad:** Baja a media, según la cantidad de usuarios afectados [runbook_incidentes.md]. Si el uso está cerca del límite y hay más concurrencia de la prevista, el runbook sugiere evaluar subir el límite de memoria [runbook_incidentes.md].\n\nLimitaciones: El uso de 1.75 GB es un dato informado por vos y no consta en la documentación. El estado actual de la alerta en vivo tampoco está documentado, así que conviene confirmarlo en el monitoreo. La documentación no detalla otras causas posibles del consumo alto."
+    },
+    {
+      "thread_id": "sesion-celery",
+      "turno": 1,
+      "usuario": "La cola de Celery tiene 1340 mensajes pendientes y la tarea enviar_confirmacion aparece en RETRY una y otra vez. ¿Es un backlog anómalo? ¿En qué porcentaje supera el umbral, qué dice el runbook sobre los reintentos y por qué canal se notifica según su criticidad?",
+      "delegaciones": {
+        "investigador": 1,
+        "analista": 1
+      },
+      "rechazos_validacion": 0,
+      "pasos": [
+        {
+          "nodo": "inicio",
+          "turno": 1,
+          "paso": 1,
+          "agente": "inicio",
+          "accion": "recibió la pregunta",
+          "detalle": "La cola de Celery tiene 1340 mensajes pendientes y la tarea enviar_confirmacion aparece en RETRY una y otra vez. ¿Es un backlog anómalo? ¿En qué porcentaje supera el umbral, qué dice el runbook sobre los reintentos y por qué canal se notifica según su criticidad?",
+          "fuentes": [],
+          "duracion_s": 0.0,
+          "timestamp": "2026-10-15T12:47:22"
+        },
+        {
+          "nodo": "supervisor",
+          "turno": 1,
+          "paso": 2,
+          "agente": "supervisor",
+          "accion": "delegó a investigador",
+          "detalle": "Todavía no hay hallazgos. La pregunta depende de la documentación (umbral de backlog, runbook de reintentos, canal de notificación por criticidad), así que corresponde delegar primero al investigador con los datos concretos del usuario. → instrucción: Buscá en la documentación interna de la Plataforma de Pedidos: (1) el umbral de tamaño de cola de Celery que define un backlog anómalo (monitoreo y alertas); (2) qué dice el runbook de incidentes sobre tareas en RETRY repetido, en particular la tarea enviar_confirmacion (política de reintentos y límites); (3) el canal de notificación según criticidad del incidente (monitoreo y alertas / runbook). Para cada dato indicá la fuente exacta (documento y sección). Dato del usuario: la cola tiene 1340 mensajes pendientes. No calcules nada.",
+          "fuentes": [],
+          "duracion_s": 2.34,
+          "timestamp": "2026-10-15T12:47:24"
+        },
+        {
+          "nodo": "investigador",
+          "turno": 1,
+          "paso": 3,
+          "agente": "investigador",
+          "accion": "investigó (13 hallazgos)",
+          "detalle": "La documentación indica que una cola de Celery con más de 1000 mensajes pendientes dispara una alerta de backlog anómalo. El runbook describe el Incidente 2 (emails de confirmación) con tareas enviar_confirmacion en RETRY, causa habitual en SendGrid, reintentos con max_retries=3 y backoff exponencial, y criticidad media. Los canales de alerta son Slack y PagerDuty para severidad alta, y solo Slack para media y baja. El dato del usuario (1340 mensajes) no se compara con el umbral. · tools: buscar_documentacion, buscar_documentacion, buscar_documentacion, buscar_documentacion",
+          "fuentes": [
+            "monitoreo_alertas.md",
+            "runbook_incidentes.md",
+            "arquitectura_sistema.md"
+          ],
+          "duracion_s": 21.66,
+          "timestamp": "2026-10-15T12:47:46"
+        },
+        {
+          "nodo": "supervisor",
+          "turno": 1,
+          "paso": 4,
+          "agente": "supervisor",
+          "accion": "delegó a analista",
+          "detalle": "El investigador ya documentó el umbral de backlog (1000 mensajes), el runbook de reintentos y los canales por criticidad. Falta que el analista calcule en qué porcentaje supera 1340 mensajes al umbral, antes de poder finalizar. → instrucción: Calculá en qué porcentaje supera la cola de Celery de la Plataforma de Pedidos (1340 mensajes pendientes) al umbral de alerta de backlog anómalo, que según la documentación es de 1000 mensajes pendientes. Indicá la fórmula usada y el resultado con su signo (por encima o por debajo del umbral). Usá solo los datos del investigador: no supongas severidad ni canal de la alerta de backlog, porque la documentación no los define.",
+          "fuentes": [],
+          "duracion_s": 2.85,
+          "timestamp": "2026-10-15T12:47:49"
+        },
+        {
+          "nodo": "analista",
+          "turno": 1,
+          "paso": 5,
+          "agente": "analista",
+          "accion": "analizó (1 cálculos, 0 con error)",
+          "detalle": "La cola de Celery de la Plataforma de Pedidos (1340 mensajes pendientes) supera el umbral de backlog anómalo (1000 mensajes) en un 34%, es decir, está por encima del umbral (+340 mensajes). · tools: calcular, comparar_con_umbral",
+          "fuentes": [],
+          "duracion_s": 11.36,
+          "timestamp": "2026-10-15T12:48:00"
+        },
+        {
+          "nodo": "supervisor",
+          "turno": 1,
+          "paso": 6,
+          "agente": "supervisor",
+          "accion": "envió a validación",
+          "detalle": "decidió finalizar: El investigador cubrió backlog, runbook de reintentos y canales por criticidad, y el analista calculó el 34% sobre el umbral. Solo quedan como no documentados la severidad de la alerta de backlog y el detalle de reintentos, que son datos que la documentación no tiene y no pueden conseguirse con otra búsqueda; se informan como supuestos. La rúbrica se cumple, así que finalizo.",
+          "fuentes": [],
+          "duracion_s": 1.58,
+          "timestamp": "2026-10-15T12:48:02"
+        },
+        {
+          "nodo": "validacion",
+          "turno": 1,
+          "paso": 7,
+          "agente": "validacion",
+          "accion": "aprobó",
+          "detalle": "la rúbrica de suficiencia se cumple",
+          "fuentes": [],
+          "duracion_s": 0.0,
+          "timestamp": "2026-10-15T12:48:02"
+        },
+        {
+          "nodo": "sintetizador",
+          "turno": 1,
+          "paso": 8,
+          "agente": "sintetizador",
+          "accion": "redactó la respuesta final",
+          "detalle": "**Sí, es un backlog anómalo.** Según [monitoreo_alertas.md], una cola de Celery con más de 1000 mensajes pendientes dispara la alerta de backlog anómalo. Con 13",
+          "fuentes": [],
+          "duracion_s": 5.94,
+          "timestamp": "2026-10-15T12:48:08"
+        }
+      ],
+      "investigaciones": [
+        {
+          "turno": 1,
+          "paso": 3,
+          "instruccion": "Buscá en la documentación interna de la Plataforma de Pedidos: (1) el umbral de tamaño de cola de Celery que define un backlog anómalo (monitoreo y alertas); (2) qué dice el runbook de incidentes sobre tareas en RETRY repetido, en particular la tarea enviar_confirmacion (política de reintentos y límites); (3) el canal de notificación según criticidad del incidente (monitoreo y alertas / runbook). Para cada dato indicá la fuente exacta (documento y sección). Dato del usuario: la cola tiene 1340 mensajes pendientes. No calcules nada.",
+          "resultado": {
+            "resumen": "La documentación indica que una cola de Celery con más de 1000 mensajes pendientes dispara una alerta de backlog anómalo. El runbook describe el Incidente 2 (emails de confirmación) con tareas enviar_confirmacion en RETRY, causa habitual en SendGrid, reintentos con max_retries=3 y backoff exponencial, y criticidad media. Los canales de alerta son Slack y PagerDuty para severidad alta, y solo Slack para media y baja. El dato del usuario (1340 mensajes) no se compara con el umbral.",
+            "hallazgos": [
+              {
+                "dato": "Una cola de Celery con más de 1000 mensajes pendientes dispara una alerta de 'backlog anómalo', por worker caído o por proveedor externo (ej. SendGrid) con errores sostenidos.",
+                "fuente": "monitoreo_alertas.md"
+              },
+              {
+                "dato": "Síntoma del Incidente 2: el pedido se crea (201 Created), pero el cliente no recibe el email; en Celery Flower la tarea enviar_confirmacion aparece en estado RETRY repetidas veces.",
+                "fuente": "runbook_incidentes.md"
+              },
+              {
+                "dato": "Causa raíz habitual del Incidente 2: el proveedor de email externo (SendGrid) devuelve timeouts o rate-limiting temporal.",
+                "fuente": "runbook_incidentes.md"
+              },
+              {
+                "dato": "Los reintentos de Celery están configurados con max_retries=3 y backoff exponencial.",
+                "fuente": "runbook_incidentes.md"
+              },
+              {
+                "dato": "El worker de notificaciones tiene reintentos configurados (max_retries=3, backoff exponencial) para tareas que fallan por timeouts de red hacia el proveedor de email.",
+                "fuente": "arquitectura_sistema.md"
+              },
+              {
+                "dato": "Tras el tercer intento la tarea pasa a FAILURE y queda registrada en una tabla de notificaciones fallidas para reenvío manual posterior.",
+                "fuente": "runbook_incidentes.md"
+              },
+              {
+                "dato": "Si SendGrid está caído no hay acción inmediata posible; los reintentos de Celery reintentarán solos. Primer paso: revisar el estado de SendGrid en su página de status pública.",
+                "fuente": "runbook_incidentes.md"
+              },
+              {
+                "dato": "Nivel de criticidad del Incidente 2 (emails de confirmación): media (no bloquea la compra, pero afecta la experiencia del cliente).",
+                "fuente": "runbook_incidentes.md"
+              },
+              {
+                "dato": "Alertas de severidad alta: se envían simultáneamente a Slack (#alertas-produccion) y como llamada telefónica automática al ingeniero de guardia vía PagerDuty.",
+                "fuente": "monitoreo_alertas.md"
+              },
+              {
+                "dato": "Alertas de severidad media y baja: solo van a Slack, sin llamada.",
+                "fuente": "monitoreo_alertas.md"
+              },
+              {
+                "dato": "Nivel de criticidad del Incidente 1 (agotamiento del pool de conexiones a PostgreSQL): alta.",
+                "fuente": "runbook_incidentes.md"
+              },
+              {
+                "dato": "Nivel de criticidad del Incidente 3 (sesiones de usuario que se pierden): baja a media, según cuántos usuarios estén afectados.",
+                "fuente": "runbook_incidentes.md"
+              },
+              {
+                "dato": "Todo incidente que dispare una alerta de severidad alta o media debe cerrarse con un post-mortem breve, documentando causa raíz y acción correctiva.",
+                "fuente": "monitoreo_alertas.md"
+              }
+            ],
+            "sin_informacion": false,
+            "no_documentado": [
+              "Severidad (alta, media o baja) asignada a la alerta de backlog anómalo de Celery, y por lo tanto su canal de notificación.",
+              "Cantidad exacta de reintentos o intervalo de backoff más allá de max_retries=3 y 'exponencial'."
+            ]
+          },
+          "fuentes_consultadas": [
+            "monitoreo_alertas.md",
+            "runbook_incidentes.md",
+            "arquitectura_sistema.md"
+          ],
+          "fuentes_no_verificadas": [],
+          "error": null
+        }
+      ],
+      "analisis": [
+        {
+          "turno": 1,
+          "paso": 5,
+          "instruccion": "Calculá en qué porcentaje supera la cola de Celery de la Plataforma de Pedidos (1340 mensajes pendientes) al umbral de alerta de backlog anómalo, que según la documentación es de 1000 mensajes pendientes. Indicá la fórmula usada y el resultado con su signo (por encima o por debajo del umbral). Usá solo los datos del investigador: no supongas severidad ni canal de la alerta de backlog, porque la documentación no los define.",
+          "resultado": {
+            "resumen": "La cola de Celery de la Plataforma de Pedidos (1340 mensajes pendientes) supera el umbral de backlog anómalo (1000 mensajes) en un 34%, es decir, está por encima del umbral (+340 mensajes).",
+            "calculos": [
+              {
+                "descripcion": "Exceso porcentual de la cola sobre el umbral de backlog anómalo. Fórmula: (valor medido − umbral) / umbral × 100 = (1340 − 1000) / 1000 × 100",
+                "expresion": "(1340 - 1000) / 1000 * 100",
+                "resultado": 34.0
+              }
+            ],
+            "conclusiones": [
+              "1340 mensajes pendientes superan el umbral de 1000 mensajes en un 34% (signo positivo: por encima del umbral).",
+              "La diferencia absoluta es de +340 mensajes respecto del umbral.",
+              "Según monitoreo_alertas.md, una cola con más de 1000 mensajes pendientes dispara la alerta de backlog anómalo, por lo que la condición de disparo se cumple (comparar_con_umbral devolvió dispara = true)."
+            ],
+            "datos_faltantes": [],
+            "supuestos": [
+              "Severidad asignada a la alerta de backlog anómalo de Celery: no documentada (ya buscado y no encontrado). No se asume severidad alta, media ni baja, por lo que tampoco se determina su canal de notificación.",
+              "Cantidad exacta de reintentos e intervalo de backoff más allá de max_retries=3 y 'exponencial': no documentados (ya buscado y no encontrado).",
+              "El valor de 1340 mensajes corresponde al estado actual de la cola, dato provisto por el usuario y no verificado contra el sistema en vivo."
+            ],
+            "inconsistencias": []
+          },
+          "verificaciones": [
+            {
+              "expresion": "(1340 - 1000) / 1000 * 100",
+              "declarado": 34.0,
+              "recalculado": 34.0,
+              "ok": true,
+              "detalle": ""
+            }
+          ],
+          "error": null
+        }
+      ],
+      "respuesta_final": "**Sí, es un backlog anómalo.** Según [monitoreo_alertas.md], una cola de Celery con más de 1000 mensajes pendientes dispara la alerta de backlog anómalo. Con 1340 mensajes, la condición se cumple.\n\n**Exceso sobre el umbral:** (1340 − 1000) / 1000 × 100 = **34%** (+340 mensajes).\n\n**Reintentos según el runbook:** [runbook_incidentes.md] indica que las tareas tienen `max_retries=3` con backoff exponencial. Al tercer intento fallido, la tarea pasa a FAILURE y se registra en una tabla de notificaciones fallidas para reenvío manual. Si SendGrid está caído, no hay acción inmediata: Celery reintenta solo, y el primer paso es revisar la página de estado pública de SendGrid. La criticidad del Incidente 2 (emails de confirmación) es **media**: no bloquea la compra, pero afecta la experiencia del cliente.\n\n**Canal de notificación:** no puedo determinarlo. [monitoreo_alertas.md] define canales según la severidad de la alerta (alta: Slack más llamada vía PagerDuty; media o baja: solo Slack), pero no documenta la severidad de la alerta de backlog. La criticidad de 'media' corresponde al incidente, no a la alerta, así que no conviene extrapolarla.\n\nLimitaciones: el valor de 1340 es un dato provisto por el usuario y no fue verificado en el sistema en vivo. La cantidad exacta de reintentos y el intervalo de backoff no están documentados. Si la alerta resulta de severidad alta o media, corresponde un post-mortem breve."
+    },
+    {
+      "thread_id": "sesion-falla",
+      "turno": 1,
+      "usuario": "¿Cuál es el umbral de replication lag de las réplicas de lectura y cuánto lo superamos si hoy medimos 14 segundos?",
+      "delegaciones": {
+        "investigador": 3,
+        "analista": 0
+      },
+      "rechazos_validacion": 1,
+      "pasos": [
+        {
+          "nodo": "inicio",
+          "turno": 1,
+          "paso": 1,
+          "agente": "inicio",
+          "accion": "recibió la pregunta",
+          "detalle": "¿Cuál es el umbral de replication lag de las réplicas de lectura y cuánto lo superamos si hoy medimos 14 segundos?",
+          "fuentes": [],
+          "duracion_s": 0.0,
+          "timestamp": "2026-10-15T12:48:08"
+        },
+        {
+          "nodo": "supervisor",
+          "turno": 1,
+          "paso": 2,
+          "agente": "supervisor",
+          "accion": "delegó a investigador",
+          "detalle": "Nadie intervino todavía. Falta el umbral de replication lag de las réplicas de lectura, que depende de la documentación interna (monitoreo y alertas), así que corresponde delegar primero al investigador. → instrucción: Buscá en la documentación interna (monitoreo y alertas, y arquitectura si aplica) el umbral de replication lag configurado para las réplicas de lectura de la Plataforma de Pedidos. Devolvé el valor exacto con unidades, el nivel de alerta asociado si existe, y la fuente (documento y sección). Si no encontrás el dato, indicalo explícitamente como 'sin información'.",
+          "fuentes": [],
+          "duracion_s": 2.05,
+          "timestamp": "2026-10-15T12:48:10"
+        },
+        {
+          "nodo": "investigador",
+          "turno": 1,
+          "paso": 3,
+          "agente": "investigador",
+          "accion": "falló",
+          "detalle": "ConnectionError: Chroma no responde: base vectorial desconectada (falla simulada).",
+          "fuentes": [],
+          "duracion_s": 1.82,
+          "timestamp": "2026-10-15T12:48:11"
+        },
+        {
+          "nodo": "supervisor",
+          "turno": 1,
+          "paso": 4,
+          "agente": "supervisor",
+          "accion": "delegó a investigador",
+          "detalle": "El investigador falló por una desconexión de la base vectorial, así que no hay datos con fuente sobre el umbral de replication lag. El analista no puede calcular sin ese umbral y no debe suponerlo; reintentar al investigador es razonable dado el presupuesto restante. → instrucción: Buscá en la documentación interna (monitoreo y alertas, y arquitectura) el umbral de replication lag configurado para las réplicas de lectura de la Plataforma de Pedidos, indicando la fuente exacta. Si no lo encontrás, respondé explícitamente que no hay información. Contexto: el usuario mide hoy 14 segundos de replication lag y quiere saber cuánto supera el umbral.",
+          "fuentes": [],
+          "duracion_s": 1.82,
+          "timestamp": "2026-10-15T12:48:13"
+        },
+        {
+          "nodo": "investigador",
+          "turno": 1,
+          "paso": 5,
+          "agente": "investigador",
+          "accion": "falló",
+          "detalle": "ConnectionError: Chroma no responde: base vectorial desconectada (falla simulada).",
+          "fuentes": [],
+          "duracion_s": 1.65,
+          "timestamp": "2026-10-15T12:48:15"
+        },
+        {
+          "nodo": "supervisor",
+          "turno": 1,
+          "paso": 6,
+          "agente": "supervisor",
+          "accion": "delegó a investigador",
+          "detalle": "Falta el umbral de replication lag de las réplicas de lectura, que depende de la documentación y no tenemos ningún hallazgo con fuente. El investigador falló dos veces por desconexión de Chroma; aún queda una delegación disponible para él, así que intento una última búsqueda antes de considerar finalizar. → instrucción: Buscá en la documentación interna el umbral (valor máximo aceptable) de replication lag de las réplicas de lectura de la Plataforma de Pedidos. Buscá en las secciones de monitoreo y alertas, y también en arquitectura o runbook de incidentes si corresponde. Devolvé el valor exacto con unidades, la fuente (documento y sección) y, si existe, la condición de alerta asociada. Si no encontrás el dato, indicá explícitamente 'sin información'. Contexto: el usuario mediría hoy un replication lag de 14 segundos y quiere saber cuánto supera el umbral.",
+          "fuentes": [],
+          "duracion_s": 4.65,
+          "timestamp": "2026-10-15T12:48:20"
+        },
+        {
+          "nodo": "investigador",
+          "turno": 1,
+          "paso": 7,
+          "agente": "investigador",
+          "accion": "falló",
+          "detalle": "ConnectionError: Chroma no responde: base vectorial desconectada (falla simulada).",
+          "fuentes": [],
+          "duracion_s": 1.51,
+          "timestamp": "2026-10-15T12:48:21"
+        },
+        {
+          "nodo": "supervisor",
+          "turno": 1,
+          "paso": 8,
+          "agente": "supervisor",
+          "accion": "envió a validación",
+          "detalle": "decidió finalizar: El investigador falló tres veces por la base vectorial desconectada y ya agotó su límite de 3 delegaciones, así que no hay datos del umbral de replication lag. El analista no puede buscar ni suponer el umbral, por lo que no corresponde seguir delegando; hay que finalizar informando la limitación.",
+          "fuentes": [],
+          "duracion_s": 2.96,
+          "timestamp": "2026-10-15T12:48:24"
+        },
+        {
+          "nodo": "validacion",
+          "turno": 1,
+          "paso": 9,
+          "agente": "validacion",
+          "accion": "rechazó (1/2)",
+          "detalle": "No hay una investigación exitosa en este turno: delegá en el investigador.",
+          "fuentes": [],
+          "duracion_s": 0.0,
+          "timestamp": "2026-10-15T12:48:24"
+        },
+        {
+          "nodo": "supervisor",
+          "turno": 1,
+          "paso": 10,
+          "agente": "supervisor",
+          "accion": "bloqueó la delegación (tope) y envió a validación",
+          "detalle": "el LLM pidió al investigador otra vez; el código no lo permite: el investigador ya intervino 3 veces en este turno.",
+          "fuentes": [],
+          "duracion_s": 2.05,
+          "timestamp": "2026-10-15T12:48:26"
+        },
+        {
+          "nodo": "validacion",
+          "turno": 1,
+          "paso": 11,
+          "agente": "validacion",
+          "accion": "aprobó con limitaciones",
+          "detalle": "No se pudo consultar la documentación: el investigador falló 3 veces (ConnectionError: Chroma no responde: base vectorial desconectada (falla simulada).). El dato puede existir; conviene reintentar.",
+          "fuentes": [],
+          "duracion_s": 0.0,
+          "timestamp": "2026-10-15T12:48:26"
+        },
+        {
+          "nodo": "sintetizador",
+          "turno": 1,
+          "paso": 12,
+          "agente": "sintetizador",
+          "accion": "redactó la respuesta final",
+          "detalle": "No pudimos consultar la documentación: la base vectorial no respondió (ConnectionError: Chroma no responde, falla simulada). Por eso no tenemos el umbral de rep",
+          "fuentes": [],
+          "duracion_s": 1.98,
+          "timestamp": "2026-10-15T12:48:28"
+        }
+      ],
+      "investigaciones": [
+        {
+          "turno": 1,
+          "paso": 3,
+          "instruccion": "Buscá en la documentación interna (monitoreo y alertas, y arquitectura si aplica) el umbral de replication lag configurado para las réplicas de lectura de la Plataforma de Pedidos. Devolvé el valor exacto con unidades, el nivel de alerta asociado si existe, y la fuente (documento y sección). Si no encontrás el dato, indicalo explícitamente como 'sin información'.",
+          "resultado": null,
+          "fuentes_consultadas": [],
+          "fuentes_no_verificadas": [],
+          "error": "ConnectionError: Chroma no responde: base vectorial desconectada (falla simulada)."
+        },
+        {
+          "turno": 1,
+          "paso": 5,
+          "instruccion": "Buscá en la documentación interna (monitoreo y alertas, y arquitectura) el umbral de replication lag configurado para las réplicas de lectura de la Plataforma de Pedidos, indicando la fuente exacta. Si no lo encontrás, respondé explícitamente que no hay información. Contexto: el usuario mide hoy 14 segundos de replication lag y quiere saber cuánto supera el umbral.",
+          "resultado": null,
+          "fuentes_consultadas": [],
+          "fuentes_no_verificadas": [],
+          "error": "ConnectionError: Chroma no responde: base vectorial desconectada (falla simulada)."
+        },
+        {
+          "turno": 1,
+          "paso": 7,
+          "instruccion": "Buscá en la documentación interna el umbral (valor máximo aceptable) de replication lag de las réplicas de lectura de la Plataforma de Pedidos. Buscá en las secciones de monitoreo y alertas, y también en arquitectura o runbook de incidentes si corresponde. Devolvé el valor exacto con unidades, la fuente (documento y sección) y, si existe, la condición de alerta asociada. Si no encontrás el dato, indicá explícitamente 'sin información'. Contexto: el usuario mediría hoy un replication lag de 14 segundos y quiere saber cuánto supera el umbral.",
+          "resultado": null,
+          "fuentes_consultadas": [],
+          "fuentes_no_verificadas": [],
+          "error": "ConnectionError: Chroma no responde: base vectorial desconectada (falla simulada)."
+        }
+      ],
+      "analisis": [],
+      "respuesta_final": "No pudimos consultar la documentación: la base vectorial no respondió (ConnectionError: Chroma no responde, falla simulada). Por eso no tenemos el umbral de replication lag de las réplicas de lectura, y no podemos calcular cuánto lo superan con los 14 segundos medidos. El dato puede existir en la documentación, así que conviene reintentar la consulta cuando el servicio esté disponible.\n\nLo único que sí podemos afirmar con lo validado es que la medición de hoy es de 14 segundos, pero sin el umbral no hay comparación posible.\n\nLimitaciones: la consulta a la documentación falló en 3 intentos consecutivos (ConnectionError: Chroma no responde); el investigador ya intervino 3 veces en este turno. No hay fuentes documentales citables para esta respuesta."
+    }
+  ]
+}

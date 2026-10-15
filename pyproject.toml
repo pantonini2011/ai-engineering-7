@@ -1,0 +1,35 @@
+# Dependencias y configuración de pytest/mypy. El proyecto se ejecuta desde la raíz
+# (python main.py), sin instalarse como paquete: ver requirements.txt.
+[project]
+name = "orquestador-multiagente"
+version = "0.1.0"
+description = "Orquestador multi-agente jerárquico (supervisor + investigador + analista) con LangGraph"
+requires-python = ">=3.12"
+dependencies = [
+    "langgraph>=1.2,<2",
+    "langgraph-checkpoint-sqlite>=3.1,<4",
+    "langchain-core>=1.6,<2",
+    "langchain-anthropic>=1.7,<2",
+    "langchain-openai>=1.6,<2",
+    "langchain-chroma>=1.1,<2",
+    "langchain-huggingface>=1.2,<2",
+    "langchain-text-splitters>=1.1,<2",
+    "sentence-transformers>=5",
+    "aiosqlite>=0.22",
+    "pydantic>=2.11,<3",
+    "python-dotenv>=1.2",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=9", "mypy>=1.15"]
+
+[tool.pytest.ini_options]
+pythonpath = [".", "tests"]
+testpaths = ["tests"]
+addopts = "-v"
+
+[tool.mypy]
+python_version = "3.12"
+strict = true
+files = ["agents", "tools", "state.py", "graph.py", "main.py", "observability.py", "tests"]
+ignore_missing_imports = true

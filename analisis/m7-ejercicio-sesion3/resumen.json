@@ -1,0 +1,882 @@
+{
+  "proyecto": "m7-ejercicio-sesion3",
+  "spans": 791,
+  "trazas": 7,
+  "latencia_turno_s": {
+    "p50": 46.004329,
+    "p95": 116.58154089999994,
+    "max": 142.510384
+  },
+  "totales": {
+    "tokens_entrada": 349159,
+    "tokens_salida": 74676,
+    "costo_usd": 0.07225390000000001,
+    "red_llm_ms": 372912.043,
+    "recuperacion_ms": 764.9200000000001,
+    "orquestacion_ms": 2395.4350000000104
+  },
+  "turnos": [
+    {
+      "trace_id": "4490d88bfd93d453380ec3b98b80226a",
+      "sesion": "sesion-pool",
+      "inicio": "2026-10-15T15:42:12.549Z",
+      "total_ms": 142510.384,
+      "red_llm_ms": 141557.066,
+      "recuperacion_ms": 244.226,
+      "embedding_ms": 222.36,
+      "chroma_query_ms": 25.852,
+      "orquestacion_ms": 709.092,
+      "busquedas_en_paralelo": 1,
+      "llamadas_llm": 24,
+      "busquedas": 9,
+      "tokens_entrada": 119914,
+      "tokens_salida": 31515,
+      "costo_usd": 0.0277489,
+      "errores": 0,
+      "status_raiz": "OK"
+    },
+    {
+      "trace_id": "3931e9f5add9dd430ee621691d673ed7",
+      "sesion": "sesion-pool",
+      "inicio": "2026-10-15T15:44:35.063Z",
+      "total_ms": 48652.2,
+      "red_llm_ms": 48227.113,
+      "recuperacion_ms": 127.625,
+      "embedding_ms": 120.624,
+      "chroma_query_ms": 14.002,
+      "orquestacion_ms": 297.462,
+      "busquedas_en_paralelo": 1,
+      "llamadas_llm": 11,
+      "busquedas": 5,
+      "tokens_entrada": 51278,
+      "tokens_salida": 9936,
+      "costo_usd": 0.0100958,
+      "errores": 0,
+      "status_raiz": "OK"
+    },
+    {
+      "trace_id": "3f97b13f621f7d2f8ad505fbedc6887a",
+      "sesion": "sesion-canario",
+      "inicio": "2026-10-15T15:45:23.719Z",
+      "total_ms": 56080.907,
+      "red_llm_ms": 55759.38,
+      "recuperacion_ms": 38.845,
+      "embedding_ms": 34.752,
+      "chroma_query_ms": 3.092,
+      "orquestacion_ms": 282.682,
+      "busquedas_en_paralelo": 1,
+      "llamadas_llm": 14,
+      "busquedas": 2,
+      "tokens_entrada": 39077,
+      "tokens_salida": 10651,
+      "costo_usd": 0.0092332,
+      "errores": 0,
+      "status_raiz": "OK"
+    },
+    {
+      "trace_id": "83bbc5c8b1d94a89072dff86f877cee1",
+      "sesion": "sesion-fuera",
+      "inicio": "2026-10-15T15:46:19.801Z",
+      "total_ms": 16516.298,
+      "red_llm_ms": 16239.925,
+      "recuperacion_ms": 104.671,
+      "embedding_ms": 96.575,
+      "chroma_query_ms": 8.984,
+      "orquestacion_ms": 171.702,
+      "busquedas_en_paralelo": 1,
+      "llamadas_llm": 8,
+      "busquedas": 5,
+      "tokens_entrada": 35601,
+      "tokens_salida": 2101,
+      "costo_usd": 0.0046106,
+      "errores": 0,
+      "status_raiz": "OK"
+    },
+    {
+      "trace_id": "f8dd30d46f85e9e4970dbc23db6c94bd",
+      "sesion": "sesion-redis",
+      "inicio": "2026-10-15T15:46:36.320Z",
+      "total_ms": 46004.329,
+      "red_llm_ms": 45651.124,
+      "recuperacion_ms": 112.069,
+      "embedding_ms": 105.986,
+      "chroma_query_ms": 10.115,
+      "orquestacion_ms": 241.136,
+      "busquedas_en_paralelo": 1,
+      "llamadas_llm": 12,
+      "busquedas": 5,
+      "tokens_entrada": 48246,
+      "tokens_salida": 8998,
+      "costo_usd": 0.0093236,
+      "errores": 0,
+      "status_raiz": "OK"
+    },
+    {
+      "trace_id": "f6f549efb6d2cf4a2173195da8afab17",
+      "sesion": "sesion-celery",
+      "inicio": "2026-10-15T15:47:22.327Z",
+      "total_ms": 45768.955,
+      "red_llm_ms": 45473.951,
+      "recuperacion_ms": 86.63,
+      "embedding_ms": 81.563,
+      "chroma_query_ms": 6.001,
+      "orquestacion_ms": 208.374,
+      "busquedas_en_paralelo": 1,
+      "llamadas_llm": 11,
+      "busquedas": 4,
+      "tokens_entrada": 41372,
+      "tokens_salida": 8817,
+      "costo_usd": 0.0085457,
+      "errores": 0,
+      "status_raiz": "OK"
+    },
+    {
+      "trace_id": "e3f3300744eff64ff9a08532d1c88e80",
+      "sesion": "sesion-falla",
+      "inicio": "2026-10-15T15:48:08.099Z",
+      "total_ms": 20539.325,
+      "red_llm_ms": 20003.484,
+      "recuperacion_ms": 50.854,
+      "embedding_ms": 0.0,
+      "chroma_query_ms": 0.0,
+      "orquestacion_ms": 484.987,
+      "busquedas_en_paralelo": 0,
+      "llamadas_llm": 9,
+      "busquedas": 9,
+      "tokens_entrada": 13671,
+      "tokens_salida": 2658,
+      "costo_usd": 0.0026961,
+      "errores": 30,
+      "status_raiz": "OK"
+    }
+  ],
+  "por_tipo": [
+    {
+      "span_kind": "CHAIN",
+      "name": "RunnableSequence",
+      "cantidad": 124,
+      "total_ms": 518789.6,
+      "media_ms": 4183.8,
+      "p95_ms": 10138.8,
+      "max_ms": 14286.4
+    },
+    {
+      "span_kind": "CHAIN",
+      "name": "LangGraph",
+      "cantidad": 7,
+      "total_ms": 376072.4,
+      "media_ms": 53724.6,
+      "p95_ms": 116581.5,
+      "max_ms": 142510.4
+    },
+    {
+      "span_kind": "LLM",
+      "name": "ChatAnthropic",
+      "cantidad": 89,
+      "total_ms": 372912.0,
+      "media_ms": 4190.0,
+      "p95_ms": 10112.1,
+      "max_ms": 14281.0
+    },
+    {
+      "span_kind": "CHAIN",
+      "name": "investigador",
+      "cantidad": 20,
+      "total_ms": 221802.8,
+      "media_ms": 11090.1,
+      "p95_ms": 22428.7,
+      "max_ms": 26730.5
+    },
+    {
+      "span_kind": "CHAIN",
+      "name": "analista",
+      "cantidad": 16,
+      "total_ms": 212871.7,
+      "media_ms": 13304.5,
+      "p95_ms": 21940.4,
+      "max_ms": 26511.2
+    },
+    {
+      "span_kind": "AGENT",
+      "name": "agent",
+      "cantidad": 40,
+      "total_ms": 166399.2,
+      "media_ms": 4160.0,
+      "p95_ms": 10597.8,
+      "max_ms": 14298.2
+    },
+    {
+      "span_kind": "CHAIN",
+      "name": "call_model",
+      "cantidad": 40,
+      "total_ms": 166061.6,
+      "media_ms": 4151.5,
+      "p95_ms": 10595.7,
+      "max_ms": 14293.2
+    },
+    {
+      "span_kind": "CHAIN",
+      "name": "supervisor",
+      "cantidad": 27,
+      "total_ms": 78514.9,
+      "media_ms": 2908.0,
+      "p95_ms": 4462.0,
+      "max_ms": 4687.0
+    },
+    {
+      "span_kind": "CHAIN",
+      "name": "sintetizador",
+      "cantidad": 7,
+      "total_ms": 30926.7,
+      "media_ms": 4418.1,
+      "p95_ms": 6889.2,
+      "max_ms": 7294.8
+    },
+    {
+      "span_kind": "CHAIN",
+      "name": "tools",
+      "cantidad": 74,
+      "total_ms": 4096.9,
+      "media_ms": 55.4,
+      "p95_ms": 111.8,
+      "max_ms": 160.9
+    },
+    {
+      "span_kind": "TOOL",
+      "name": "buscar_documentacion",
+      "cantidad": 39,
+      "total_ms": 2538.5,
+      "media_ms": 65.1,
+      "p95_ms": 100.3,
+      "max_ms": 102.4
+    },
+    {
+      "span_kind": "RETRIEVER",
+      "name": "chroma.retriever",
+      "cantidad": 39,
+      "total_ms": 1875.6,
+      "media_ms": 48.1,
+      "p95_ms": 89.3,
+      "max_ms": 94.5
+    },
+    {
+      "span_kind": "EMBEDDING",
+      "name": "embedding.consulta",
+      "cantidad": 30,
+      "total_ms": 1701.9,
+      "media_ms": 56.7,
+      "p95_ms": 83.1,
+      "max_ms": 89.5
+    },
+    {
+      "span_kind": "TOOL",
+      "name": "calcular",
+      "cantidad": 17,
+      "total_ms": 292.1,
+      "media_ms": 17.2,
+      "p95_ms": 30.9,
+      "max_ms": 33.3
+    },
+    {
+      "span_kind": "TOOL",
+      "name": "comparar_con_umbral",
+      "cantidad": 15,
+      "total_ms": 202.0,
+      "media_ms": 13.5,
+      "p95_ms": 29.6,
+      "max_ms": 30.3
+    },
+    {
+      "span_kind": "CHAIN",
+      "name": "chroma.query",
+      "cantidad": 30,
+      "total_ms": 102.1,
+      "media_ms": 3.4,
+      "p95_ms": 6.0,
+      "max_ms": 14.1
+    },
+    {
+      "span_kind": "CHAIN",
+      "name": "PydanticOutputParser",
+      "cantidad": 42,
+      "total_ms": 45.1,
+      "media_ms": 1.1,
+      "p95_ms": 2.0,
+      "max_ms": 2.0
+    },
+    {
+      "span_kind": "CHAIN",
+      "name": "should_continue",
+      "cantidad": 40,
+      "total_ms": 33.0,
+      "media_ms": 0.8,
+      "p95_ms": 1.3,
+      "max_ms": 2.0
+    },
+    {
+      "span_kind": "TOOL",
+      "name": "porcentaje",
+      "cantidad": 2,
+      "total_ms": 28.6,
+      "media_ms": 14.3,
+      "p95_ms": 15.3,
+      "max_ms": 15.4
+    },
+    {
+      "span_kind": "CHAIN",
+      "name": "validacion",
+      "cantidad": 9,
+      "total_ms": 27.7,
+      "media_ms": 3.1,
+      "p95_ms": 3.7,
+      "max_ms": 4.0
+    },
+    {
+      "span_kind": "CHAIN",
+      "name": "rutear_supervisor",
+      "cantidad": 27,
+      "total_ms": 22.6,
+      "media_ms": 0.8,
+      "p95_ms": 1.4,
+      "max_ms": 2.0
+    },
+    {
+      "span_kind": "TOOL",
+      "name": "listar_documentos",
+      "cantidad": 1,
+      "total_ms": 19.0,
+      "media_ms": 19.0,
+      "p95_ms": 19.0,
+      "max_ms": 19.0
+    },
+    {
+      "span_kind": "CHAIN",
+      "name": "Prompt",
+      "cantidad": 40,
+      "total_ms": 11.4,
+      "media_ms": 0.3,
+      "p95_ms": 1.0,
+      "max_ms": 1.4
+    },
+    {
+      "span_kind": "CHAIN",
+      "name": "rutear_validacion",
+      "cantidad": 9,
+      "total_ms": 9.7,
+      "media_ms": 1.1,
+      "p95_ms": 1.3,
+      "max_ms": 1.4
+    },
+    {
+      "span_kind": "CHAIN",
+      "name": "inicio",
+      "cantidad": 7,
+      "total_ms": 6.0,
+      "media_ms": 0.9,
+      "p95_ms": 1.0,
+      "max_ms": 1.0
+    }
+  ],
+  "llm_por_nodo": [
+    {
+      "nodo": "investigador",
+      "llamadas": 30,
+      "ms": 130815.911,
+      "entrada": 171725.0,
+      "salida": 28197.0,
+      "costo_usd": 0.031271
+    },
+    {
+      "nodo": "analista",
+      "llamadas": 25,
+      "ms": 132910.518,
+      "entrada": 88358.0,
+      "salida": 29289.0,
+      "costo_usd": 0.0234803
+    },
+    {
+      "nodo": "supervisor",
+      "llamadas": 27,
+      "ms": 78272.447,
+      "entrada": 77682.0,
+      "salida": 11152.0,
+      "costo_usd": 0.0133442
+    },
+    {
+      "nodo": "sintetizador",
+      "llamadas": 7,
+      "ms": 30913.167,
+      "entrada": 11394.0,
+      "salida": 6038.0,
+      "costo_usd": 0.0041584
+    }
+  ],
+  "spans_mas_lentos": [
+    {
+      "name": "ChatAnthropic",
+      "span_kind": "LLM",
+      "nodo": "investigador",
+      "ms": 14281.03,
+      "attributes.llm.token_count.prompt": 10950.0,
+      "attributes.llm.token_count.completion": 3504.0
+    },
+    {
+      "name": "ChatAnthropic",
+      "span_kind": "LLM",
+      "nodo": "analista",
+      "ms": 13855.684,
+      "attributes.llm.token_count.prompt": 4611.0,
+      "attributes.llm.token_count.completion": 3074.0
+    },
+    {
+      "name": "ChatAnthropic",
+      "span_kind": "LLM",
+      "nodo": "investigador",
+      "ms": 10409.391,
+      "attributes.llm.token_count.prompt": 6404.0,
+      "attributes.llm.token_count.completion": 2707.0
+    },
+    {
+      "name": "ChatAnthropic",
+      "span_kind": "LLM",
+      "nodo": "investigador",
+      "ms": 10163.882,
+      "attributes.llm.token_count.prompt": 7652.0,
+      "attributes.llm.token_count.completion": 2179.0
+    },
+    {
+      "name": "ChatAnthropic",
+      "span_kind": "LLM",
+      "nodo": "analista",
+      "ms": 10146.245,
+      "attributes.llm.token_count.prompt": 5815.0,
+      "attributes.llm.token_count.completion": 2594.0
+    },
+    {
+      "name": "ChatAnthropic",
+      "span_kind": "LLM",
+      "nodo": "investigador",
+      "ms": 10060.948,
+      "attributes.llm.token_count.prompt": 8150.0,
+      "attributes.llm.token_count.completion": 2750.0
+    },
+    {
+      "name": "ChatAnthropic",
+      "span_kind": "LLM",
+      "nodo": "investigador",
+      "ms": 9504.391,
+      "attributes.llm.token_count.prompt": 9980.0,
+      "attributes.llm.token_count.completion": 2190.0
+    },
+    {
+      "name": "ChatAnthropic",
+      "span_kind": "LLM",
+      "nodo": "analista",
+      "ms": 9034.405,
+      "attributes.llm.token_count.prompt": 4877.0,
+      "attributes.llm.token_count.completion": 1995.0
+    },
+    {
+      "name": "ChatAnthropic",
+      "span_kind": "LLM",
+      "nodo": "investigador",
+      "ms": 7884.843,
+      "attributes.llm.token_count.prompt": 12356.0,
+      "attributes.llm.token_count.completion": 2002.0
+    },
+    {
+      "name": "ChatAnthropic",
+      "span_kind": "LLM",
+      "nodo": "investigador",
+      "ms": 7794.007,
+      "attributes.llm.token_count.prompt": 9014.0,
+      "attributes.llm.token_count.completion": 1731.0
+    }
+  ],
+  "errores": [
+    {
+      "name": "chroma.retriever",
+      "span_kind": "RETRIEVER",
+      "nodo": "investigador",
+      "status_message": "ConnectionError: Chroma no responde: base vectorial desconectada (falla simulada).",
+      "context.trace_id": "e3f3300744eff64ff9a08532d1c88e80"
+    },
+    {
+      "name": "chroma.retriever",
+      "span_kind": "RETRIEVER",
+      "nodo": "investigador",
+      "status_message": "ConnectionError: Chroma no responde: base vectorial desconectada (falla simulada).",
+      "context.trace_id": "e3f3300744eff64ff9a08532d1c88e80"
+    },
+    {
+      "name": "chroma.retriever",
+      "span_kind": "RETRIEVER",
+      "nodo": "investigador",
+      "status_message": "ConnectionError: Chroma no responde: base vectorial desconectada (falla simulada).",
+      "context.trace_id": "e3f3300744eff64ff9a08532d1c88e80"
+    },
+    {
+      "name": "buscar_documentacion",
+      "span_kind": "TOOL",
+      "nodo": "investigador",
+      "status_message": "ConnectionError('Chroma no responde: base vectorial desconectada (falla simulada).')Traceback (most recent call last):\n\n\n  File \"D:\\ai-engineering-7\\.venv\\Lib\\site-packages\\langchain_core\\tools\\base.py\", line 1228, in arun\n    response = await coro_with_context(coro, context)\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\n\n  File \"D:\\ai-engineering-7\\.venv\\Lib\\site-packages\\langchain_core\\tools\\structured.py\", line 179, in _arun\n    return await self.coroutine(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\n\n  File \"D:\\ai-engineering-7\\tools\\custom_tools.py\", line 289, in buscar_documentacion\n    pares = await asyncio.wait_for(buscar_trazado(vectorstore, consulta, filtro), timeout=TIMEOUT_BUSQUEDA_S)\n            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\n\n  File \"C:\\Users\\pantonini\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\asyncio\\tasks.py\", line 520, in wait_for\n    return await fut\n           ^^^^^^^^^\n\n\n  File \"D:\\ai-engineering-7\\tools\\custom_tools.py\", line 255, in buscar_trazado\n    raise ConnectionError(\"Chroma no responde: base vectorial desconectada (falla simulada).\")\n\n\nConnectionError: Chroma no responde: base vectorial desconectada (falla simulada).",
+      "context.trace_id": "e3f3300744eff64ff9a08532d1c88e80"
+    },
+    {
+      "name": "buscar_documentacion",
+      "span_kind": "TOOL",
+      "nodo": "investigador",
+      "status_message": "ConnectionError('Chroma no responde: base vectorial desconectada (falla simulada).')Traceback (most recent call last):\n\n\n  File \"D:\\ai-engineering-7\\.venv\\Lib\\site-packages\\langchain_core\\tools\\base.py\", line 1228, in arun\n    response = await coro_with_context(coro, context)\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\n\n  File \"D:\\ai-engineering-7\\.venv\\Lib\\site-packages\\langchain_core\\tools\\structured.py\", line 179, in _arun\n    return await self.coroutine(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\n\n  File \"D:\\ai-engineering-7\\tools\\custom_tools.py\", line 289, in buscar_documentacion\n    pares = await asyncio.wait_for(buscar_trazado(vectorstore, consulta, filtro), timeout=TIMEOUT_BUSQUEDA_S)\n            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\n\n  File \"C:\\Users\\pantonini\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\asyncio\\tasks.py\", line 520, in wait_for\n    return await fut\n           ^^^^^^^^^\n\n\n  File \"D:\\ai-engineering-7\\tools\\custom_tools.py\", line 255, in buscar_trazado\n    raise ConnectionError(\"Chroma no responde: base vectorial desconectada (falla simulada).\")\n\n\nConnectionError: Chroma no responde: base vectorial desconectada (falla simulada).",
+      "context.trace_id": "e3f3300744eff64ff9a08532d1c88e80"
+    },
+    {
+      "name": "buscar_documentacion",
+      "span_kind": "TOOL",
+      "nodo": "investigador",
+      "status_message": "ConnectionError('Chroma no responde: base vectorial desconectada (falla simulada).')Traceback (most recent call last):\n\n\n  File \"D:\\ai-engineering-7\\.venv\\Lib\\site-packages\\langchain_core\\tools\\base.py\", line 1228, in arun\n    response = await coro_with_context(coro, context)\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\n\n  File \"D:\\ai-engineering-7\\.venv\\Lib\\site-packages\\langchain_core\\tools\\structured.py\", line 179, in _arun\n    return await self.coroutine(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\n\n  File \"D:\\ai-engineering-7\\tools\\custom_tools.py\", line 289, in buscar_documentacion\n    pares = await asyncio.wait_for(buscar_trazado(vectorstore, consulta, filtro), timeout=TIMEOUT_BUSQUEDA_S)\n            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\n\n  File \"C:\\Users\\pantonini\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\asyncio\\tasks.py\", line 520, in wait_for\n    return await fut\n           ^^^^^^^^^\n\n\n  File \"D:\\ai-engineering-7\\tools\\custom_tools.py\", line 255, in buscar_trazado\n    raise ConnectionError(\"Chroma no responde: base vectorial desconectada (falla simulada).\")\n\n\nConnectionError: Chroma no responde: base vectorial desconectada (falla simulada).",
+      "context.trace_id": "e3f3300744eff64ff9a08532d1c88e80"
+    },
+    {
+      "name": "tools",
+      "span_kind": "CHAIN",
+      "nodo": "investigador",
+      "status_message": "ConnectionError('Chroma no responde: base vectorial desconectada (falla simulada).')Traceback (most recent call last):\n\n\n  File \"D:\\ai-engineering-7\\.venv\\Lib\\site-packages\\langgraph\\_internal\\_runnable.py\", line 756, in ainvoke\n    input = await asyncio.create_task(\n            ^^^^^^^^^^^^^^^^^^^^^^^^^^\n\n\n  File \"D:\\ai-engineering-7\\.venv\\Lib\\site-packages\\langgraph\\_internal\\_runnable.py\", line 522, in ainvoke\n    ret = await self.afunc(*args, **kwargs)\n          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\n\n  File \"D:\\ai-engineering-7\\.venv\\Lib\\site-packages\\langgraph\\prebuilt\\tool_node.py\", line 866, in _afunc\n    outputs = await asyncio.gather(*coros)\n              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\n\n  File \"D:\\ai-engineering-7\\.venv\\Lib\\site-packages\\langgraph\\prebuilt\\tool_node.py\", line 1223, in _arun_one\n    return await self._execute_tool_async(tool_request, input_type, config)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\n\n  File \"D:\\ai-engineering-7\\.venv\\Lib\\site-packages\\langgraph\\prebuilt\\tool_node.py\", line 1183, in _execute_tool_async\n    content = _handle_tool_error(e, flag=self._handle_tool_errors)\n              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\n\n  File \"D:\\ai-engineering-7\\.venv\\Lib\\site-packages\\langgraph\\prebuilt\\tool_node.py\", line 442, in _handle_tool_error\n    content = flag(e)  # type: ignore [assignment, call-arg]\n              ^^^^^^^\n\n\n  File \"D:\\ai-engineering-7\\.venv\\Lib\\site-packages\\langgraph\\prebuilt\\tool_node.py\", line 399, in _default_handle_tool_errors\n    raise e\n\n\n  File \"D:\\ai-engineering-7\\.venv\\Lib\\site-packages\\langgraph\\prebuilt\\tool_node.py\", line 1126, in _execute_tool_async\n    response = await tool.ainvoke(call_args, config)\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\n\n  File \"D:\\ai-engineering-7\\.venv\\Lib\\site-packages\\langchain_core\\tools\\structured.py\", line 125, in ainvoke\n    return await super().ainvoke(input, config, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\n\n  File \"D:\\ai-engineering-7\\.venv\\Lib\\site-packages\\langchain_core\\tools\\base.py\", line 774, in ainvoke\n    return await self.arun(tool_input, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\n\n  File \"D:\\ai-engineering-7\\.venv\\Lib\\site-packages\\langchain_core\\tools\\base.py\", line 1262, in arun\n    raise error_to_raise\n\n\n  File \"D:\\ai-engineering-7\\.venv\\Lib\\site-packages\\langchain_core\\tools\\base.py\", line 1228, in arun\n    response = await coro_with_context(coro, context)\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\n\n  File \"D:\\ai-engineering-7\\.venv\\Lib\\site-packages\\langchain_core\\tools\\structured.py\", line 179, in _arun\n    return await self.coroutine(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\n\n  File \"D:\\ai-engineering-7\\tools\\custom_tools.py\", line 289, in buscar_documentacion\n    pares = await asyncio.wait_for(buscar_trazado(vectorstore, consulta, filtro), timeout=TIMEOUT_BUSQUEDA_S)\n            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\n\n  File \"C:\\Users\\pantonini\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\asyncio\\tasks.py\", line 520, in wait_for\n    return await fut\n           ^^^^^^^^^\n\n\n  File \"D:\\ai-engineering-7\\tools\\custom_tools.py\", line 255, in buscar_trazado\n    raise ConnectionError(\"Chroma no responde: base vectorial desconectada (falla simulada).\")\n\n\nConnectionError: Chroma no responde: base vectorial desconectada (falla simulada).",
+      "context.trace_id": "e3f3300744eff64ff9a08532d1c88e80"
+    },
+    {
+      "name": "tools",
+      "span_kind": "CHAIN",
+      "nodo": "investigador",
+      "status_message": "ConnectionError('Chroma no responde: base vectorial desconectada (falla simulada).')Traceback (most recent call last):\n\n\n  File \"D:\\ai-engineering-7\\.venv\\Lib\\site-packages\\langgraph\\_internal\\_runnable.py\", line 756, in ainvoke\n    input = await asyncio.create_task(\n            ^^^^^^^^^^^^^^^^^^^^^^^^^^\n\n\n  File \"D:\\ai-engineering-7\\.venv\\Lib\\site-packages\\langgraph\\_internal\\_runnable.py\", line 522, in ainvoke\n    ret = await self.afunc(*args, **kwargs)\n          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\n\n  File \"D:\\ai-engineering-7\\.venv\\Lib\\site-packages\\langgraph\\prebuilt\\tool_node.py\", line 866, in _afunc\n    outputs = await asyncio.gather(*coros)\n              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\n\n  File \"D:\\ai-engineering-7\\.venv\\Lib\\site-packages\\langgraph\\prebuilt\\tool_node.py\", line 1223, in _arun_one\n    return await self._execute_tool_async(tool_request, input_type, config)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\n\n  File \"D:\\ai-engineering-7\\.venv\\Lib\\site-packages\\langgraph\\prebuilt\\tool_node.py\", line 1183, in _execute_tool_async\n    content = _handle_tool_error(e, flag=self._handle_tool_errors)\n              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\n\n  File \"D:\\ai-engineering-7\\.venv\\Lib\\site-packages\\langgraph\\prebuilt\\tool_node.py\", line 442, in _handle_tool_error\n    content = flag(e)  # type: ignore [assignment, call-arg]\n              ^^^^^^^\n\n\n  File \"D:\\ai-engineering-7\\.venv\\Lib\\site-packages\\langgraph\\prebuilt\\tool_node.py\", line 399, in _default_handle_tool_errors\n    raise e\n\n\n  File \"D:\\ai-engineering-7\\.venv\\Lib\\site-packages\\langgraph\\prebuilt\\tool_node.py\", line 1126, in _execute_tool_async\n    response = await tool.ainvoke(call_args, config)\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\n\n  File \"D:\\ai-engineering-7\\.venv\\Lib\\site-packages\\langchain_core\\tools\\structured.py\", line 125, in ainvoke\n    return await super().ainvoke(input, config, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\n\n  File \"D:\\ai-engineering-7\\.venv\\Lib\\site-packages\\langchain_core\\tools\\base.py\", line 774, in ainvoke\n    return await self.arun(tool_input, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\n\n  File \"D:\\ai-engineering-7\\.venv\\Lib\\site-packages\\langchain_core\\tools\\base.py\", line 1262, in arun\n    raise error_to_raise\n\n\n  File \"D:\\ai-engineering-7\\.venv\\Lib\\site-packages\\langchain_core\\tools\\base.py\", line 1228, in arun\n    response = await coro_with_context(coro, context)\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\n\n  File \"D:\\ai-engineering-7\\.venv\\Lib\\site-packages\\langchain_core\\tools\\structured.py\", line 179, in _arun\n    return await self.coroutine(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\n\n  File \"D:\\ai-engineering-7\\tools\\custom_tools.py\", line 289, in buscar_documentacion\n    pares = await asyncio.wait_for(buscar_trazado(vectorstore, consulta, filtro), timeout=TIMEOUT_BUSQUEDA_S)\n            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\n\n  File \"C:\\Users\\pantonini\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\asyncio\\tasks.py\", line 520, in wait_for\n    return await fut\n           ^^^^^^^^^\n\n\n  File \"D:\\ai-engineering-7\\tools\\custom_tools.py\", line 255, in buscar_trazado\n    raise ConnectionError(\"Chroma no responde: base vectorial desconectada (falla simulada).\")\n\n\nConnectionError: Chroma no responde: base vectorial desconectada (falla simulada).",
+      "context.trace_id": "e3f3300744eff64ff9a08532d1c88e80"
+    },
+    {
+      "name": "tools",
+      "span_kind": "CHAIN",
+      "nodo": "investigador",
+      "status_message": "ConnectionError('Chroma no responde: base vectorial desconectada (falla simulada).')Traceback (most recent call last):\n\n\n  File \"D:\\ai-engineering-7\\.venv\\Lib\\site-packages\\langgraph\\_internal\\_runnable.py\", line 756, in ainvoke\n    input = await asyncio.create_task(\n            ^^^^^^^^^^^^^^^^^^^^^^^^^^\n\n\n  File \"D:\\ai-engineering-7\\.venv\\Lib\\site-packages\\langgraph\\_internal\\_runnable.py\", line 522, in ainvoke\n    ret = await self.afunc(*args, **kwargs)\n          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\n\n  File \"D:\\ai-engineering-7\\.venv\\Lib\\site-packages\\langgraph\\prebuilt\\tool_node.py\", line 866, in _afunc\n    outputs = await asyncio.gather(*coros)\n              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\n\n  File \"D:\\ai-engineering-7\\.venv\\Lib\\site-packages\\langgraph\\prebuilt\\tool_node.py\", line 1223, in _arun_one\n    return await self._execute_tool_async(tool_request, input_type, config)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\n\n  File \"D:\\ai-engineering-7\\.venv\\Lib\\site-packages\\langgraph\\prebuilt\\tool_node.py\", line 1183, in _execute_tool_async\n    content = _handle_tool_error(e, flag=self._handle_tool_errors)\n              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\n\n  File \"D:\\ai-engineering-7\\.venv\\Lib\\site-packages\\langgraph\\prebuilt\\tool_node.py\", line 442, in _handle_tool_error\n    content = flag(e)  # type: ignore [assignment, call-arg]\n              ^^^^^^^\n\n\n  File \"D:\\ai-engineering-7\\.venv\\Lib\\site-packages\\langgraph\\prebuilt\\tool_node.py\", line 399, in _default_handle_tool_errors\n    raise e\n\n\n  File \"D:\\ai-engineering-7\\.venv\\Lib\\site-packages\\langgraph\\prebuilt\\tool_node.py\", line 1126, in _execute_tool_async\n    response = await tool.ainvoke(call_args, config)\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\n\n  File \"D:\\ai-engineering-7\\.venv\\Lib\\site-packages\\langchain_core\\tools\\structured.py\", line 125, in ainvoke\n    return await super().ainvoke(input, config, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\n\n  File \"D:\\ai-engineering-7\\.venv\\Lib\\site-packages\\langchain_core\\tools\\base.py\", line 774, in ainvoke\n    return await self.arun(tool_input, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\n\n  File \"D:\\ai-engineering-7\\.venv\\Lib\\site-packages\\langchain_core\\tools\\base.py\", line 1262, in arun\n    raise error_to_raise\n\n\n  File \"D:\\ai-engineering-7\\.venv\\Lib\\site-packages\\langchain_core\\tools\\base.py\", line 1228, in arun\n    response = await coro_with_context(coro, context)\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\n\n  File \"D:\\ai-engineering-7\\.venv\\Lib\\site-packages\\langchain_core\\tools\\structured.py\", line 179, in _arun\n    return await self.coroutine(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\n\n  File \"D:\\ai-engineering-7\\tools\\custom_tools.py\", line 289, in buscar_documentacion\n    pares = await asyncio.wait_for(buscar_trazado(vectorstore, consulta, filtro), timeout=TIMEOUT_BUSQUEDA_S)\n            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\n\n  File \"C:\\Users\\pantonini\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\asyncio\\tasks.py\", line 520, in wait_for\n    return await fut\n           ^^^^^^^^^\n\n\n  File \"D:\\ai-engineering-7\\tools\\custom_tools.py\", line 255, in buscar_trazado\n    raise ConnectionError(\"Chroma no responde: base vectorial desconectada (falla simulada).\")\n\n\nConnectionError: Chroma no responde: base vectorial desconectada (falla simulada).",
+      "context.trace_id": "e3f3300744eff64ff9a08532d1c88e80"
+    },
+    {
+      "name": "investigador",
+      "span_kind": "CHAIN",
+      "nodo": "investigador",
+      "status_message": "ConnectionError('Chroma no responde: base vectorial desconectada (falla simulada).')Traceback (most recent call last):\n\n\n  File \"D:\\ai-engineering-7\\.venv\\Lib\\site-packages\\langgraph\\pregel\\main.py\", line 3440, in astream\n    async for _ in runner.atick(\n\n\n  File \"D:\\ai-engineering-7\\.venv\\Lib\\site-packages\\langgraph\\pregel\\_runner.py\", line 557, in atick\n    _panic_or_proceed(\n\n\n  File \"D:\\ai-engineering-7\\.venv\\Lib\\site-packages\\langgraph\\pregel\\_runner.py\", line 687, in _panic_or_proceed\n    raise exc\n\n\n  File \"D:\\ai-engineering-7\\.venv\\Lib\\site-packages\\langgraph\\pregel\\_retry.py\", line 744, in arun_with_retry\n    return await task.proc.ainvoke(task.input, config)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\n\n  File \"D:\\ai-engineering-7\\.venv\\Lib\\site-packages\\langgraph\\_internal\\_runnable.py\", line 756, in ainvoke\n    input = await asyncio.create_task(\n            ^^^^^^^^^^^^^^^^^^^^^^^^^^\n\n\n  File \"D:\\ai-engineering-7\\.venv\\Lib\\site-packages\\langgraph\\_internal\\_runnable.py\", line 522, in ainvoke\n    ret = await self.afunc(*args, **kwargs)\n          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\n\n  File \"D:\\ai-engineering-7\\.venv\\Lib\\site-packages\\langgraph\\prebuilt\\tool_node.py\", line 866, in _afunc\n    outputs = await asyncio.gather(*coros)\n              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\n\n  File \"D:\\ai-engineering-7\\.venv\\Lib\\site-packages\\langgraph\\prebuilt\\tool_node.py\", line 1223, in _arun_one\n    return await self._execute_tool_async(tool_request, input_type, config)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\n\n  File \"D:\\ai-engineering-7\\.venv\\Lib\\site-packages\\langgraph\\prebuilt\\tool_node.py\", line 1183, in _execute_tool_async\n    content = _handle_tool_error(e, flag=self._handle_tool_errors)\n              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\n\n  File \"D:\\ai-engineering-7\\.venv\\Lib\\site-packages\\langgraph\\prebuilt\\tool_node.py\", line 442, in _handle_tool_error\n    content = flag(e)  # type: ignore [assignment, call-arg]\n              ^^^^^^^\n\n\n  File \"D:\\ai-engineering-7\\.venv\\Lib\\site-packages\\langgraph\\prebuilt\\tool_node.py\", line 399, in _default_handle_tool_errors\n    raise e\n\n\n  File \"D:\\ai-engineering-7\\.venv\\Lib\\site-packages\\langgraph\\prebuilt\\tool_node.py\", line 1126, in _execute_tool_async\n    response = await tool.ainvoke(call_args, config)\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\n\n  File \"D:\\ai-engineering-7\\.venv\\Lib\\site-packages\\langchain_core\\tools\\structured.py\", line 125, in ainvoke\n    return await super().ainvoke(input, config, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\n\n  File \"D:\\ai-engineering-7\\.venv\\Lib\\site-packages\\langchain_core\\tools\\base.py\", line 774, in ainvoke\n    return await self.arun(tool_input, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\n\n  File \"D:\\ai-engineering-7\\.venv\\Lib\\site-packages\\langchain_core\\tools\\base.py\", line 1262, in arun\n    raise error_to_raise\n\n\n  File \"D:\\ai-engineering-7\\.venv\\Lib\\site-packages\\langchain_core\\tools\\base.py\", line 1228, in arun\n    response = await coro_with_context(coro, context)\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\n\n  File \"D:\\ai-engineering-7\\.venv\\Lib\\site-packages\\langchain_core\\tools\\structured.py\", line 179, in _arun\n    return await self.coroutine(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\n\n  File \"D:\\ai-engineering-7\\tools\\custom_tools.py\", line 289, in buscar_documentacion\n    pares = await asyncio.wait_for(buscar_trazado(vectorstore, consulta, filtro), timeout=TIMEOUT_BUSQUEDA_S)\n            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\n\n  File \"C:\\Users\\pantonini\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\asyncio\\tasks.py\", line 520, in wait_for\n    return await fut\n           ^^^^^^^^^\n\n\n  File \"D:\\ai-engineering-7\\tools\\custom_tools.py\", line 255, in buscar_trazado\n    raise ConnectionError(\"Chroma no responde: base vectorial desconectada (falla simulada).\")\n\n\nConnectionError: Chroma no responde: base vectorial desconectada (falla simulada).\n\n\nDuring task with name 'tools' and id 'ebb98813-05a9-8104-beb9-25766f1f814c'",
+      "context.trace_id": "e3f3300744eff64ff9a08532d1c88e80"
+    },
+    {
+      "name": "chroma.retriever",
+      "span_kind": "RETRIEVER",
+      "nodo": "investigador",
+      "status_message": "ConnectionError: Chroma no responde: base vectorial desconectada (falla simulada).",
+      "context.trace_id": "e3f3300744eff64ff9a08532d1c88e80"
+    },
+    {
+      "name": "chroma.retriever",
+      "span_kind": "RETRIEVER",
+      "nodo": "investigador",
+      "status_message": "ConnectionError: Chroma no responde: base vectorial desconectada (falla simulada).",
+      "context.trace_id": "e3f3300744eff64ff9a08532d1c88e80"
+    },
+    {
+      "name": "chroma.retriever",
+      "span_kind": "RETRIEVER",
+      "nodo": "investigador",
+      "status_message": "ConnectionError: Chroma no responde: base vectorial desconectada (falla simulada).",
+      "context.trace_id": "e3f3300744eff64ff9a08532d1c88e80"
+    },
+    {
+      "name": "buscar_documentacion",
+      "span_kind": "TOOL",
+      "nodo": "investigador",
+      "status_message": "ConnectionError('Chroma no responde: base vectorial desconectada (falla simulada).')Traceback (most recent call last):\n\n\n  File \"D:\\ai-engineering-7\\.venv\\Lib\\site-packages\\langchain_core\\tools\\base.py\", line 1228, in arun\n    response = await coro_with_context(coro, context)\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\n\n  File \"D:\\ai-engineering-7\\.venv\\Lib\\site-packages\\langchain_core\\tools\\structured.py\", line 179, in _arun\n    return await self.coroutine(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\n\n  File \"D:\\ai-engineering-7\\tools\\custom_tools.py\", line 289, in buscar_documentacion\n    pares = await asyncio.wait_for(buscar_trazado(vectorstore, consulta, filtro), timeout=TIMEOUT_BUSQUEDA_S)\n            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\n\n  File \"C:\\Users\\pantonini\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\asyncio\\tasks.py\", line 520, in wait_for\n    return await fut\n           ^^^^^^^^^\n\n\n  File \"D:\\ai-engineering-7\\tools\\custom_tools.py\", line 255, in buscar_trazado\n    raise ConnectionError(\"Chroma no responde: base vectorial desconectada (falla simulada).\")\n\n\nConnectionError: Chroma no responde: base vectorial desconectada (falla simulada).",
+      "context.trace_id": "e3f3300744eff64ff9a08532d1c88e80"
+    },
+    {
+      "name": "buscar_documentacion",
+      "span_kind": "TOOL",
+      "nodo": "investigador",
+      "status_message": "ConnectionError('Chroma no responde: base vectorial desconectada (falla simulada).')Traceback (most recent call last):\n\n\n  File \"D:\\ai-engineering-7\\.venv\\Lib\\site-packages\\langchain_core\\tools\\base.py\", line 1228, in arun\n    response = await coro_with_context(coro, context)\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\n\n  File \"D:\\ai-engineering-7\\.venv\\Lib\\site-packages\\langchain_core\\tools\\structured.py\", line 179, in _arun\n    return await self.coroutine(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\n\n  File \"D:\\ai-engineering-7\\tools\\custom_tools.py\", line 289, in buscar_documentacion\n    pares = await asyncio.wait_for(buscar_trazado(vectorstore, consulta, filtro), timeout=TIMEOUT_BUSQUEDA_S)\n            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\n\n  File \"C:\\Users\\pantonini\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\asyncio\\tasks.py\", line 520, in wait_for\n    return await fut\n           ^^^^^^^^^\n\n\n  File \"D:\\ai-engineering-7\\tools\\custom_tools.py\", line 255, in buscar_trazado\n    raise ConnectionError(\"Chroma no responde: base vectorial desconectada (falla simulada).\")\n\n\nConnectionError: Chroma no responde: base vectorial desconectada (falla simulada).",
+      "context.trace_id": "e3f3300744eff64ff9a08532d1c88e80"
+    },
+    {
+      "name": "buscar_documentacion",
+      "span_kind": "TOOL",
+      "nodo": "investigador",
+      "status_message": "ConnectionError('Chroma no responde: base vectorial desconectada (falla simulada).')Traceback (most recent call last):\n\n\n  File \"D:\\ai-engineering-7\\.venv\\Lib\\site-packages\\langchain_core\\tools\\base.py\", line 1228, in arun\n    response = await coro_with_context(coro, context)\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\n\n  File \"D:\\ai-engineering-7\\.venv\\Lib\\site-packages\\langchain_core\\tools\\structured.py\", line 179, in _arun\n    return await self.coroutine(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\n\n  File \"D:\\ai-engineering-7\\tools\\custom_tools.py\", line 289, in buscar_documentacion\n    pares = await asyncio.wait_for(buscar_trazado(vectorstore, consulta, filtro), timeout=TIMEOUT_BUSQUEDA_S)\n            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\n\n  File \"C:\\Users\\pantonini\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\asyncio\\tasks.py\", line 520, in wait_for\n    return await fut\n           ^^^^^^^^^\n\n\n  File \"D:\\ai-engineering-7\\tools\\custom_tools.py\", line 255, in buscar_trazado\n    raise ConnectionError(\"Chroma no responde: base vectorial desconectada (falla simulada).\")\n\n\nConnectionError: Chroma no responde: base vectorial desconectada (falla simulada).",
+      "context.trace_id": "e3f3300744eff64ff9a08532d1c88e80"
+    },
+    {
+      "name": "tools",
+      "span_kind": "CHAIN",
+      "nodo": "investigador",
+      "status_message": "ConnectionError('Chroma no responde: base vectorial desconectada (falla simulada).')Traceback (most recent call last):\n\n\n  File \"D:\\ai-engineering-7\\.venv\\Lib\\site-packages\\langgraph\\_internal\\_runnable.py\", line 756, in ainvoke\n    input = await asyncio.create_task(\n            ^^^^^^^^^^^^^^^^^^^^^^^^^^\n\n\n  File \"D:\\ai-engineering-7\\.venv\\Lib\\site-packages\\langgraph\\_internal\\_runnable.py\", line 522, in ainvoke\n    ret = await self.afunc(*args, **kwargs)\n          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\n\n  File \"D:\\ai-engineering-7\\.venv\\Lib\\site-packages\\langgraph\\prebuilt\\tool_node.py\", line 866, in _afunc\n    outputs = await asyncio.gather(*coros)\n              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\n\n  File \"D:\\ai-engineering-7\\.venv\\Lib\\site-packages\\langgraph\\prebuilt\\tool_node.py\", line 1223, in _arun_one\n    return await self._execute_tool_async(tool_request, input_type, config)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\n\n  File \"D:\\ai-engineering-7\\.venv\\Lib\\site-packages\\langgraph\\prebuilt\\tool_node.py\", line 1183, in _execute_tool_async\n    content = _handle_tool_error(e, flag=self._handle_tool_errors)\n              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\n\n  File \"D:\\ai-engineering-7\\.venv\\Lib\\site-packages\\langgraph\\prebuilt\\tool_node.py\", line 442, in _handle_tool_error\n    content = flag(e)  # type: ignore [assignment, call-arg]\n              ^^^^^^^\n\n\n  File \"D:\\ai-engineering-7\\.venv\\Lib\\site-packages\\langgraph\\prebuilt\\tool_node.py\", line 399, in _default_handle_tool_errors\n    raise e\n\n\n  File \"D:\\ai-engineering-7\\.venv\\Lib\\site-packages\\langgraph\\prebuilt\\tool_node.py\", line 1126, in _execute_tool_async\n    response = await tool.ainvoke(call_args, config)\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\n\n  File \"D:\\ai-engineering-7\\.venv\\Lib\\site-packages\\langchain_core\\tools\\structured.py\", line 125, in ainvoke\n    return await super().ainvoke(input, config, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\n\n  File \"D:\\ai-engineering-7\\.venv\\Lib\\site-packages\\langchain_core\\tools\\base.py\", line 774, in ainvoke\n    return await self.arun(tool_input, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\n\n  File \"D:\\ai-engineering-7\\.venv\\Lib\\site-packages\\langchain_core\\tools\\base.py\", line 1262, in arun\n    raise error_to_raise\n\n\n  File \"D:\\ai-engineering-7\\.venv\\Lib\\site-packages\\langchain_core\\tools\\base.py\", line 1228, in arun\n    response = await coro_with_context(coro, context)\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\n\n  File \"D:\\ai-engineering-7\\.venv\\Lib\\site-packages\\langchain_core\\tools\\structured.py\", line 179, in _arun\n    return await self.coroutine(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\n\n  File \"D:\\ai-engineering-7\\tools\\custom_tools.py\", line 289, in buscar_documentacion\n    pares = await asyncio.wait_for(buscar_trazado(vectorstore, consulta, filtro), timeout=TIMEOUT_BUSQUEDA_S)\n            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\n\n  File \"C:\\Users\\pantonini\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\asyncio\\tasks.py\", line 520, in wait_for\n    return await fut\n           ^^^^^^^^^\n\n\n  File \"D:\\ai-engineering-7\\tools\\custom_tools.py\", line 255, in buscar_trazado\n    raise ConnectionError(\"Chroma no responde: base vectorial desconectada (falla simulada).\")\n\n\nConnectionError: Chroma no responde: base vectorial desconectada (falla simulada).",
+      "context.trace_id": "e3f3300744eff64ff9a08532d1c88e80"
+    },
+    {
+      "name": "tools",
+      "span_kind": "CHAIN",
+      "nodo": "investigador",
+      "status_message": "ConnectionError('Chroma no responde: base vectorial desconectada (falla simulada).')Traceback (most recent call last):\n\n\n  File \"D:\\ai-engineering-7\\.venv\\Lib\\site-packages\\langgraph\\_internal\\_runnable.py\", line 756, in ainvoke\n    input = await asyncio.create_task(\n            ^^^^^^^^^^^^^^^^^^^^^^^^^^\n\n\n  File \"D:\\ai-engineering-7\\.venv\\Lib\\site-packages\\langgraph\\_internal\\_runnable.py\", line 522, in ainvoke\n    ret = await self.afunc(*args, **kwargs)\n          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\n\n  File \"D:\\ai-engineering-7\\.venv\\Lib\\site-packages\\langgraph\\prebuilt\\tool_node.py\", line 866, in _afunc\n    outputs = await asyncio.gather(*coros)\n              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\n\n  File \"D:\\ai-engineering-7\\.venv\\Lib\\site-packages\\langgraph\\prebuilt\\tool_node.py\", line 1223, in _arun_one\n    return await self._execute_tool_async(tool_request, input_type, config)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\n\n  File \"D:\\ai-engineering-7\\.venv\\Lib\\site-packages\\langgraph\\prebuilt\\tool_node.py\", line 1183, in _execute_tool_async\n    content = _handle_tool_error(e, flag=self._handle_tool_errors)\n              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\n\n  File \"D:\\ai-engineering-7\\.venv\\Lib\\site-packages\\langgraph\\prebuilt\\tool_node.py\", line 442, in _handle_tool_error\n    content = flag(e)  # type: ignore [assignment, call-arg]\n              ^^^^^^^\n\n\n  File \"D:\\ai-engineering-7\\.venv\\Lib\\site-packages\\langgraph\\prebuilt\\tool_node.py\", line 399, in _default_handle_tool_errors\n    raise e\n\n\n  File \"D:\\ai-engineering-7\\.venv\\Lib\\site-packages\\langgraph\\prebuilt\\tool_node.py\", line 1126, in _execute_tool_async\n    response = await tool.ainvoke(call_args, config)\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\n\n  File \"D:\\ai-engineering-7\\.venv\\Lib\\site-packages\\langchain_core\\tools\\structured.py\", line 125, in ainvoke\n    return await super().ainvoke(input, config, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\n\n  File \"D:\\ai-engineering-7\\.venv\\Lib\\site-packages\\langchain_core\\tools\\base.py\", line 774, in ainvoke\n    return await self.arun(tool_input, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\n\n  File \"D:\\ai-engineering-7\\.venv\\Lib\\site-packages\\langchain_core\\tools\\base.py\", line 1262, in arun\n    raise error_to_raise\n\n\n  File \"D:\\ai-engineering-7\\.venv\\Lib\\site-packages\\langchain_core\\tools\\base.py\", line 1228, in arun\n    response = await coro_with_context(coro, context)\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\n\n  File \"D:\\ai-engineering-7\\.venv\\Lib\\site-packages\\langchain_core\\tools\\structured.py\", line 179, in _arun\n    return await self.coroutine(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\n\n  File \"D:\\ai-engineering-7\\tools\\custom_tools.py\", line 289, in buscar_documentacion\n    pares = await asyncio.wait_for(buscar_trazado(vectorstore, consulta, filtro), timeout=TIMEOUT_BUSQUEDA_S)\n            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\n\n  File \"C:\\Users\\pantonini\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\asyncio\\tasks.py\", line 520, in wait_for\n    return await fut\n           ^^^^^^^^^\n\n\n  File \"D:\\ai-engineering-7\\tools\\custom_tools.py\", line 255, in buscar_trazado\n    raise ConnectionError(\"Chroma no responde: base vectorial desconectada (falla simulada).\")\n\n\nConnectionError: Chroma no responde: base vectorial desconectada (falla simulada).",
+      "context.trace_id": "e3f3300744eff64ff9a08532d1c88e80"
+    },
+    {
+      "name": "tools",
+      "span_kind": "CHAIN",
+      "nodo": "investigador",
+      "status_message": "ConnectionError('Chroma no responde: base vectorial desconectada (falla simulada).')Traceback (most recent call last):\n\n\n  File \"D:\\ai-engineering-7\\.venv\\Lib\\site-packages\\langgraph\\_internal\\_runnable.py\", line 756, in ainvoke\n    input = await asyncio.create_task(\n            ^^^^^^^^^^^^^^^^^^^^^^^^^^\n\n\n  File \"D:\\ai-engineering-7\\.venv\\Lib\\site-packages\\langgraph\\_internal\\_runnable.py\", line 522, in ainvoke\n    ret = await self.afunc(*args, **kwargs)\n          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\n\n  File \"D:\\ai-engineering-7\\.venv\\Lib\\site-packages\\langgraph\\prebuilt\\tool_node.py\", line 866, in _afunc\n    outputs = await asyncio.gather(*coros)\n              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\n\n  File \"D:\\ai-engineering-7\\.venv\\Lib\\site-packages\\langgraph\\prebuilt\\tool_node.py\", line 1223, in _arun_one\n    return await self._execute_tool_async(tool_request, input_type, config)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\n\n  File \"D:\\ai-engineering-7\\.venv\\Lib\\site-packages\\langgraph\\prebuilt\\tool_node.py\", line 1183, in _execute_tool_async\n    content = _handle_tool_error(e, flag=self._handle_tool_errors)\n              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\n\n  File \"D:\\ai-engineering-7\\.venv\\Lib\\site-packages\\langgraph\\prebuilt\\tool_node.py\", line 442, in _handle_tool_error\n    content = flag(e)  # type: ignore [assignment, call-arg]\n              ^^^^^^^\n\n\n  File \"D:\\ai-engineering-7\\.venv\\Lib\\site-packages\\langgraph\\prebuilt\\tool_node.py\", line 399, in _default_handle_tool_errors\n    raise e\n\n\n  File \"D:\\ai-engineering-7\\.venv\\Lib\\site-packages\\langgraph\\prebuilt\\tool_node.py\", line 1126, in _execute_tool_async\n    response = await tool.ainvoke(call_args, config)\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\n\n  File \"D:\\ai-engineering-7\\.venv\\Lib\\site-packages\\langchain_core\\tools\\structured.py\", line 125, in ainvoke\n    return await super().ainvoke(input, config, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\n\n  File \"D:\\ai-engineering-7\\.venv\\Lib\\site-packages\\langchain_core\\tools\\base.py\", line 774, in ainvoke\n    return await self.arun(tool_input, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\n\n  File \"D:\\ai-engineering-7\\.venv\\Lib\\site-packages\\langchain_core\\tools\\base.py\", line 1262, in arun\n    raise error_to_raise\n\n\n  File \"D:\\ai-engineering-7\\.venv\\Lib\\site-packages\\langchain_core\\tools\\base.py\", line 1228, in arun\n    response = await coro_with_context(coro, context)\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\n\n  File \"D:\\ai-engineering-7\\.venv\\Lib\\site-packages\\langchain_core\\tools\\structured.py\", line 179, in _arun\n    return await self.coroutine(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\n\n  File \"D:\\ai-engineering-7\\tools\\custom_tools.py\", line 289, in buscar_documentacion\n    pares = await asyncio.wait_for(buscar_trazado(vectorstore, consulta, filtro), timeout=TIMEOUT_BUSQUEDA_S)\n            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\n\n  File \"C:\\Users\\pantonini\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\asyncio\\tasks.py\", line 520, in wait_for\n    return await fut\n           ^^^^^^^^^\n\n\n  File \"D:\\ai-engineering-7\\tools\\custom_tools.py\", line 255, in buscar_trazado\n    raise ConnectionError(\"Chroma no responde: base vectorial desconectada (falla simulada).\")\n\n\nConnectionError: Chroma no responde: base vectorial desconectada (falla simulada).",
+      "context.trace_id": "e3f3300744eff64ff9a08532d1c88e80"
+    },
+    {
+      "name": "investigador",
+      "span_kind": "CHAIN",
+      "nodo": "investigador",
+      "status_message": "ConnectionError('Chroma no responde: base vectorial desconectada (falla simulada).')Traceback (most recent call last):\n\n\n  File \"D:\\ai-engineering-7\\.venv\\Lib\\site-packages\\langgraph\\pregel\\main.py\", line 3440, in astream\n    async for _ in runner.atick(\n\n\n  File \"D:\\ai-engineering-7\\.venv\\Lib\\site-packages\\langgraph\\pregel\\_runner.py\", line 557, in atick\n    _panic_or_proceed(\n\n\n  File \"D:\\ai-engineering-7\\.venv\\Lib\\site-packages\\langgraph\\pregel\\_runner.py\", line 687, in _panic_or_proceed\n    raise exc\n\n\n  File \"D:\\ai-engineering-7\\.venv\\Lib\\site-packages\\langgraph\\pregel\\_retry.py\", line 744, in arun_with_retry\n    return await task.proc.ainvoke(task.input, config)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\n\n  File \"D:\\ai-engineering-7\\.venv\\Lib\\site-packages\\langgraph\\_internal\\_runnable.py\", line 756, in ainvoke\n    input = await asyncio.create_task(\n            ^^^^^^^^^^^^^^^^^^^^^^^^^^\n\n\n  File \"D:\\ai-engineering-7\\.venv\\Lib\\site-packages\\langgraph\\_internal\\_runnable.py\", line 522, in ainvoke\n    ret = await self.afunc(*args, **kwargs)\n          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\n\n  File \"D:\\ai-engineering-7\\.venv\\Lib\\site-packages\\langgraph\\prebuilt\\tool_node.py\", line 866, in _afunc\n    outputs = await asyncio.gather(*coros)\n              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\n\n  File \"D:\\ai-engineering-7\\.venv\\Lib\\site-packages\\langgraph\\prebuilt\\tool_node.py\", line 1223, in _arun_one\n    return await self._execute_tool_async(tool_request, input_type, config)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\n\n  File \"D:\\ai-engineering-7\\.venv\\Lib\\site-packages\\langgraph\\prebuilt\\tool_node.py\", line 1183, in _execute_tool_async\n    content = _handle_tool_error(e, flag=self._handle_tool_errors)\n              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\n\n  File \"D:\\ai-engineering-7\\.venv\\Lib\\site-packages\\langgraph\\prebuilt\\tool_node.py\", line 442, in _handle_tool_error\n    content = flag(e)  # type: ignore [assignment, call-arg]\n              ^^^^^^^\n\n\n  File \"D:\\ai-engineering-7\\.venv\\Lib\\site-packages\\langgraph\\prebuilt\\tool_node.py\", line 399, in _default_handle_tool_errors\n    raise e\n\n\n  File \"D:\\ai-engineering-7\\.venv\\Lib\\site-packages\\langgraph\\prebuilt\\tool_node.py\", line 1126, in _execute_tool_async\n    response = await tool.ainvoke(call_args, config)\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\n\n  File \"D:\\ai-engineering-7\\.venv\\Lib\\site-packages\\langchain_core\\tools\\structured.py\", line 125, in ainvoke\n    return await super().ainvoke(input, config, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\n\n  File \"D:\\ai-engineering-7\\.venv\\Lib\\site-packages\\langchain_core\\tools\\base.py\", line 774, in ainvoke\n    return await self.arun(tool_input, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\n\n  File \"D:\\ai-engineering-7\\.venv\\Lib\\site-packages\\langchain_core\\tools\\base.py\", line 1262, in arun\n    raise error_to_raise\n\n\n  File \"D:\\ai-engineering-7\\.venv\\Lib\\site-packages\\langchain_core\\tools\\base.py\", line 1228, in arun\n    response = await coro_with_context(coro, context)\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\n\n  File \"D:\\ai-engineering-7\\.venv\\Lib\\site-packages\\langchain_core\\tools\\structured.py\", line 179, in _arun\n    return await self.coroutine(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\n\n  File \"D:\\ai-engineering-7\\tools\\custom_tools.py\", line 289, in buscar_documentacion\n    pares = await asyncio.wait_for(buscar_trazado(vectorstore, consulta, filtro), timeout=TIMEOUT_BUSQUEDA_S)\n            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\n\n  File \"C:\\Users\\pantonini\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\asyncio\\tasks.py\", line 520, in wait_for\n    return await fut\n           ^^^^^^^^^\n\n\n  File \"D:\\ai-engineering-7\\tools\\custom_tools.py\", line 255, in buscar_trazado\n    raise ConnectionError(\"Chroma no responde: base vectorial desconectada (falla simulada).\")\n\n\nConnectionError: Chroma no responde: base vectorial desconectada (falla simulada).\n\n\nDuring task with name 'tools' and id '2c70d3a8-72dc-22c9-8100-7940b3e4e036'",
+      "context.trace_id": "e3f3300744eff64ff9a08532d1c88e80"
+    },
+    {
+      "name": "chroma.retriever",
+      "span_kind": "RETRIEVER",
+      "nodo": "investigador",
+      "status_message": "ConnectionError: Chroma no responde: base vectorial desconectada (falla simulada).",
+      "context.trace_id": "e3f3300744eff64ff9a08532d1c88e80"
+    },
+    {
+      "name": "chroma.retriever",
+      "span_kind": "RETRIEVER",
+      "nodo": "investigador",
+      "status_message": "ConnectionError: Chroma no responde: base vectorial desconectada (falla simulada).",
+      "context.trace_id": "e3f3300744eff64ff9a08532d1c88e80"
+    },
+    {
+      "name": "chroma.retriever",
+      "span_kind": "RETRIEVER",
+      "nodo": "investigador",
+      "status_message": "ConnectionError: Chroma no responde: base vectorial desconectada (falla simulada).",
+      "context.trace_id": "e3f3300744eff64ff9a08532d1c88e80"
+    },
+    {
+      "name": "buscar_documentacion",
+      "span_kind": "TOOL",
+      "nodo": "investigador",
+      "status_message": "ConnectionError('Chroma no responde: base vectorial desconectada (falla simulada).')Traceback (most recent call last):\n\n\n  File \"D:\\ai-engineering-7\\.venv\\Lib\\site-packages\\langchain_core\\tools\\base.py\", line 1228, in arun\n    response = await coro_with_context(coro, context)\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\n\n  File \"D:\\ai-engineering-7\\.venv\\Lib\\site-packages\\langchain_core\\tools\\structured.py\", line 179, in _arun\n    return await self.coroutine(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\n\n  File \"D:\\ai-engineering-7\\tools\\custom_tools.py\", line 289, in buscar_documentacion\n    pares = await asyncio.wait_for(buscar_trazado(vectorstore, consulta, filtro), timeout=TIMEOUT_BUSQUEDA_S)\n            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\n\n  File \"C:\\Users\\pantonini\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\asyncio\\tasks.py\", line 520, in wait_for\n    return await fut\n           ^^^^^^^^^\n\n\n  File \"D:\\ai-engineering-7\\tools\\custom_tools.py\", line 255, in buscar_trazado\n    raise ConnectionError(\"Chroma no responde: base vectorial desconectada (falla simulada).\")\n\n\nConnectionError: Chroma no responde: base vectorial desconectada (falla simulada).",
+      "context.trace_id": "e3f3300744eff64ff9a08532d1c88e80"
+    },
+    {
+      "name": "buscar_documentacion",
+      "span_kind": "TOOL",
+      "nodo": "investigador",
+      "status_message": "ConnectionError('Chroma no responde: base vectorial desconectada (falla simulada).')Traceback (most recent call last):\n\n\n  File \"D:\\ai-engineering-7\\.venv\\Lib\\site-packages\\langchain_core\\tools\\base.py\", line 1228, in arun\n    response = await coro_with_context(coro, context)\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\n\n  File \"D:\\ai-engineering-7\\.venv\\Lib\\site-packages\\langchain_core\\tools\\structured.py\", line 179, in _arun\n    return await self.coroutine(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\n\n  File \"D:\\ai-engineering-7\\tools\\custom_tools.py\", line 289, in buscar_documentacion\n    pares = await asyncio.wait_for(buscar_trazado(vectorstore, consulta, filtro), timeout=TIMEOUT_BUSQUEDA_S)\n            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\n\n  File \"C:\\Users\\pantonini\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\asyncio\\tasks.py\", line 520, in wait_for\n    return await fut\n           ^^^^^^^^^\n\n\n  File \"D:\\ai-engineering-7\\tools\\custom_tools.py\", line 255, in buscar_trazado\n    raise ConnectionError(\"Chroma no responde: base vectorial desconectada (falla simulada).\")\n\n\nConnectionError: Chroma no responde: base vectorial desconectada (falla simulada).",
+      "context.trace_id": "e3f3300744eff64ff9a08532d1c88e80"
+    },
+    {
+      "name": "buscar_documentacion",
+      "span_kind": "TOOL",
+      "nodo": "investigador",
+      "status_message": "ConnectionError('Chroma no responde: base vectorial desconectada (falla simulada).')Traceback (most recent call last):\n\n\n  File \"D:\\ai-engineering-7\\.venv\\Lib\\site-packages\\langchain_core\\tools\\base.py\", line 1228, in arun\n    response = await coro_with_context(coro, context)\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\n\n  File \"D:\\ai-engineering-7\\.venv\\Lib\\site-packages\\langchain_core\\tools\\structured.py\", line 179, in _arun\n    return await self.coroutine(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\n\n  File \"D:\\ai-engineering-7\\tools\\custom_tools.py\", line 289, in buscar_documentacion\n    pares = await asyncio.wait_for(buscar_trazado(vectorstore, consulta, filtro), timeout=TIMEOUT_BUSQUEDA_S)\n            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\n\n  File \"C:\\Users\\pantonini\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\asyncio\\tasks.py\", line 520, in wait_for\n    return await fut\n           ^^^^^^^^^\n\n\n  File \"D:\\ai-engineering-7\\tools\\custom_tools.py\", line 255, in buscar_trazado\n    raise ConnectionError(\"Chroma no responde: base vectorial desconectada (falla simulada).\")\n\n\nConnectionError: Chroma no responde: base vectorial desconectada (falla simulada).",
+      "context.trace_id": "e3f3300744eff64ff9a08532d1c88e80"
+    },
+    {
+      "name": "tools",
+      "span_kind": "CHAIN",
+      "nodo": "investigador",
+      "status_message": "ConnectionError('Chroma no responde: base vectorial desconectada (falla simulada).')Traceback (most recent call last):\n\n\n  File \"D:\\ai-engineering-7\\.venv\\Lib\\site-packages\\langgraph\\_internal\\_runnable.py\", line 756, in ainvoke\n    input = await asyncio.create_task(\n            ^^^^^^^^^^^^^^^^^^^^^^^^^^\n\n\n  File \"D:\\ai-engineering-7\\.venv\\Lib\\site-packages\\langgraph\\_internal\\_runnable.py\", line 522, in ainvoke\n    ret = await self.afunc(*args, **kwargs)\n          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\n\n  File \"D:\\ai-engineering-7\\.venv\\Lib\\site-packages\\langgraph\\prebuilt\\tool_node.py\", line 866, in _afunc\n    outputs = await asyncio.gather(*coros)\n              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\n\n  File \"D:\\ai-engineering-7\\.venv\\Lib\\site-packages\\langgraph\\prebuilt\\tool_node.py\", line 1223, in _arun_one\n    return await self._execute_tool_async(tool_request, input_type, config)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\n\n  File \"D:\\ai-engineering-7\\.venv\\Lib\\site-packages\\langgraph\\prebuilt\\tool_node.py\", line 1183, in _execute_tool_async\n    content = _handle_tool_error(e, flag=self._handle_tool_errors)\n              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\n\n  File \"D:\\ai-engineering-7\\.venv\\Lib\\site-packages\\langgraph\\prebuilt\\tool_node.py\", line 442, in _handle_tool_error\n    content = flag(e)  # type: ignore [assignment, call-arg]\n              ^^^^^^^\n\n\n  File \"D:\\ai-engineering-7\\.venv\\Lib\\site-packages\\langgraph\\prebuilt\\tool_node.py\", line 399, in _default_handle_tool_errors\n    raise e\n\n\n  File \"D:\\ai-engineering-7\\.venv\\Lib\\site-packages\\langgraph\\prebuilt\\tool_node.py\", line 1126, in _execute_tool_async\n    response = await tool.ainvoke(call_args, config)\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\n\n  File \"D:\\ai-engineering-7\\.venv\\Lib\\site-packages\\langchain_core\\tools\\structured.py\", line 125, in ainvoke\n    return await super().ainvoke(input, config, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\n\n  File \"D:\\ai-engineering-7\\.venv\\Lib\\site-packages\\langchain_core\\tools\\base.py\", line 774, in ainvoke\n    return await self.arun(tool_input, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\n\n  File \"D:\\ai-engineering-7\\.venv\\Lib\\site-packages\\langchain_core\\tools\\base.py\", line 1262, in arun\n    raise error_to_raise\n\n\n  File \"D:\\ai-engineering-7\\.venv\\Lib\\site-packages\\langchain_core\\tools\\base.py\", line 1228, in arun\n    response = await coro_with_context(coro, context)\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\n\n  File \"D:\\ai-engineering-7\\.venv\\Lib\\site-packages\\langchain_core\\tools\\structured.py\", line 179, in _arun\n    return await self.coroutine(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\n\n  File \"D:\\ai-engineering-7\\tools\\custom_tools.py\", line 289, in buscar_documentacion\n    pares = await asyncio.wait_for(buscar_trazado(vectorstore, consulta, filtro), timeout=TIMEOUT_BUSQUEDA_S)\n            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\n\n  File \"C:\\Users\\pantonini\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\asyncio\\tasks.py\", line 520, in wait_for\n    return await fut\n           ^^^^^^^^^\n\n\n  File \"D:\\ai-engineering-7\\tools\\custom_tools.py\", line 255, in buscar_trazado\n    raise ConnectionError(\"Chroma no responde: base vectorial desconectada (falla simulada).\")\n\n\nConnectionError: Chroma no responde: base vectorial desconectada (falla simulada).",
+      "context.trace_id": "e3f3300744eff64ff9a08532d1c88e80"
+    },
+    {
+      "name": "tools",
+      "span_kind": "CHAIN",
+      "nodo": "investigador",
+      "status_message": "ConnectionError('Chroma no responde: base vectorial desconectada (falla simulada).')Traceback (most recent call last):\n\n\n  File \"D:\\ai-engineering-7\\.venv\\Lib\\site-packages\\langgraph\\_internal\\_runnable.py\", line 756, in ainvoke\n    input = await asyncio.create_task(\n            ^^^^^^^^^^^^^^^^^^^^^^^^^^\n\n\n  File \"D:\\ai-engineering-7\\.venv\\Lib\\site-packages\\langgraph\\_internal\\_runnable.py\", line 522, in ainvoke\n    ret = await self.afunc(*args, **kwargs)\n          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\n\n  File \"D:\\ai-engineering-7\\.venv\\Lib\\site-packages\\langgraph\\prebuilt\\tool_node.py\", line 866, in _afunc\n    outputs = await asyncio.gather(*coros)\n              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\n\n  File \"D:\\ai-engineering-7\\.venv\\Lib\\site-packages\\langgraph\\prebuilt\\tool_node.py\", line 1223, in _arun_one\n    return await self._execute_tool_async(tool_request, input_type, config)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\n\n  File \"D:\\ai-engineering-7\\.venv\\Lib\\site-packages\\langgraph\\prebuilt\\tool_node.py\", line 1183, in _execute_tool_async\n    content = _handle_tool_error(e, flag=self._handle_tool_errors)\n              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\n\n  File \"D:\\ai-engineering-7\\.venv\\Lib\\site-packages\\langgraph\\prebuilt\\tool_node.py\", line 442, in _handle_tool_error\n    content = flag(e)  # type: ignore [assignment, call-arg]\n              ^^^^^^^\n\n\n  File \"D:\\ai-engineering-7\\.venv\\Lib\\site-packages\\langgraph\\prebuilt\\tool_node.py\", line 399, in _default_handle_tool_errors\n    raise e\n\n\n  File \"D:\\ai-engineering-7\\.venv\\Lib\\site-packages\\langgraph\\prebuilt\\tool_node.py\", line 1126, in _execute_tool_async\n    response = await tool.ainvoke(call_args, config)\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\n\n  File \"D:\\ai-engineering-7\\.venv\\Lib\\site-packages\\langchain_core\\tools\\structured.py\", line 125, in ainvoke\n    return await super().ainvoke(input, config, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\n\n  File \"D:\\ai-engineering-7\\.venv\\Lib\\site-packages\\langchain_core\\tools\\base.py\", line 774, in ainvoke\n    return await self.arun(tool_input, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\n\n  File \"D:\\ai-engineering-7\\.venv\\Lib\\site-packages\\langchain_core\\tools\\base.py\", line 1262, in arun\n    raise error_to_raise\n\n\n  File \"D:\\ai-engineering-7\\.venv\\Lib\\site-packages\\langchain_core\\tools\\base.py\", line 1228, in arun\n    response = await coro_with_context(coro, context)\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\n\n  File \"D:\\ai-engineering-7\\.venv\\Lib\\site-packages\\langchain_core\\tools\\structured.py\", line 179, in _arun\n    return await self.coroutine(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\n\n  File \"D:\\ai-engineering-7\\tools\\custom_tools.py\", line 289, in buscar_documentacion\n    pares = await asyncio.wait_for(buscar_trazado(vectorstore, consulta, filtro), timeout=TIMEOUT_BUSQUEDA_S)\n            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\n\n  File \"C:\\Users\\pantonini\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\asyncio\\tasks.py\", line 520, in wait_for\n    return await fut\n           ^^^^^^^^^\n\n\n  File \"D:\\ai-engineering-7\\tools\\custom_tools.py\", line 255, in buscar_trazado\n    raise ConnectionError(\"Chroma no responde: base vectorial desconectada (falla simulada).\")\n\n\nConnectionError: Chroma no responde: base vectorial desconectada (falla simulada).",
+      "context.trace_id": "e3f3300744eff64ff9a08532d1c88e80"
+    },
+    {
+      "name": "tools",
+      "span_kind": "CHAIN",
+      "nodo": "investigador",
+      "status_message": "ConnectionError('Chroma no responde: base vectorial desconectada (falla simulada).')Traceback (most recent call last):\n\n\n  File \"D:\\ai-engineering-7\\.venv\\Lib\\site-packages\\langgraph\\_internal\\_runnable.py\", line 756, in ainvoke\n    input = await asyncio.create_task(\n            ^^^^^^^^^^^^^^^^^^^^^^^^^^\n\n\n  File \"D:\\ai-engineering-7\\.venv\\Lib\\site-packages\\langgraph\\_internal\\_runnable.py\", line 522, in ainvoke\n    ret = await self.afunc(*args, **kwargs)\n          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\n\n  File \"D:\\ai-engineering-7\\.venv\\Lib\\site-packages\\langgraph\\prebuilt\\tool_node.py\", line 866, in _afunc\n    outputs = await asyncio.gather(*coros)\n              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\n\n  File \"D:\\ai-engineering-7\\.venv\\Lib\\site-packages\\langgraph\\prebuilt\\tool_node.py\", line 1223, in _arun_one\n    return await self._execute_tool_async(tool_request, input_type, config)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\n\n  File \"D:\\ai-engineering-7\\.venv\\Lib\\site-packages\\langgraph\\prebuilt\\tool_node.py\", line 1183, in _execute_tool_async\n    content = _handle_tool_error(e, flag=self._handle_tool_errors)\n              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\n\n  File \"D:\\ai-engineering-7\\.venv\\Lib\\site-packages\\langgraph\\prebuilt\\tool_node.py\", line 442, in _handle_tool_error\n    content = flag(e)  # type: ignore [assignment, call-arg]\n              ^^^^^^^\n\n\n  File \"D:\\ai-engineering-7\\.venv\\Lib\\site-packages\\langgraph\\prebuilt\\tool_node.py\", line 399, in _default_handle_tool_errors\n    raise e\n\n\n  File \"D:\\ai-engineering-7\\.venv\\Lib\\site-packages\\langgraph\\prebuilt\\tool_node.py\", line 1126, in _execute_tool_async\n    response = await tool.ainvoke(call_args, config)\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\n\n  File \"D:\\ai-engineering-7\\.venv\\Lib\\site-packages\\langchain_core\\tools\\structured.py\", line 125, in ainvoke\n    return await super().ainvoke(input, config, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\n\n  File \"D:\\ai-engineering-7\\.venv\\Lib\\site-packages\\langchain_core\\tools\\base.py\", line 774, in ainvoke\n    return await self.arun(tool_input, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\n\n  File \"D:\\ai-engineering-7\\.venv\\Lib\\site-packages\\langchain_core\\tools\\base.py\", line 1262, in arun\n    raise error_to_raise\n\n\n  File \"D:\\ai-engineering-7\\.venv\\Lib\\site-packages\\langchain_core\\tools\\base.py\", line 1228, in arun\n    response = await coro_with_context(coro, context)\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\n\n  File \"D:\\ai-engineering-7\\.venv\\Lib\\site-packages\\langchain_core\\tools\\structured.py\", line 179, in _arun\n    return await self.coroutine(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\n\n  File \"D:\\ai-engineering-7\\tools\\custom_tools.py\", line 289, in buscar_documentacion\n    pares = await asyncio.wait_for(buscar_trazado(vectorstore, consulta, filtro), timeout=TIMEOUT_BUSQUEDA_S)\n            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\n\n  File \"C:\\Users\\pantonini\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\asyncio\\tasks.py\", line 520, in wait_for\n    return await fut\n           ^^^^^^^^^\n\n\n  File \"D:\\ai-engineering-7\\tools\\custom_tools.py\", line 255, in buscar_trazado\n    raise ConnectionError(\"Chroma no responde: base vectorial desconectada (falla simulada).\")\n\n\nConnectionError: Chroma no responde: base vectorial desconectada (falla simulada).",
+      "context.trace_id": "e3f3300744eff64ff9a08532d1c88e80"
+    },
+    {
+      "name": "investigador",
+      "span_kind": "CHAIN",
+      "nodo": "investigador",
+      "status_message": "ConnectionError('Chroma no responde: base vectorial desconectada (falla simulada).')Traceback (most recent call last):\n\n\n  File \"D:\\ai-engineering-7\\.venv\\Lib\\site-packages\\langgraph\\pregel\\main.py\", line 3440, in astream\n    async for _ in runner.atick(\n\n\n  File \"D:\\ai-engineering-7\\.venv\\Lib\\site-packages\\langgraph\\pregel\\_runner.py\", line 557, in atick\n    _panic_or_proceed(\n\n\n  File \"D:\\ai-engineering-7\\.venv\\Lib\\site-packages\\langgraph\\pregel\\_runner.py\", line 687, in _panic_or_proceed\n    raise exc\n\n\n  File \"D:\\ai-engineering-7\\.venv\\Lib\\site-packages\\langgraph\\pregel\\_retry.py\", line 744, in arun_with_retry\n    return await task.proc.ainvoke(task.input, config)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\n\n  File \"D:\\ai-engineering-7\\.venv\\Lib\\site-packages\\langgraph\\_internal\\_runnable.py\", line 756, in ainvoke\n    input = await asyncio.create_task(\n            ^^^^^^^^^^^^^^^^^^^^^^^^^^\n\n\n  File \"D:\\ai-engineering-7\\.venv\\Lib\\site-packages\\langgraph\\_internal\\_runnable.py\", line 522, in ainvoke\n    ret = await self.afunc(*args, **kwargs)\n          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\n\n  File \"D:\\ai-engineering-7\\.venv\\Lib\\site-packages\\langgraph\\prebuilt\\tool_node.py\", line 866, in _afunc\n    outputs = await asyncio.gather(*coros)\n              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\n\n  File \"D:\\ai-engineering-7\\.venv\\Lib\\site-packages\\langgraph\\prebuilt\\tool_node.py\", line 1223, in _arun_one\n    return await self._execute_tool_async(tool_request, input_type, config)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\n\n  File \"D:\\ai-engineering-7\\.venv\\Lib\\site-packages\\langgraph\\prebuilt\\tool_node.py\", line 1183, in _execute_tool_async\n    content = _handle_tool_error(e, flag=self._handle_tool_errors)\n              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\n\n  File \"D:\\ai-engineering-7\\.venv\\Lib\\site-packages\\langgraph\\prebuilt\\tool_node.py\", line 442, in _handle_tool_error\n    content = flag(e)  # type: ignore [assignment, call-arg]\n              ^^^^^^^\n\n\n  File \"D:\\ai-engineering-7\\.venv\\Lib\\site-packages\\langgraph\\prebuilt\\tool_node.py\", line 399, in _default_handle_tool_errors\n    raise e\n\n\n  File \"D:\\ai-engineering-7\\.venv\\Lib\\site-packages\\langgraph\\prebuilt\\tool_node.py\", line 1126, in _execute_tool_async\n    response = await tool.ainvoke(call_args, config)\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\n\n  File \"D:\\ai-engineering-7\\.venv\\Lib\\site-packages\\langchain_core\\tools\\structured.py\", line 125, in ainvoke\n    return await super().ainvoke(input, config, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\n\n  File \"D:\\ai-engineering-7\\.venv\\Lib\\site-packages\\langchain_core\\tools\\base.py\", line 774, in ainvoke\n    return await self.arun(tool_input, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\n\n  File \"D:\\ai-engineering-7\\.venv\\Lib\\site-packages\\langchain_core\\tools\\base.py\", line 1262, in arun\n    raise error_to_raise\n\n\n  File \"D:\\ai-engineering-7\\.venv\\Lib\\site-packages\\langchain_core\\tools\\base.py\", line 1228, in arun\n    response = await coro_with_context(coro, context)\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\n\n  File \"D:\\ai-engineering-7\\.venv\\Lib\\site-packages\\langchain_core\\tools\\structured.py\", line 179, in _arun\n    return await self.coroutine(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\n\n  File \"D:\\ai-engineering-7\\tools\\custom_tools.py\", line 289, in buscar_documentacion\n    pares = await asyncio.wait_for(buscar_trazado(vectorstore, consulta, filtro), timeout=TIMEOUT_BUSQUEDA_S)\n            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\n\n  File \"C:\\Users\\pantonini\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\asyncio\\tasks.py\", line 520, in wait_for\n    return await fut\n           ^^^^^^^^^\n\n\n  File \"D:\\ai-engineering-7\\tools\\custom_tools.py\", line 255, in buscar_trazado\n    raise ConnectionError(\"Chroma no responde: base vectorial desconectada (falla simulada).\")\n\n\nConnectionError: Chroma no responde: base vectorial desconectada (falla simulada).\n\n\nDuring task with name 'tools' and id '9d7278ca-778f-0d12-978a-380307741858'",
+      "context.trace_id": "e3f3300744eff64ff9a08532d1c88e80"
+    }
+  ],
+  "razonamiento_mas_largo": {
+    "sesion": "sesion-pool",
+    "trace_id": "4490d88bfd93d453380ec3b98b80226a",
+    "llamadas": [
+      {
+        "nodo": "supervisor",
+        "ms": 3010.007,
+        "attributes.llm.token_count.prompt": 1645.0,
+        "attributes.llm.token_count.completion": 363.0,
+        "costo_usd": 0.000346
+      },
+      {
+        "nodo": "investigador",
+        "ms": 1552.134,
+        "attributes.llm.token_count.prompt": 1658.0,
+        "attributes.llm.token_count.completion": 284.0,
+        "costo_usd": 0.0003078
+      },
+      {
+        "nodo": "investigador",
+        "ms": 10409.391,
+        "attributes.llm.token_count.prompt": 6404.0,
+        "attributes.llm.token_count.completion": 2707.0,
+        "costo_usd": 0.0019939
+      },
+      {
+        "nodo": "investigador",
+        "ms": 10060.948,
+        "attributes.llm.token_count.prompt": 8150.0,
+        "attributes.llm.token_count.completion": 2750.0,
+        "costo_usd": 0.00219
+      },
+      {
+        "nodo": "supervisor",
+        "ms": 3303.244,
+        "attributes.llm.token_count.prompt": 2754.0,
+        "attributes.llm.token_count.completion": 563.0,
+        "costo_usd": 0.0005569
+      },
+      {
+        "nodo": "analista",
+        "ms": 3912.526,
+        "attributes.llm.token_count.prompt": 2998.0,
+        "attributes.llm.token_count.completion": 815.0,
+        "costo_usd": 0.0007073
+      },
+      {
+        "nodo": "analista",
+        "ms": 7373.235,
+        "attributes.llm.token_count.prompt": 4087.0,
+        "attributes.llm.token_count.completion": 1786.0,
+        "costo_usd": 0.0013017
+      },
+      {
+        "nodo": "analista",
+        "ms": 9034.405,
+        "attributes.llm.token_count.prompt": 4877.0,
+        "attributes.llm.token_count.completion": 1995.0,
+        "costo_usd": 0.0014852
+      },
+      {
+        "nodo": "supervisor",
+        "ms": 4678.477,
+        "attributes.llm.token_count.prompt": 3719.0,
+        "attributes.llm.token_count.completion": 767.0,
+        "costo_usd": 0.0007554
+      },
+      {
+        "nodo": "investigador",
+        "ms": 1778.72,
+        "attributes.llm.token_count.prompt": 1670.0,
+        "attributes.llm.token_count.completion": 330.0,
+        "costo_usd": 0.000332
+      },
+      {
+        "nodo": "investigador",
+        "ms": 2507.236,
+        "attributes.llm.token_count.prompt": 6278.0,
+        "attributes.llm.token_count.completion": 494.0,
+        "costo_usd": 0.0008748
+      },
+      {
+        "nodo": "investigador",
+        "ms": 14281.03,
+        "attributes.llm.token_count.prompt": 10950.0,
+        "attributes.llm.token_count.completion": 3504.0,
+        "costo_usd": 0.002847
+      },
+      {
+        "nodo": "investigador",
+        "ms": 7884.843,
+        "attributes.llm.token_count.prompt": 12356.0,
+        "attributes.llm.token_count.completion": 2002.0,
+        "costo_usd": 0.0022366
+      },
+      {
+        "nodo": "supervisor",
+        "ms": 3427.373,
+        "attributes.llm.token_count.prompt": 4657.0,
+        "attributes.llm.token_count.completion": 493.0,
+        "costo_usd": 0.0007122
+      },
+      {
+        "nodo": "supervisor",
+        "ms": 3897.246,
+        "attributes.llm.token_count.prompt": 4680.0,
+        "attributes.llm.token_count.completion": 704.0,
+        "costo_usd": 0.00082
+      },
+      {
+        "nodo": "analista",
+        "ms": 2411.521,
+        "attributes.llm.token_count.prompt": 3781.0,
+        "attributes.llm.token_count.completion": 560.0,
+        "costo_usd": 0.0006581
+      },
+      {
+        "nodo": "analista",
+        "ms": 13855.684,
+        "attributes.llm.token_count.prompt": 4611.0,
+        "attributes.llm.token_count.completion": 3074.0,
+        "costo_usd": 0.0019981
+      },
+      {
+        "nodo": "analista",
+        "ms": 10146.245,
+        "attributes.llm.token_count.prompt": 5815.0,
+        "attributes.llm.token_count.completion": 2594.0,
+        "costo_usd": 0.0018785
+      },
+      {
+        "nodo": "supervisor",
+        "ms": 3065.016,
+        "attributes.llm.token_count.prompt": 6295.0,
+        "attributes.llm.token_count.completion": 389.0,
+        "costo_usd": 0.000824
+      },
+      {
+        "nodo": "analista",
+        "ms": 3297.206,
+        "attributes.llm.token_count.prompt": 3648.0,
+        "attributes.llm.token_count.completion": 620.0,
+        "costo_usd": 0.0006748
+      },
+      {
+        "nodo": "analista",
+        "ms": 4325.989,
+        "attributes.llm.token_count.prompt": 4570.0,
+        "attributes.llm.token_count.completion": 815.0,
+        "costo_usd": 0.0008645
+      },
+      {
+        "nodo": "analista",
+        "ms": 7259.561,
+        "attributes.llm.token_count.prompt": 4443.0,
+        "attributes.llm.token_count.completion": 1599.0,
+        "costo_usd": 0.0012438
+      },
+      {
+        "nodo": "supervisor",
+        "ms": 2792.278,
+        "attributes.llm.token_count.prompt": 7255.0,
+        "attributes.llm.token_count.completion": 443.0,
+        "costo_usd": 0.000947
+      },
+      {
+        "nodo": "sintetizador",
+        "ms": 7292.751,
+        "attributes.llm.token_count.prompt": 2613.0,
+        "attributes.llm.token_count.completion": 1864.0,
+        "costo_usd": 0.0011933
+      }
+    ]
+  }
+}
