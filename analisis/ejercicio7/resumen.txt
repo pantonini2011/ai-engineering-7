@@ -1,0 +1,4 @@
+traza | spans | latencia (s) | LLM (s) | recuperación (s) | tokens in/out | USD
+ej7-simple | 1 | 1.6 | 1.6 | 0.00 | 49/83 | 0.0000
+ej7-recuperacion | 89 | 46.9 | 46.6 | 0.18 | 38711/10144 | 0.0089
+ej7-error | 83 | 21.8 | 21.5 | 0.01 | 13729/2839 | 0.0028 | 24 spans ERROR
